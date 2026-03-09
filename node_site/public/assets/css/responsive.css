@@ -211,26 +211,26 @@
   }
 
   .coverflow-slide {
-    width: 240px;
-    /* Smaller cards */
-    height: 340px;
+    width: 300px;
+    /* Landscape cards */
+    height: 220px;
   }
 
   /* Tighter spacing for laptop to prevent overlap */
   .coverflow-slide.left {
-    transform: translateX(-140px) scale(0.85) translateZ(0) rotateY(20deg);
+    transform: translateX(-180px) scale(0.85) translateZ(0) rotateY(20deg);
   }
 
   .coverflow-slide.right {
-    transform: translateX(140px) scale(0.85) translateZ(0) rotateY(-20deg);
+    transform: translateX(180px) scale(0.85) translateZ(0) rotateY(-20deg);
   }
 
   .coverflow-slide.left-hide {
-    transform: translateX(-260px) scale(0.7) translateZ(-50px) rotateY(30deg);
+    transform: translateX(-320px) scale(0.7) translateZ(-50px) rotateY(30deg);
   }
 
   .coverflow-slide.right-hide {
-    transform: translateX(260px) scale(0.7) translateZ(-50px) rotateY(-30deg);
+    transform: translateX(320px) scale(0.7) translateZ(-50px) rotateY(-30deg);
   }
 }
 

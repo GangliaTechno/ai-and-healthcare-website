@@ -2034,9 +2034,9 @@ hr {
 
 .coverflow-slide {
   position: absolute;
-  /* Reduced Rectangle Width to Prevent Overlap */
-  width: 240px;
-  height: 340px;
+  /* Landscape Rectangle Dimensions */
+  width: 340px;
+  height: 240px;
   background: #000;
   border-radius: 15px;
   /* Sharper corners */
@@ -2063,26 +2063,26 @@ hr {
 
 /* Left States (Tighter Offset) */
 .coverflow-slide.left {
-  transform: translateX(-180px) scale(0.85) translateZ(0) rotateY(20deg);
+  transform: translateX(-220px) scale(0.85) translateZ(0) rotateY(20deg);
   opacity: 0.6;
   z-index: 10;
 }
 
 .coverflow-slide.left-hide {
-  transform: translateX(-320px) scale(0.7) translateZ(-50px) rotateY(30deg);
+  transform: translateX(-380px) scale(0.7) translateZ(-50px) rotateY(30deg);
   opacity: 0;
   z-index: 1;
 }
 
 /* Right States (Tighter Offset) */
 .coverflow-slide.right {
-  transform: translateX(180px) scale(0.85) translateZ(0) rotateY(-20deg);
+  transform: translateX(220px) scale(0.85) translateZ(0) rotateY(-20deg);
   opacity: 0.6;
   z-index: 10;
 }
 
 .coverflow-slide.right-hide {
-  transform: translateX(320px) scale(0.7) translateZ(-50px) rotateY(-30deg);
+  transform: translateX(380px) scale(0.7) translateZ(-50px) rotateY(-30deg);
   opacity: 0;
   z-index: 1;
 }
