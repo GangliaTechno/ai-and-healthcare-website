@@ -2190,6 +2190,15 @@ hr {
   }
 }
 
+/* =========================================
+   Active Navbar Highlights
+   ========================================= */
+.navbar-nav .nav-link.active,
+.navbar-nav .dropdown-item.active {
+  color: #E85626 !important;
+  font-weight: 600;
+}
+
 /* Desktop Specifics (560px Height) */
 @media (min-width: 992px) {
 

@@ -1,73 +1,4 @@
 $("#cat-1").owlCarousel({
-  items: 33,
-  loop: !0,
-  margin: 15,
-  nav: !1,
-  dots: !1,
-  autoplay: !0,
-  slideTransition: "linear",
-  autoplayTimeout: 2e3,
-  autoplaySpeed: 2e3,
-  responsive: { 0: { items: 2 }, 600: { items: 3 }, 1e3: { items: 3 } },
-}),
-  $("#cat-2").owlCarousel({
-    items: 3,
-    loop: !0,
-    margin: 15,
-    nav: !1,
-    dots: !1,
-    autoplay: !0,
-    slideTransition: "linear",
-    autoplayTimeout: 2e3,
-    autoplaySpeed: 2e3,
-    rtl: !0,
-    responsive: { 0: { items: 2 }, 600: { items: 3 }, 1e3: { items: 3 } },
-  }),
-  $("#cat-3").owlCarousel({
-    items: 4,
-    loop: !0,
-    margin: 20,
-    nav: !0,
-    dots: !1,
-    autoplay: !0,
-    autoplayTimeout: 2e3,
-    autoplaySpeed: 2e3,
-    responsive: { 0: { items: 1 }, 600: { items: 3 }, 1e3: { items: 4 } },
-  }),
-  $("#cat-4").owlCarousel({
-    items: 4,
-    loop: !0,
-    margin: 20,
-    nav: !0,
-    dots: !1,
-    autoplay: !0,
-    autoplayTimeout: 2e3,
-    autoplaySpeed: 2e3,
-    responsive: { 0: { items: 1 }, 600: { items: 3 }, 1e3: { items: 4 } },
-  }),
-  $("#cat-5").owlCarousel({
-    items: 4,
-    loop: !0,
-    margin: 20,
-    nav: !0,
-    dots: !1,
-    autoplay: !0,
-    autoplayTimeout: 2e3,
-    autoplaySpeed: 2e3,
-    responsive: { 0: { items: 1 }, 600: { items: 3 }, 1e3: { items: 4 } },
-  }),
-  $("#cat-6").owlCarousel({
-    items: 4,
-    loop: !1,
-    margin: 20,
-    nav: !0,
-    dots: !1,
-    autoplay: !1,
-    autoplayTimeout: 2e3,
-    autoplaySpeed: 2e3,
-    responsive: { 0: { items: 1 }, 600: { items: 3 }, 1e3: { items: 4 } },
-  }),
-  $("#cat-7").owlCarousel({
     items: 33,
     loop: !0,
     margin: 15,
@@ -78,72 +9,141 @@ $("#cat-1").owlCarousel({
     autoplayTimeout: 2e3,
     autoplaySpeed: 2e3,
     responsive: { 0: { items: 2 }, 600: { items: 3 }, 1e3: { items: 3 } },
-  }),
-  $("#cat-8").owlCarousel({
-    items: 3,
-    loop: !0,
-    margin: 15,
-    nav: !1,
-    dots: !1,
-    autoplay: !0,
-    slideTransition: "linear",
-    autoplayTimeout: 2e3,
-    autoplaySpeed: 2e3,
-    rtl: !0,
-    responsive: { 0: { items: 2 }, 600: { items: 3 }, 1e3: { items: 3 } },
-  }),
-  $("#cat-9").owlCarousel({
-    items: 1,
-    loop: !0,
-    margin: 20,
-    nav: !0,
-    autoplay: !1,
-  });
+}),
+    $("#cat-2").owlCarousel({
+        items: 3,
+        loop: !0,
+        margin: 15,
+        nav: !1,
+        dots: !1,
+        autoplay: !0,
+        slideTransition: "linear",
+        autoplayTimeout: 2e3,
+        autoplaySpeed: 2e3,
+        rtl: !0,
+        responsive: { 0: { items: 2 }, 600: { items: 3 }, 1e3: { items: 3 } },
+    }),
+    $("#cat-3").owlCarousel({
+        items: 4,
+        loop: !0,
+        margin: 20,
+        nav: !0,
+        dots: !1,
+        autoplay: !0,
+        autoplayTimeout: 2e3,
+        autoplaySpeed: 2e3,
+        responsive: { 0: { items: 1 }, 600: { items: 3 }, 1e3: { items: 4 } },
+    }),
+    $("#cat-4").owlCarousel({
+        items: 4,
+        loop: !0,
+        margin: 20,
+        nav: !0,
+        dots: !1,
+        autoplay: !0,
+        autoplayTimeout: 2e3,
+        autoplaySpeed: 2e3,
+        responsive: { 0: { items: 1 }, 600: { items: 3 }, 1e3: { items: 4 } },
+    }),
+    $("#cat-5").owlCarousel({
+        items: 4,
+        loop: !0,
+        margin: 20,
+        nav: !0,
+        dots: !1,
+        autoplay: !0,
+        autoplayTimeout: 2e3,
+        autoplaySpeed: 2e3,
+        responsive: { 0: { items: 1 }, 600: { items: 3 }, 1e3: { items: 4 } },
+    }),
+    $("#cat-6").owlCarousel({
+        items: 4,
+        loop: !1,
+        margin: 20,
+        nav: !0,
+        dots: !1,
+        autoplay: !1,
+        autoplayTimeout: 2e3,
+        autoplaySpeed: 2e3,
+        responsive: { 0: { items: 1 }, 600: { items: 3 }, 1e3: { items: 4 } },
+    }),
+    $("#cat-7").owlCarousel({
+        items: 33,
+        loop: !0,
+        margin: 15,
+        nav: !1,
+        dots: !1,
+        autoplay: !0,
+        slideTransition: "linear",
+        autoplayTimeout: 2e3,
+        autoplaySpeed: 2e3,
+        responsive: { 0: { items: 2 }, 600: { items: 3 }, 1e3: { items: 3 } },
+    }),
+    $("#cat-8").owlCarousel({
+        items: 3,
+        loop: !0,
+        margin: 15,
+        nav: !1,
+        dots: !1,
+        autoplay: !0,
+        slideTransition: "linear",
+        autoplayTimeout: 2e3,
+        autoplaySpeed: 2e3,
+        rtl: !0,
+        responsive: { 0: { items: 2 }, 600: { items: 3 }, 1e3: { items: 3 } },
+    }),
+    $("#cat-9").owlCarousel({
+        items: 1,
+        loop: !0,
+        margin: 20,
+        nav: !0,
+        autoplay: !1,
+    });
 
-  // 3D Horizontal Coverflow Logic
-  const cfSlides = document.querySelectorAll('.about-coverflow .coverflow-slide');
-  if (cfSlides.length > 0) {
+// 3D Horizontal Coverflow Logic
+const cfSlides = document.querySelectorAll('.about-coverflow .coverflow-slide');
+if (cfSlides.length > 0) {
     let cfIdx = 2; // Center start (0-4 => 2)
     const cfCount = cfSlides.length;
     let cfTimer;
 
     function renderCoverflow() {
-      cfSlides.forEach((slide, i) => {
-        slide.className = 'coverflow-slide'; // Reset
-        
-        // Calculate wrapped distance from active index
-        let d = (i - cfIdx);
-        while (d <= -3) d += cfCount;
-        while (d > 2) d -= cfCount;
-        
-        // Assign classes based on distance
-        if (d === 0) slide.classList.add('active');
-        else if (d === -1) slide.classList.add('left');
-        else if (d === 1) slide.classList.add('right');
-        else if (d === -2) slide.classList.add('left-hide');
-        else if (d === 2) slide.classList.add('right-hide');
-        // Any other distance (shouldn't happen with 5 items) is hidden by default CSS
-      });
+        cfSlides.forEach((slide, i) => {
+            slide.className = 'coverflow-slide'; // Reset
+
+            // Calculate wrapped distance from active index
+            let d = (i - cfIdx);
+            while (d <= -3) d += cfCount;
+            while (d > 2) d -= cfCount;
+
+            // Assign classes based on distance
+            if (d === 0) slide.classList.add('active');
+            else if (d === -1) slide.classList.add('left');
+            else if (d === 1) slide.classList.add('right');
+            else if (d === -2) slide.classList.add('left-hide');
+            else if (d === 2) slide.classList.add('right-hide');
+            // Any other distance (shouldn't happen with 5 items) is hidden by default CSS
+        });
     }
 
     function autoCoverflow() {
-      cfIdx = (cfIdx + 1) % cfCount;
-      renderCoverflow();
+        cfIdx = (cfIdx + 1) % cfCount;
+        renderCoverflow();
     }
 
     // Init
     renderCoverflow();
-    
+
     // Auto-Play
     cfTimer = setInterval(autoCoverflow, 3000);
 
     // Hover Pause
     const cfContainer = document.querySelector('.about-coverflow-wrapper');
     if (cfContainer) {
-      cfContainer.addEventListener('mouseenter', () => clearInterval(cfTimer));
-      cfContainer.addEventListener('mouseleave', () => cfTimer = setInterval(autoCoverflow, 3000));
+        cfContainer.addEventListener('mouseenter', () => clearInterval(cfTimer));
+        cfContainer.addEventListener('mouseleave', () => cfTimer = setInterval(autoCoverflow, 3000));
     }
-  }
+}
 
 
 
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const links = document.querySelectorAll('a');
 
     links.forEach(link => {
-        const href = link.getAttribute('href')      ;
+        const href = link.getAttribute('href');
 
         // Skip empty or anchor links
         if (!href || href.startsWith('#')) return;
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } catch (e) {
             console.warn('Invalid URL skipped:', href);
         }
-    });    
+    });
 });
 
 
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // ======================================================
 
 document.addEventListener("DOMContentLoaded", function () {
-    
+
     // ------------------------------------------------------
     // EnquiryModalController: Strict Singleton & State Management
     // ------------------------------------------------------
@@ -203,24 +203,24 @@ document.addEventListener("DOMContentLoaded", function () {
         triggerClasses: ['open-enquiry-modal', 'apply-now-btn'],
         closeTimer: null,
 
-        init: function() {
+        init: function () {
             // 1. Singleton Guard
             if (window.enquiryModalInitialized) return;
             window.enquiryModalInitialized = true;
-            
+
             console.log("EnquiryModalController: Initializing...");
-            
+
             // 2. Aggressive DOM Cleanup (Remove duplicates/legacy)
             this.forceCleanupDOM();
-            
+
             // 3. Inject Single Source of Truth
             this.injectModal();
-            
+
             // 4. Bind Events (Delegation)
             this.bindEvents();
         },
 
-        forceCleanupDOM: function() {
+        forceCleanupDOM: function () {
             const existing = document.querySelectorAll('#globalEnquiryModal, .enquiry-modal-overlay');
             if (existing.length > 0) {
                 console.warn("EnquiryModalController: Cleaning up " + existing.length + " stale modals.");
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         },
 
-        injectModal: function() {
+        injectModal: function () {
             const formHTML = `
             <div class="connect-form-wrapper" style="padding: 2.5rem; background: #fff; font-family: 'Montserrat', sans-serif;">
                 <div class="form-header text-center mb-4">
@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 contactContainer.innerHTML = formHTML;
                 this.setupForm(contactContainer.querySelector('form'));
             }
-            
+
             // Setup Modal Form
             const modal = document.getElementById(this.modalId);
             if (modal) {
@@ -325,11 +325,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         },
 
-        bindEvents: function() {
+        bindEvents: function () {
             // Global Trigger Delegation
             document.addEventListener('click', (e) => {
                 const target = e.target.closest('a, button, [data-open]');
-                
+
                 // 1. Open Trigger
                 if (target && this.isTrigger(target)) {
                     this.handleOpen(e, target);
@@ -349,7 +349,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         },
 
-        isTrigger: function(el) {
+        isTrigger: function (el) {
             // Check Class List
             if (this.triggerClasses.some(cls => el.classList.contains(cls))) return true;
             // Check Data Attribute
@@ -357,18 +357,18 @@ document.addEventListener("DOMContentLoaded", function () {
             return false;
         },
 
-        handleOpen: function(e, el) {
+        handleOpen: function (e, el) {
             e.preventDefault();
             e.stopPropagation();
             if (this.isOpen) return;
             this.open();
         },
 
-        open: function() {
+        open: function () {
             this.isOpen = true;
             const modal = document.getElementById(this.modalId);
             if (!modal) return;
-            
+
             // Reset state
             this.resetModalState(modal);
 
@@ -376,20 +376,20 @@ document.addEventListener("DOMContentLoaded", function () {
             modal.style.display = 'flex';
             // Force reflow
             void modal.offsetWidth;
-            
+
             modal.classList.add('active');
             modal.style.pointerEvents = 'auto';
             document.body.style.overflow = 'hidden';
-            
+
             console.log("EnquiryModalController: Opened.");
         },
 
-        close: function() {
+        close: function () {
             const modal = document.getElementById(this.modalId);
             if (!modal) return;
-            
+
             this.isOpen = false;
-            
+
             // Immediate Lock
             modal.style.pointerEvents = 'none';
             document.body.style.overflow = '';
@@ -401,11 +401,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 modal.style.display = 'none';
                 this.resetModalState(modal); // Final internal cleanup
             }, 300);
-            
+
             console.log("EnquiryModalController: Closed.");
         },
 
-        resetModalState: function(modal) {
+        resetModalState: function (modal) {
             // Reset form inside modal
             const form = modal.querySelector('form');
             if (form) {
@@ -419,7 +419,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         },
 
-        setupForm: function(form) {
+        setupForm: function (form) {
             if (!form || form.dataset.ready) return;
             form.dataset.ready = "true";
 
@@ -427,7 +427,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const inputs = form.querySelectorAll('input, select, textarea');
             inputs.forEach(input => {
                 input.addEventListener('blur', () => form.classList.add('was-validated'));
-                if(input.name === 'phone') {
+                if (input.name === 'phone') {
                     input.addEventListener('input', (e) => e.target.value = e.target.value.replace(/[^0-9]/g, ''));
                 }
             });
@@ -435,7 +435,7 @@ document.addEventListener("DOMContentLoaded", function () {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                
+
                 if (!form.checkValidity()) {
                     form.classList.add('was-validated');
                     return;
@@ -446,18 +446,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 const origText = btn.innerText;
                 btn.disabled = true;
                 btn.innerText = "Sending...";
-                
+
                 // Simulate
                 setTimeout(() => {
                     btn.disabled = false;
                     btn.innerText = origText;
                     form.style.display = 'none';
                     const success = form.querySelector('#eq-success-msg');
-                    if(success) success.style.display = 'block';
-                    
+                    if (success) success.style.display = 'block';
+
                     // If in modal, auto-close
                     if (form.closest('#globalEnquiryModal')) {
-                         setTimeout(() => this.close(), 2000);
+                        setTimeout(() => this.close(), 2000);
                     }
                 }, 1000);
             });
@@ -466,4 +466,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Run
     EnquiryModalController.init();
+});
+
+
+// ======================================================
+// Active Navbar Link Auto-highlight
+// ======================================================
+document.addEventListener('DOMContentLoaded', function () {
+    // 1. Get the current path, normalize. Default to 'index.html' if root.
+    let currentPath = window.location.pathname;
+    if (currentPath === '/' || currentPath === '') {
+        currentPath = '/index.html';
+    }
+
+    // Select all nav links and dropdown items
+    const navItems = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .dropdown-item');
+
+    navItems.forEach(item => {
+        const href = item.getAttribute('href');
+
+        // Ensure href exists and isn't just a hash
+        if (!href || href === '#') return;
+
+        // 2. See if the currentPath ends with the href (useful for nested paths vs root items)
+        // or matches it exactly.
+        // We use endswith because href might be 'about-us.html' but absolute is '/about-us.html'
+        if (currentPath.endsWith(href)) {
+            // Give this item the active class
+            item.classList.add('active');
+
+            // 3. If it's a dropdown-item, we also want to light up its parent dropdown-toggle
+            if (item.classList.contains('dropdown-item')) {
+                const parentDropdown = item.closest('.nav-item.dropdown, .dropend');
+                if (parentDropdown) {
+                    const toggle = parentDropdown.querySelector('.dropdown-toggle');
+                    if (toggle) {
+                        toggle.classList.add('active');
+
+                        // If it's a nested dropdown (dropend), also light up the top level nav-link
+                        if (parentDropdown.classList.contains('dropend')) {
+                            const topLevelContainer = parentDropdown.closest('.nav-item.dropdown');
+                            if (topLevelContainer) {
+                                const topToggle = topLevelContainer.querySelector('.nav-link.dropdown-toggle');
+                                if (topToggle) topToggle.classList.add('active');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
 });
