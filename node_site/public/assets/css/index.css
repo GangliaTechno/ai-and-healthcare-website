@@ -63,7 +63,7 @@
 }
 
 .heroAI {
-  height: 87%;
+  height: 95%;
   position: absolute;
   bottom: 0;
   right: 18%;
@@ -106,12 +106,24 @@
   gap: 2rem;
 }
 
-.btnImg {
-  height: 60px;
+.custom-hero-btn {
+  display: inline-block;
+  background-color: #E85626;
+  color: #fff !important;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(232, 86, 38, 0.3);
 }
 
-.btnImg:hover {
-  transform: scale(1.1);
+.custom-hero-btn:hover {
+  background-color: #bd3c14;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(232, 86, 38, 0.4);
 }
 
 .aboutSec {
