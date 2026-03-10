@@ -2162,7 +2162,6 @@ hr {
 }
 
 /* Custom Slider Image Sizing & Animation (Zero Crop Fix) */
-.custom-slider-section,
 .custom-slider-wrapper,
 .custom-slider-section .item {
   overflow: visible !important;
