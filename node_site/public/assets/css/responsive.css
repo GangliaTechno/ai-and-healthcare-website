@@ -192,9 +192,9 @@
 
   /* Fix Hero Alignment for Laptop */
   .heroAI {
-    right: 10%;
-    /* Reduce right offset to prevent cutoff/overlap */
-    height: 80%;
+    right: 0%;
+    /* Align to right edge */
+    height: 85%;
     /* Scale down slightly */
   }
 

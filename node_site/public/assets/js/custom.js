@@ -98,6 +98,18 @@ $("#cat-1").owlCarousel({
         margin: 20,
         nav: !0,
         autoplay: !1,
+    }),
+    $(".js-announce-carousel").owlCarousel({
+        items: 1,
+        loop: !0,
+        margin: 0,
+        nav: !1,
+        dots: !1,
+        autoplay: !0,
+        slideTransition: "linear",
+        autoplayTimeout: 4000,
+        autoplaySpeed: 800,
+        autoplayHoverPause: !0,
     });
 
 // 3D Horizontal Coverflow Logic

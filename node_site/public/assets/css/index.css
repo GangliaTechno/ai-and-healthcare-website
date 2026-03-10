@@ -63,10 +63,13 @@
 }
 
 .heroAI {
-  height: 95%;
+  height: 100%;
+  width: auto;
+  max-width: 45%;
+  object-fit: contain;
   position: absolute;
   bottom: 0;
-  right: 18%;
+  right: 0;
 }
 
 .bgImg {
@@ -484,8 +487,8 @@
 
 @media screen and (max-width: 1280px) {
   .heroAI {
-    height: 85%;
-    right: 10%;
+    height: 90%;
+    right: 0;
   }
 
   .aboutContainer {
@@ -588,7 +591,7 @@
 
   .heroAI {
     height: 85%;
-    right: -100px;
+    right: -20px;
   }
 
   .aboutContainer {
@@ -681,6 +684,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    position: relative;
+    z-index: 10;
   }
 
   .chooseCon,
@@ -695,8 +700,12 @@
   }
 
   .heroAI {
-    height: 450px;
-    right: auto;
+    height: auto;
+    width: 60%;
+    max-width: 250px;
+    right: -20px;
+    opacity: 0.15;
+    z-index: 0;
   }
 
   .aboutSec {
@@ -1015,4 +1024,77 @@
 .marqueeText {
   text-decoration: underline;
   color: blue;
+}
+
+/* MAHE Announcement Bar */
+/* MAHE Announcement Bar (Official Clone) */
+.announcebar-wp {
+  padding: 1px 64px;
+  background-color: #fcc419;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .announcebar-wp {
+    padding: 1px 15px;
+  }
+}
+
+.announce-bar-main {
+  display: flex;
+  align-items: center;
+  height: 38.5px;
+  width: 100%;
+}
+
+.announce-txt {
+  padding-right: 15px;
+  margin: 0;
+  border-right: 0.8px solid #212529;
+  color: #212529;
+  font-size: 15px;
+  line-height: 16.5px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.text-wp {
+  padding: 0px 15px;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.js-announce-carousel {
+  width: 100%;
+  display: block;
+}
+
+.js-announce-carousel .item a {
+  color: #e8590c;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+}
+
+.js-announce-carousel .item a:hover {
+  text-decoration: underline;
+}
+
+.announce-close-icon {
+  padding-right: 25px;
+}
+
+.js-announce-close {
+  color: #212529;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+}
+
+.js-announce-close:hover {
+  color: #000;
+  text-decoration: none;
 }
