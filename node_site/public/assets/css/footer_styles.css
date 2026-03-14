@@ -86,6 +86,7 @@ footer {
     color: #000;
     font-size: 16px;
     transition: all 0.3s ease;
+    text-decoration: none !important; /* Remove unwanted underlines */
 }
 
 .footer-social a:hover {

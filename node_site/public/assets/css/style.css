@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
 
 body,
 p,
@@ -8,29 +8,29 @@ span,
 li,
 td,
 th {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 h1 {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 700 !important;
   font-size: 40px;
 }
 
 h2 {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 700 !important;
   font-size: 32px;
 }
 
 h3 {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 500 !important;
   font-size: 24px;
 }
 
 h4 {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 700 !important;
   font-size: 18px;
   color: rgb(232, 89, 12);
@@ -44,7 +44,7 @@ p {
 
 footer,
 .footer {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 header,
@@ -153,7 +153,7 @@ footer ul {
 }
 
 @font-face {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   src: url("../fonts/Optima-Bold.woff2") format("woff2"),
     url("../fonts/Optima-Bold.woff") format("woff");
   font-weight: 700;
@@ -162,7 +162,7 @@ footer ul {
 }
 
 @font-face {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   src: url('../fonts/Montserrat-Medium.woff2') format('woff2'),
     url('../fonts/Montserrat-Medium.woff') format('woff');
   font-weight: 500;
@@ -171,7 +171,7 @@ footer ul {
 }
 
 @font-face {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   src: url('../fonts/Montserrat-Bold.woff2') format('woff2'),
     url('../fonts/Montserrat-Bold.woff') format('woff');
   font-weight: bold;
@@ -180,7 +180,7 @@ footer ul {
 }
 
 @font-face {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   src: url('../fonts/Montserrat-Black.woff2') format('woff2'),
     url('../fonts/Montserrat-Black.woff') format('woff');
   font-weight: 900;
@@ -189,7 +189,7 @@ footer ul {
 }
 
 @font-face {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   src: url('../fonts/Montserrat-Regular.woff2') format('woff2'),
     url('../fonts/Montserrat-Regular.woff') format('woff');
   font-weight: normal;
@@ -198,7 +198,7 @@ footer ul {
 }
 
 @font-face {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   src: url('../fonts/Montserrat-SemiBold.woff2') format('woff2'),
     url('../fonts/Montserrat-SemiBold.woff') format('woff');
   font-weight: 600;
@@ -207,7 +207,7 @@ footer ul {
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   color: #222;
   background-color: #fff;
   overflow-x: hidden;
@@ -218,13 +218,13 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
 }
 
 p,
 li,
 span {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   color: #555;
 }
 
@@ -384,7 +384,7 @@ header {
 .inner-banner-text h2 {
   font-size: 56px;
   color: #fff;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
 }
 
 .about-1 {
@@ -434,7 +434,7 @@ header {
 
 .about-2 h2,
 .about-3 h2 {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   font-size: 36px;
 }
 
@@ -501,7 +501,7 @@ header {
   font-size: 32px;
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
 }
 
 .abt-3-pic,
@@ -788,7 +788,7 @@ header {
 .program-dec h2 {
   font-size: 54px;
   color: #fff;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   margin: 0 0 20px;
 }
 
@@ -852,7 +852,7 @@ header {
   color: #000;
   font-size: 42px;
   margin: 0 0 25px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
 }
 
 .bs-box h3,
@@ -869,7 +869,7 @@ header {
   color: #E85626;
   font-size: 36px;
   font-weight: 600;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
 }
 
 .p-dec p {
@@ -903,7 +903,7 @@ header {
 .bs-box h3 {
   color: #fff;
   font-size: 36px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
 }
 
 .phase-1 span,
@@ -987,12 +987,12 @@ header {
   font-size: 36px;
   color: #000;
   margin: 0 0 20px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
 }
 
 .ps-3-inner h4 {
   font-size: 32px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   color: #E85626;
   margin: 30px 0 20px;
 }
@@ -1083,7 +1083,7 @@ header {
 
 .no-shd h2 {
   font-size: 40px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   color: #000;
 }
 
@@ -1882,7 +1882,7 @@ a.btnLarge {
 .dept-name {
   display: block !important;
   color: #000000 !important;
-  font-family: "Georgia", "Times New Roman", serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 500 !important;
   font-size: 22px !important;
   line-height: 1.1 !important;
@@ -1895,7 +1895,7 @@ a.btnLarge {
 .college-name {
   display: block !important;
   color: #2e4c6d !important;
-  font-family: "Georgia", "Times New Roman", serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 400 !important;
   font-size: 14px !important;
   line-height: 1.1 !important;
@@ -2290,7 +2290,7 @@ hr {
   color: #212529;
   font-size: 15px;
   line-height: 16.5px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
   font-weight: 500;
   white-space: nowrap;
 }
@@ -2311,7 +2311,7 @@ hr {
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
 }
 
 .js-announce-carousel .item a:hover {
@@ -2327,10 +2327,15 @@ hr {
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif ;
 }
 
 .js-announce-close:hover {
   color: #000;
   text-decoration: none;
+}
+
+/* Global MAHE Font Reset - Excluding Icons */
+*:not(.fa):not(.fa-stack):not(.fa-inverse):not(.fa-stack-1x):not(.fa-stack-2x) {
+  font-family: 'Montserrat', sans-serif !important;
 }

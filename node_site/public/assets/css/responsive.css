@@ -1145,3 +1145,52 @@
     flex-direction: column;
   }
 }
+
+@media only screen and (max-width: 991px) {
+  .innovationPathSec {
+    padding: 30px 0;
+  }
+
+  .innovation-pathway {
+    margin: 20px 10px 0;
+  }
+
+  .pathway-spine {
+    left: 20px;
+  }
+
+  .pathway-item {
+    justify-content: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .pathway-dot {
+    left: 20px;
+  }
+
+  .pathway-content {
+    width: calc(100% - 60px);
+    margin-left: 60px !important;
+    margin-right: 0 !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+    padding: 1rem;
+    border-right: none !important;
+    border-left: 3px solid #E85626 !important;
+  }
+
+  .pathway-icon {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+  }
+
+  .pathway-title {
+    font-size: 1rem;
+  }
+
+  .pathway-text {
+    font-size: 0.85rem;
+  }
+}
+
