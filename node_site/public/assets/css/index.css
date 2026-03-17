@@ -793,7 +793,8 @@
   .bgImgMob {
     display: block;
     width: 100%;
-    height: 800px;
+    height: auto;
+    min-height: 500px;
     object-fit: cover;
   }
 
@@ -806,8 +807,13 @@
   }
 
   .banner {
-    align-items: flex-start;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    overflow: hidden; /* Prevent heroAI from causing overflow */
+    position: relative;
+    min-height: 400px;
+    background-color: #fff;
   }
 
   .bannerContentBox {
@@ -828,17 +834,31 @@
   }
 
   .bannerBtns,
-  .futureCon {
-    margin-top: 1rem;
+  .futureCon,
+  .chooseCon,
+  .fetureImg-mobile,
+  .futureRight {
+    display: block;
+  }
+
+  .bannerBtns {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    width: 100%;
   }
 
   .heroAI {
     height: auto;
-    width: 60%;
-    max-width: 250px;
-    right: -20px;
-    opacity: 0.15;
+    width: 80%;
+    max-width: 320px;
+    right: -40px;
+    bottom: 0px;
+    opacity: 0.15 !important; /* Force lower opacity for background effect */
     z-index: 0;
+    pointer-events: none;
+    position: absolute;
   }
 
   .aboutSec {
@@ -930,17 +950,27 @@
     min-height: 400px;
   }
 
-  .bannerBtns,
+  .bannerBtns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
   .bannerContentBox h1 br,
   .bannerContentBox h6 br {
     display: none;
   }
 
   .bannerContentBox {
-    align-items: last baseline;
-    justify-content: left;
-    text-align: left;
-    display: block;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 15px;
   }
 }
 
@@ -1162,40 +1192,45 @@
 /* MAHE Announcement Bar */
 /* MAHE Announcement Bar (Official Clone) */
 .announcebar-wp {
-  padding: 1px 64px;
+  padding: 0 64px;
   background-color: #fcc419;
   width: 100%;
 }
 
 @media (max-width: 768px) {
   .announcebar-wp {
-    padding: 1px 15px;
+    padding: 0 15px;
   }
 }
 
 .announce-bar-main {
-  display: flex;
-  align-items: center;
-  height: 38.5px;
-  width: 100%;
+  display: flex !important;
+  align-items: center !important;
+  min-height: 38.5px;
+  height: auto !important;
+  width: 100% !important;
+  flex-wrap: nowrap !important;
+  position: relative !important;
 }
 
 .announce-txt {
-  padding-right: 15px;
-  margin: 0;
-  border-right: 0.8px solid #212529;
+  padding: 0 15px 0 0;
+  margin: 0 !important;
+  border-right: 0.8px solid #212529 !important;
   color: #212529;
   font-size: 15px;
-  line-height: 16.5px;
+  line-height: normal;
   font-family: 'Montserrat', sans-serif ;
-  font-weight: 500;
-  white-space: nowrap;
+  font-weight: 700;
+  white-space: nowrap !important;
+  flex: 0 0 auto !important;
 }
 
 .text-wp {
-  padding: 0px 15px;
-  flex-grow: 1;
-  overflow: hidden;
+  padding: 0 15px;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
 }
 
 .js-announce-carousel {
@@ -1205,18 +1240,49 @@
 
 .js-announce-carousel .item a {
   color: #212529;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif ;
-}
-
-.js-announce-carousel .item a:hover {
-  text-decoration: underline;
+  line-height: 1.2;
+  display: block !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 .announce-close-icon {
-  padding-right: 25px;
+  padding-left: 10px;
+  flex: 0 0 auto !important;
+}
+
+@media (max-width: 555px) {
+  .announce-bar-main {
+    flex-wrap: wrap !important;
+    padding: 10px 40px 10px 10px !important;
+    justify-content: center !important;
+  }
+  .announce-txt {
+    border-right: 1px solid #212529 !important;
+    padding-right: 8px !important;
+    margin: 0 8px 0 0 !important;
+    font-size: 13px !important;
+  }
+  .text-wp {
+    text-align: center !important;
+    padding: 0 !important;
+  }
+  .js-announce-carousel .item a {
+    white-space: normal !important;
+    font-size: 13px !important;
+  }
+  .announce-close-icon {
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    padding: 0 !important;
+  }
 }
 
 .js-announce-close {

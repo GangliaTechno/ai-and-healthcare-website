@@ -1,0 +1,52 @@
+/* =========================================
+   Navbar Institute Title Lockup
+   ========================================= */
+.navbar-brand-wrapper {
+    display: flex !important;
+    /* Force flex */
+    align-items: center;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.navbar-brand-wrapper:hover {
+    text-decoration: none;
+    color: inherit;
+    /* Prevent link color change */
+}
+
+.institute-title-lockup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid #ccc;
+    /* Thin vertical divider */
+    margin-left: 15px;
+    padding-left: 15px;
+    height: 42px;
+    /* Match logo visual height */
+    line-height: 1.25;
+}
+
+.dept-name {
+    color: #333;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+    display: block;
+}
+
+.college-name {
+    color: #666;
+    font-weight: 500;
+    font-size: 13px;
+    /* Smaller secondary text */
+    display: block;
+}
+
+/* Mobile/Tablet: Hide lockup to prevent overflow */
+@media (max-width: 991px) {
+    .institute-title-lockup {
+        display: none !important;
+    }
+}

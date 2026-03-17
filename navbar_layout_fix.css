@@ -1,0 +1,65 @@
+/* =========================================
+   Navbar Layout & Hierarchy Fix (Robust)
+   ========================================= */
+
+/* Ensure the parent container aligns items side-by-side */
+.top-left {
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Force the lockup container to be a vertical flex column */
+.institute-title-lockup {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    height: 46px !important;
+    /* Fixed height matching logo approx */
+    border-left: 1px solid #ccc !important;
+    margin-left: 15px !important;
+    padding-left: 15px !important;
+}
+
+/* Typography Hierarchy - Department Name */
+.dept-name {
+    display: block !important;
+    color: #222 !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    line-height: 1.1 !important;
+    margin-bottom: 3px !important;
+    text-decoration: none !important;
+}
+
+/* Typography Hierarchy - College Name */
+.college-name {
+    display: block !important;
+    color: #555 !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    line-height: 1.1 !important;
+    text-decoration: none !important;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 575.98px) {
+    .institute-title-lockup {
+        display: none !important;
+    }
+}
+
+/* Tablet adjustments (optional scaling) */
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .dept-name {
+        font-size: 14px !important;
+    }
+
+    .college-name {
+        font-size: 12px !important;
+    }
+
+    .institute-title-lockup {
+        margin-left: 10px !important;
+        padding-left: 10px !important;
+    }
+}

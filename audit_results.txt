@@ -1,0 +1,3 @@
+[contact-us.html:284] found ['red'] -> <span id="allerror" class="font-weight-bold text-red"></span>
+[bootstrap.min.css:6] found ['red'] -> */:root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63
+[style.css:1348] found ['red'] -> .text-red {

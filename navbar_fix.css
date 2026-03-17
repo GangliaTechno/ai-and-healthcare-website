@@ -1,0 +1,75 @@
+/* =========================================
+   Navbar Institute Title Fix (Overrides)
+   ========================================= */
+
+/* 1) Remove link styling from the navbar brand wrapper */
+a.navbar-brand-wrapper,
+a.navbar-brand-wrapper:hover,
+a.navbar-brand-wrapper:visited,
+a.navbar-brand-wrapper:focus {
+    text-decoration: none !important;
+    color: inherit !important;
+    display: flex;
+    align-items: center;
+}
+
+/* 2) Typography hierarchy */
+.dept-name {
+    color: #222;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.college-name {
+    color: #555;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+/* 3) Divider and layout */
+.institute-title-lockup {
+    border-left: 1px solid #ddd;
+    margin-left: 12px;
+    padding-left: 12px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 4) Responsiveness */
+
+/* Ensure it's visible on Tablet and Desktop (Overriding previous 991px hide rule) */
+@media (min-width: 576px) {
+    .institute-title-lockup {
+        display: flex !important;
+    }
+}
+
+/* Tablet (768px – 991px): Reduce font sizes slightly */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .dept-name {
+        font-size: 13px;
+        /* Reduced from 14/16 */
+    }
+
+    .college-name {
+        font-size: 11px;
+        /* Reduced from 13 */
+    }
+
+    .institute-title-lockup {
+        height: 34px;
+        margin-left: 8px;
+        padding-left: 8px;
+    }
+}
+
+/* Mobile (< 576px): Hide entirely to prevent overlap */
+@media (max-width: 575.98px) {
+    .institute-title-lockup {
+        display: none !important;
+    }
+}
