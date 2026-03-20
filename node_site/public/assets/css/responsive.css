@@ -363,44 +363,22 @@
   .navbar {
     padding: 0;
     line-height: 58px;
-
-    .dropdown-menu {
-      line-height: initial;
-    }
   }
 
-  .dropdown {
-    .dropdown-menu {
-      display: none;
-    }
+  .navbar .dropdown-menu {
+    line-height: initial;
   }
 
-  .dropdown,
-  .dropend {
-    &:hover {
-      &>.dropdown-menu {
-        display: block;
-      }
-    }
+  .nav-item.dropdown:hover > .dropdown-menu {
+    display: block !important;
   }
 
-  .dropdown {
-    &:hover {
-      &>.dropdown-menu {
-        margin-top: -0.5rem;
-      }
-    }
-  }
-
-  .dropend {
-    &:hover {
-      &>.dropdown-menu {
-        position: absolute;
-        top: -0.5rem;
-        left: 100%;
-        margin-left: 0;
-      }
-    }
+  .nav-item.dropend:hover > .dropdown-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 0;
+    display: block !important;
   }
 }
 
@@ -805,7 +783,10 @@
 
   header {
     padding: 0 0 10px;
-    top: 50px;
+    top: 0;
+    position: fixed !important;
+    width: 100%;
+    z-index: 9999;
   }
 
   .about-banner {
@@ -985,7 +966,7 @@
   }
 
   .topSection {
-    margin-top: 150px;
+    margin-top: 60px !important;
   }
 
   .sliderBottom {
@@ -1049,7 +1030,7 @@
 
 @media only screen and (max-width: 500px) and (min-width: 325px) {
   header {
-    top: 80px;
+    top: 0;
   }
 }
 
@@ -1122,6 +1103,12 @@
   justify-content: flex-end;
 }
 
+@media only screen and (min-width: 571px) and (max-width: 991px) {
+  .topSection {
+    margin-top: 0 !important;
+  }
+}
+
 @media only screen and (max-width: 991px) {
 
   /* Fix About Container to Stack */
@@ -1131,6 +1118,47 @@
     width: 100%;
     margin: 2rem 0;
     text-align: center;
+  }
+
+  /* Fix Hero Section Overlap */
+  .banner {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: relative !important;
+    overflow: visible !important;
+    padding-bottom: 2rem;
+  }
+
+  .heroAI {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 50% !important;
+    height: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    order: 1 !important;
+    margin: 0 auto !important; /* Account for fixed header + announcement, removed all top margin */
+  }
+
+  .bannerContentBox {
+    position: relative !important;
+    width: 100% !important;
+    padding: 20px !important;
+    text-align: center !important;
+    order: 2 !important;
+    margin-top: 1rem !important;
+  }
+
+  .bgImgMob {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -1;
+    object-fit: cover !important;
   }
 
   .aboutSec {
@@ -1176,7 +1204,7 @@
     align-items: flex-start !important;
     padding: 1rem;
     border-right: none !important;
-    border-left: 3px solid #E85626 !important;
+    border-left: 3px solid #D14905 !important;
   }
 
   .pathway-icon {
@@ -1193,4 +1221,4 @@
     font-size: 0.85rem;
   }
 }
-
+

@@ -65,6 +65,7 @@ header {
   position: sticky;
   z-index: 999;
   left: 0;
+  top: 0;
 }
 
 .about-1-inner:after,
@@ -103,7 +104,7 @@ header {
 .btn-for-mobile a.btn-1,
 .btn-for-mobile a.btn-2,
 .read-more a:hover {
-  background: #E85626;
+  background: #D14905;
   color: #fff;
   padding: 12px 24px;
   border-radius: 30px;
@@ -233,7 +234,7 @@ span {
 .flashing-button {
   padding: 12px 24px;
   font-size: 16px;
-  background-color: #E85626;
+  background-color: #D14905;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -323,11 +324,17 @@ header {
 
 .fl-text a:hover,
 .top-right .navbar-expand-lg .navbar-nav .nav-link:hover {
-  color: #E85626;
+  color: #D14905;
+  text-decoration: underline;
+  text-underline-offset: 8px;
 }
 
 .top-right .navbar-expand-lg .navbar-nav .dropdown-menu {
   min-width: 211px !important;
+  margin-top: 0;
+  border-top: 20px solid transparent; /* Invisible bridge to maintain hover state */
+  background-clip: padding-box;
+  top: 80%; /* Adjusting position to overlap slightly with nav link area */
 }
 
 .top-right .dropend .dropdown-toggle::after {
@@ -337,6 +344,14 @@ header {
 
 .top-right .dropdown-item {
   padding: 10px 1rem;
+  transition: all 0.3s ease;
+}
+
+.top-right .dropdown-item:hover {
+  color: #D14905 !important;
+  background-color: #f8f9fa !important;
+  text-decoration: underline !important;
+  text-underline-offset: 5px;
 }
 
 .top-right .dropdown-menu li {
@@ -564,7 +579,7 @@ header {
   width: 100%;
   height: auto;
   padding: 30px;
-  background: #E85626;
+  background: #D14905;
   margin: 40px 0 0;
 }
 
@@ -606,7 +621,7 @@ header {
 }
 
 .fl-icon i {
-  color: #E85626;
+  color: #D14905;
   font-size: 24px;
   display: inline-block;
   transition: all 0.3s ease;
@@ -682,8 +697,8 @@ header {
 
 .inp-btn input {
   padding: 10px 5px;
-  border: 1px solid #E85626;
-  background: #E85626;
+  border: 1px solid #D14905;
+  background: #D14905;
   color: #fff;
   font-size: 16px;
   font-weight: 500;
@@ -705,7 +720,7 @@ header {
 .leadership-sec h3 {
   font-size: 30px;
   font-weight: 600;
-  color: #E85626;
+  color: #D14905;
   margin: 0 0 30px;
 }
 
@@ -720,7 +735,7 @@ header {
 }
 
 .leader-name {
-  background: #E85626;
+  background: #D14905;
   padding: 15px;
   color: #fff;
   font-weight: 500;
@@ -791,7 +806,7 @@ header {
   width: 100%;
   height: auto;
   min-height: 500px;
-  background: url(../images/program-banner.png) 100% 0 / auto 100% no-repeat #E85626;
+  background: url(../images/program-banner.png) 100% 0 / auto 100% no-repeat #D14905;
 }
 
 .program-dec {
@@ -826,7 +841,7 @@ header {
 }
 
 .read-more a {
-  background: #E85626;
+  background: #D14905;
   font-size: 24px;
   padding: 16px 28px;
   border-radius: 30px;
@@ -882,7 +897,7 @@ header {
 }
 
 .p-dec h4 {
-  color: #E85626;
+  color: #D14905;
   font-size: 36px;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif ;
@@ -953,7 +968,7 @@ header {
 
 .phase-1 {
   width: 100%;
-  background: #E85626;
+  background: #D14905;
   border-radius: 5px;
   padding: 10px;
   color: #fff;
@@ -964,7 +979,7 @@ header {
 
 .phase-1 span {
   background: #fff;
-  color: #E85626;
+  color: #D14905;
   font-size: 36px;
   padding: 7px 10px;
   border-radius: 5px;
@@ -1009,7 +1024,7 @@ header {
 .ps-3-inner h4 {
   font-size: 32px;
   font-family: 'Montserrat', sans-serif ;
-  color: #E85626;
+  color: #D14905;
   margin: 30px 0 20px;
 }
 
@@ -1034,7 +1049,7 @@ header {
   font-weight: 600;
   margin-right: 0.5rem;
   line-height: 1;
-  background: #E85626;
+  background: #D14905;
   position: absolute;
   left: -63px;
   top: 0;
@@ -1193,7 +1208,7 @@ header {
 }
 
 .prog-sec-1 .responsive-table .table th {
-  background: #E85626;
+  background: #D14905;
   color: #fff;
   font-size: 22px;
   font-weight: 600;
@@ -1213,7 +1228,7 @@ header {
 
 .addmision .responsive-table .table th,
 .prog-sec-2 .responsive-table .table th {
-  background: #E85626;
+  background: #D14905;
   color: #fff;
   font-size: 22px;
   vertical-align: top;
@@ -1261,14 +1276,14 @@ header {
   color: #fff;
   font-size: 16px;
   padding: 10px 0;
-  background: #E85626;
+  background: #D14905;
 }
 
 .dire a:hover,
 .dire h4,
 .pm a,
 footer ul li a:hover {
-  color: #E85626;
+  color: #D14905;
 }
 
 .prog-banr {
@@ -1325,7 +1340,7 @@ footer ul li a:hover {
 .dire h4,
 .process h4 {
   font-weight: 600;
-  border-left: 4px solid #E85626;
+  border-left: 4px solid #D14905;
 }
 
 footer {
@@ -1373,7 +1388,7 @@ footer ul li a {
   list-style: none;
   float: left;
   margin: 0 10px 20px 0;
-  background: #E85626;
+  background: #D14905;
   border-radius: 5px;
   padding: 5px;
   width: 42px;
@@ -1408,7 +1423,7 @@ footer ul li a {
   padding: 15px 0;
   font-size: 16px;
   color: #fff;
-  background: #E85626;
+  background: #D14905;
 }
 
 .left-captcha,
@@ -1454,7 +1469,7 @@ span#random2 {
 }
 
 .text-red {
-  color: #E85626 !important;
+  color: #D14905 !important;
 }
 
 .text-success {
@@ -1480,7 +1495,7 @@ span#random2 {
 }
 
 .leadertab .nav-tabs .nav-link.active {
-  background: #E85626;
+  background: #D14905;
   color: #fff;
   text-decoration: none;
   border: 0;
@@ -1507,7 +1522,7 @@ span#random2 {
 }
 
 .sliderBottom {
-  margin-top: 20px;
+  margin-top: 60px;
 }
 
 /*@media screen and (max-width: 768px) {*/
@@ -1627,10 +1642,10 @@ span#random2 {
 }
 
 .tp-right-btn a {
-  background: #E85626;
+  background: #D14905;
   font-size: 14px;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 50px;
   color: #fff;
   font-weight: 500;
   margin: 0 0 0 10px;
@@ -1648,7 +1663,7 @@ a.btnLarge {
 @keyframes glow {
   from {
     box-shadow: 0 0 0 rgba(232, 86, 38, 0);
-    background-color: #E85626;
+    background-color: #D14905;
   }
 
   to {
@@ -1729,7 +1744,7 @@ a.btnLarge {
 }
 
 .call-link {
-  background-color: #E85626;
+  background-color: #D14905;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -1805,7 +1820,7 @@ a.btnLarge {
 
 /* Headings & text */
 .sai-set-title {
-  color: #E85626;
+  color: #D14905;
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 12px;
@@ -1944,9 +1959,9 @@ a.btnLarge {
 .btn,
 button,
 .primary-btn {
-  background-color: #E85626;
+  background-color: #D14905;
   color: #fff;
-  border-radius: 6px;
+  border-radius: 50px;
 }
 
 .btn:hover,
@@ -2062,6 +2077,7 @@ hr {
   width: 340px;
   height: 240px;
   background: #000;
+  border: 1px solid #D14905;
   border-radius: 15px;
   /* Sharper corners */
   overflow: hidden;
@@ -2082,7 +2098,7 @@ hr {
   opacity: 1;
   z-index: 20;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 3px solid #D14905;
 }
 
 /* Left States (Tighter Offset) */
@@ -2119,11 +2135,11 @@ hr {
   right: 0;
   margin: 0 auto;
   width: max-content;
-  background: #E85626;
+  background: #D14905;
   color: #fff;
   border: none;
   padding: 10px 24px;
-  border-radius: 30px;
+  border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
   opacity: 0;
@@ -2139,7 +2155,7 @@ hr {
 
 .coverflow-slide .apply-now-btn:hover {
   background: #fff;
-  color: #E85626;
+  color: #D14905;
 }
 
 /* Mobile Scaling for Carousel */
@@ -2234,7 +2250,7 @@ hr {
    ========================================= */
 .navbar-nav .nav-link.active,
 .navbar-nav .dropdown-item.active {
-  color: #E85626 !important;
+  color: #D14905 !important;
   font-weight: 600;
 }
 

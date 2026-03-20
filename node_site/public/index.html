@@ -60,9 +60,76 @@
 
   </meta>
   <link href="/assets/css/footer_styles.css" rel="stylesheet" />
+  <style>
+    .custom-toast-container {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      pointer-events: none;
+      width: auto;
+      max-width: 90vw;
+    }
+
+    .custom-toast {
+      pointer-events: auto;
+      min-width: 320px;
+      padding: 14px 24px;
+      border-radius: 50px; /* Pill shape for premium feel */
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px); /* Glassmorphism */
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      opacity: 0;
+      transform: translateY(-50px) scale(0.9); /* Animation start */
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #333;
+    }
+
+    .custom-toast.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .custom-toast.success {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 3px solid #28a745; /* Green for success */
+    }
+
+    .custom-toast.error {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 3px solid #dc3545; /* Red for error */
+    }
+
+    .toast-message {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 576px) {
+      .custom-toast {
+        min-width: unset;
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div id="toast-container" class="custom-toast-container"></div>
   <!-- <div style="display:none">
     {
     "@context": "https://schema.org",
@@ -252,31 +319,123 @@
   <div class="custom-slider-section">
     <div class="custom-slider-wrapper">
       <div class="custom-slide active">
-        <a class="apply-now-btn" data-open="enquiry-modal" href="javascript:void(0)">
+        <a data-open="enquiry-modal" href="javascript:void(0)">
           <img alt="Banner 1" src="/assets/images/Picture1.jpg" />
         </a>
       </div>
       <div class="custom-slide">
-        <a class="apply-now-btn" data-open="enquiry-modal" href="javascript:void(0)">
-          <img alt="Banner 2" src="/assets/images/Picture2.jpg" />
+        <a data-open="enquiry-modal" href="javascript:void(0)">
+          <img alt="Banner 2" src="/assets/images/pic2.jpg" />
         </a>
       </div>
-      <!-- <div class="custom-slide">
-        <a class="apply-now-btn" data-open="enquiry-modal" href="javascript:void(0)">
-          <img alt="Banner 3" src="/assets/images/Picture3.jpg" />
-        </a>
-      </div> -->
       <div class="custom-slide">
-        <a class="apply-now-btn" data-open="enquiry-modal" href="javascript:void(0)">
+        <a data-open="enquiry-modal" href="javascript:void(0)">
           <img alt="Banner 4" src="/assets/images/Picture4.jpg" />
         </a>
       </div>
       <div class="custom-slide">
-        <a class="apply-now-btn" data-open="enquiry-modal" href="javascript:void(0)">
+        <a data-open="enquiry-modal" href="javascript:void(0)">
           <img alt="Banner 5" src="/assets/images/Picture5.jpg" />
         </a>
       </div>
     </div>
+    <!-- Navigation Arrows -->
+    <button class="slider-arrow prev-arrow" aria-label="Previous Slide">&#10094;</button>
+    <button class="slider-arrow next-arrow" aria-label="Next Slide">&#10095;</button>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const wrapper = document.querySelector('.custom-slider-wrapper');
+        const originalSlides = document.querySelectorAll('.custom-slide');
+        const prevBtn = document.querySelector('.prev-arrow');
+        const nextBtn = document.querySelector('.next-arrow');
+        let currentIndex = 1; // Start at the first actual slide
+        let autoSlideTimeout;
+        let isTransitioning = false;
+
+        // Clone first and last slides for infinite loop
+        const firstClone = originalSlides[0].cloneNode(true);
+        const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
+        
+        firstClone.classList.remove('active');
+        lastClone.classList.remove('active');
+
+        wrapper.appendChild(firstClone);
+        wrapper.insertBefore(lastClone, originalSlides[0]);
+
+        const allSlides = document.querySelectorAll('.custom-slide');
+
+        // Initial position
+        wrapper.style.transition = 'none';
+        wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+        wrapper.offsetHeight; // Force reflow
+        wrapper.style.transition = 'transform 0.6s ease-in-out';
+
+        function updateSlider(withTransition = true) {
+          if (!withTransition) {
+            wrapper.style.transition = 'none';
+          } else {
+            wrapper.style.transition = 'transform 0.6s ease-in-out';
+          }
+          wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+          
+          // Update active class for original slides
+          originalSlides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === (currentIndex - 1));
+          });
+          
+          // Ensure arrows are always flex
+          prevBtn.style.display = 'flex';
+          nextBtn.style.display = 'flex';
+        }
+
+        function handleTransitionEnd() {
+          isTransitioning = false;
+          if (currentIndex === allSlides.length - 1) { // On first clone (after last slide)
+            currentIndex = 1;
+            updateSlider(false);
+          } else if (currentIndex === 0) { // On last clone (before first slide)
+            currentIndex = allSlides.length - 2;
+            updateSlider(false);
+          }
+        }
+
+        wrapper.addEventListener('transitionend', handleTransitionEnd);
+
+        function showNext() {
+          if (isTransitioning) return;
+          isTransitioning = true;
+          currentIndex++;
+          updateSlider();
+          resetAutoSlide();
+        }
+
+        function showPrev() {
+          if (isTransitioning) return;
+          isTransitioning = true;
+          currentIndex--;
+          updateSlider();
+          resetAutoSlide();
+        }
+
+        function resetAutoSlide() {
+          if (autoSlideTimeout) clearTimeout(autoSlideTimeout);
+          autoSlideTimeout = setTimeout(showNext, 5000);
+        }
+
+        nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          showNext();
+        });
+
+        prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          showPrev();
+        });
+
+        resetAutoSlide();
+      });
+    </script>
   </div>
   <section class="banner topSection sliderBottom">
     <video autoplay="" class="bgImg" loop="" muted="" playsinline="">
@@ -361,16 +520,10 @@
               Welcome to the Department of AI in Healthcare at KMC, Manipal
             </h2>
             <h6 class="titel20 mb-4 mt-4 lh150">
-              A bold new initiative by the
-              <b>
-                Department of AI in Healthcare at KMC, Manipal
-              </b>
-              is shaping the future of medicine by uniting clinical expertise, data, and artificial intelligence. It
-              serves as a space where healthcare challenges meet intelligent solutions—driving innovation in patient
-              care, research, education, and healthcare operations through responsible, real-world AI.
-            </h6>
-            <a href="programs.html">
-              <img alt="" class="btnImg" loading="lazy" src="/assets/images/home/elements/learn.svg" />
+              A pioneering initiative at KMC, Manipal, integrating clinical expertise, data science, and AI to advance
+              healthcare through innovation, research, and real-world impact. </h6>
+            <a href="programs.html" class="custom-hero-btn">
+              Learn more &rarr;
             </a>
           </div>
         </div>
@@ -404,75 +557,62 @@
         <div class="ai-card" data-aos="flip-left" data-aos-delay="200">
           <div class="d-flex justify-content-between align-items-start mb-3">
             <h3 class="titel32 w700">
-              B.Sc. (Artificial Intelligence) Honours/ Honours with Research
+              MSc in Artificial Intelligence in Healthcare
             </h3>
             <img alt="AI Icon" class="ai-icon" loading="lazy" src="/assets/images/home/elements/prog/img1.gif">
             </img>
           </div>
-          <h5 class="titel28 w600">
-            Apply AI in cutting-
-            <br>
-            edge fields like:
-            </br>
-          </h5>
+          <p class="titel20 w500 mb-1">
+            A multidisciplinary master’s program integrating clinical training with engineering and data science to
+            drive innovation in diagnostics and healthcare systems.
+          </p>
           <ul class="check-list">
-            <li class="titel20 w500 mb-2 d-flex align-items-center">
-              <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg">
-              Health Sciences
-              </img>
-            </li>
-            <li class="titel20 w500 mb-2 d-flex align-items-center">
-              <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg">
-              Sports Sciences
-              </img>
-            </li>
-            <li class="titel20 w500 mb-2 d-flex align-items-center">
-              <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg">
-              Agriculture
-              </img>
-            </li>
-            <li class="titel20 w500 mb-2 d-flex align-items-center">
-              <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
-              Cybersecurity
-            </li>
-            <li class="titel20 w500 mb-2 d-flex align-items-center">
-              <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
-              Data Science
+            <li class="titel20 w500 mb-2 mt-1">
+              <strong>Core Focus:</strong>
+              <ul class="check-list mt-1">
+                <li class="titel20 w500 mb-1 d-flex align-items-center">
+                  <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
+                  Machine learning in diagnostics
+                </li>
+                <li class="titel20 w500 mb-1 d-flex align-items-center">
+                  <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
+                  Clinical workflow integration
+                </li>
+                <li class="titel20 w500 mb-1 d-flex align-items-center">
+                  <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
+                  Healthcare data systems
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
         <div class="ai-card" data-aos="flip-left" data-aos-delay="200">
           <div class="d-flex justify-content-between align-items-start mb-3">
             <h3 class="titel32 w700">
-              B.B.A. (Artificial Intelligence) Honours/ Honours with Research
+              Integrated MSc–PhD in AI in Healthcare
             </h3>
             <img alt="AI Icon" class="ai-icon" loading="lazy" src="/assets/images/home/elements/prog/img2.gif" />
           </div>
-          <h5 class="titel28 w600">
-            Harness AI in business-
-            <br />
-            driven domains such as:
-          </h5>
+          <p class="titel20 w500 mb-0">
+            An intensive dual-degree program designed to advance AI-driven research in clinical settings, enabling scholars to contribute to precision medicine and impactful healthcare solutions.
+          </p>
           <ul class="check-list">
-            <li class="titel20 w500 mb-2 d-flex align-items-center">
-              <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
-              Financial Technologies
-            </li>
-            <li class="titel20 w500 mb-2 d-flex align-items-center">
-              <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
-              Marketing Technologies
-            </li>
-            <li class="titel20 w500 mb-2 d-flex align-items-center">
-              <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
-              Human Resource Technologies
-            </li>
-            <li class="titel20 w500 mb-2 d-flex align-items-center">
-              <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
-              Technologies for Global Supply Chain
-            </li>
-            <li class="titel20 w500 mb-2 d-flex align-items-center">
-              <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
-              Media &amp; Creative Industries
+            <li class="titel20 w500 mb-2 mt-0">
+              <strong>Core Focus:</strong>
+              <ul class="check-list mt-1">
+                <li class="titel20 w500 mb-1 d-flex align-items-center">
+                  <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
+                  Advanced predictive modelling
+                </li>
+                <li class="titel20 w500 mb-1 d-flex align-items-center">
+                  <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
+                  Deep learning in genomics
+                </li>
+                <li class="titel20 w500 mb-1 d-flex align-items-center">
+                  <img alt="" class="check" loading="lazy" src="/assets/images/home/elements/check.svg" />
+                  Longitudinal clinical studies
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -483,8 +623,8 @@
   <section class="innovationPathSec">
     <div class="container">
       <div class="section-title text-center mb-4" data-aos="fade-up">
-        <h2 class="titel48 w300">What Makes</h2>
-        <h2 class="titel64 w700">MAHE Different</h2>
+        <h2 class="titel48 w300">What Make Us</h2>
+        <h2 class="titel64 w700">Different</h2>
       </div>
 
       <div class="innovation-pathway">
@@ -498,15 +638,20 @@
             <div class="pathway-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+                <path d="M15 2v2"></path>
+                <path d="M15 20v2"></path>
+                <path d="M2 15h2"></path>
+                <path d="M2 9h2"></path>
+                <path d="M20 15h2"></path>
+                <path d="M20 9h2"></path>
+                <path d="M9 2v2"></path>
+                <path d="M9 20v2"></path>
               </svg>
             </div>
-            <h4 class="pathway-title">Open to All Streams</h4>
-            <p class="pathway-text">You don’t need a technical background to study AI. We welcome Science, Commerce, &
-              Arts.</p>
+            <h4 class="pathway-title">AI in Healthcare Leadership</h4>
+            <p class="pathway-text">Among the early pioneers integrating AI with clinical sciences.</p>
           </div>
         </div>
 
@@ -517,14 +662,15 @@
             <div class="pathway-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
+                <rect x="16" y="16" width="6" height="6" rx="1"></rect>
+                <rect x="2" y="16" width="6" height="6" rx="1"></rect>
+                <rect x="9" y="2" width="6" height="6" rx="1"></rect>
+                <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"></path>
+                <path d="M12 12V8"></path>
               </svg>
             </div>
-            <h4 class="pathway-title">Hands-On Learning</h4>
-            <p class="pathway-text">Learn by building, experimenting, and solving real-world challenges in advanced
-              Labs.</p>
+            <h4 class="pathway-title">Interdisciplinary Learning</h4>
+            <p class="pathway-text">Bringing together medicine, engineering, and data science.</p>
           </div>
         </div>
 
@@ -535,15 +681,13 @@
             <div class="pathway-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
-                <path d="M12 2v20"></path>
-                <path d="M2 12h20"></path>
-                <path d="m4.93 4.93 14.14 14.14"></path>
-                <path d="m4.93 19.07 14.14-14.14"></path>
+                <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"></path>
+                <path d="M8 15v1a6 6 0 0 0 6 6h2a6 6 0 0 0 6-6v-4"></path>
+                <circle cx="20" cy="10" r="2"></circle>
               </svg>
             </div>
-            <h4 class="pathway-title">Interdisciplinary Focus</h4>
-            <p class="pathway-text">Combine AI with healthcare, business, media, and more. We prepare you for the real
-              world.</p>
+            <h4 class="pathway-title">Clinical-Driven Approach</h4>
+            <p class="pathway-text">Focused on real-world healthcare applications and impact.</p>
           </div>
         </div>
 
@@ -554,12 +698,15 @@
             <div class="pathway-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5a5.5 5.5 0 0 0-11-0c0 2.29 1.5 4.04 3 5.5l5 5 5-5z"></path>
+                <path d="M10 2v7.5"></path>
+                <path d="M14 2v7.5"></path>
+                <path d="M8.5 2h7"></path>
+                <path d="M14 9.5l4.77 9.41a2 2 0 0 1-1.77 2.59H7a2 2 0 0 1-1.78-2.59L10 9.5"></path>
+                <path d="M8.5 14h7"></path>
               </svg>
             </div>
-            <h4 class="pathway-title">Ethical AI</h4>
-            <p class="pathway-text">We teach AI built for impact—with fairness, transparency, and sustainability at its
-              core.</p>
+            <h4 class="pathway-title">Research Excellence</h4>
+            <p class="pathway-text">Engage in advanced research across medical AI domains.</p>
           </div>
         </div>
 
@@ -570,13 +717,36 @@
             <div class="pathway-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                <path d="M6 18h12"></path>
+                <path d="M6 14h12"></path>
+                <path d="M6 10h12"></path>
+                <path d="M6 6h12"></path>
+                <path d="M11 22v-4"></path>
               </svg>
             </div>
-            <h4 class="pathway-title">Backed by MAHE</h4>
-            <p class="pathway-text">Part of globally recognized Manipal Academy of Higher Education, known for
-              excellence.</p>
+            <h4 class="pathway-title">Integrated Healthcare Ecosystem</h4>
+            <p class="pathway-text">Learn within a network of leading hospitals and institutions.</p>
+          </div>
+        </div>
+
+        <!-- Node 6 -->
+        <div class="pathway-item" data-aos="fade-left">
+          <div class="pathway-dot"></div>
+          <div class="pathway-content card-right">
+            <div class="pathway-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z">
+                </path>
+                <path d="M9 12H4s.55-3.03 2-5c1.62-2.2 5-3 5-3"></path>
+                <path d="M15 12v5c0 2.2-1.38 4.38-3 6-2.2-1.62-3-5-3-5"></path>
+              </svg>
+            </div>
+            <h4 class="pathway-title">Innovation-Focused Curriculum</h4>
+            <p class="pathway-text">Built to translate ideas into meaningful healthcare solutions.</p>
           </div>
         </div>
       </div>
@@ -624,22 +794,18 @@
           </div>
         </div>
         <h6 class="titel24 mt-3" data-aos="zoom-out">
-          Immerse yourself in the vibrant academic and cultural life that
-          makes
-          <br />
-          Manipal a leader in higher education.
+          Experience the dynamic blend of academic excellence and vibrant campus life that defines Manipal.
         </h6>
       </div>
       <div class="futureRight" data-aos="fade-up-left">
-        <img alt="" class="fetureImg" loading="lazy" src="/assets/images/home/fetaur.webp" />
-        <img alt="" class="fetureImg-mobile" loading="lazy" src="/assets/images/home/future-mobile.webp" />
+        <img alt="" class="fetureImg" loading="lazy" src="/assets/images/home/img2.png" />
       </div>
     </div>
   </section>
   <section class="faqSec">
     <div class="faqCon">
       <div class="faqLeft" data-aos="fade-up-right">
-        <img alt="" loading="lazy" src="/assets/images/home/faq.png" />
+        <img alt="" loading="lazy" src="/assets/images/home/faq1.png" />
       </div>
       <div class="faqRight">
         <div class="faq-section">
@@ -653,7 +819,7 @@
                   class="accordion-button custom-accordion-button collapsed" data-bs-target="#a1"
                   data-bs-toggle="collapse" type="button">
                   <img alt="" loading="lazy" src="/assets/images/home/elements/arr.svg" />
-                  Who can apply to the programmes at MAHE?
+                  Will I get research opportunities?
                   <img alt="plus" class="arrowIcon closed ms-auto" loading="lazy"
                     src="/assets/images/home/elements/plus.svg" />
                   <img alt="minus" class="arrowIcon open ms-auto" loading="lazy"
@@ -662,9 +828,7 @@
               </h2>
               <div aria-labelledby="q1" class="accordion-collapse collapsed" data-bs-parent="#faqAccordion" id="a1">
                 <div class="accordion-body">
-                  Anyone who has completed Class 12 from any stream–Science,
-                  Commerce, or Arts–is eligible to apply. We believe AI is for
-                  everyone, not just coders or engineers.
+                  Yes! You can work on research projects and explore innovative ideas during the programme.
                 </div>
               </div>
             </div>
@@ -674,8 +838,7 @@
                   class="accordion-button custom-accordion-button collapsed" data-bs-target="#a2"
                   data-bs-toggle="collapse" type="button">
                   <img alt="" loading="lazy" src="/assets/images/home/elements/arr.svg" />
-                  Do I need a background in coding or mathematics to study
-                  here?
+                  Is there industry exposure?
                   <img alt="plus" class="arrowIcon closed ms-auto" loading="lazy"
                     src="/assets/images/home/elements/plus.svg" />
                   <img alt="minus" class="arrowIcon open ms-auto" loading="lazy"
@@ -684,8 +847,7 @@
               </h2>
               <div aria-labelledby="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" id="a2">
                 <div class="accordion-body">
-                  No. Our programmes are designed to start from the basics. You’ll learn
-                  everything from computational thinking to machine learning, with full support along the way.
+                  Definitely. You’ll work on real-world projects and interact with industry experts.
                 </div>
               </div>
             </div>
@@ -695,7 +857,7 @@
                   class="accordion-button custom-accordion-button collapsed" data-bs-target="#a3"
                   data-bs-toggle="collapse" type="button">
                   <img alt="" loading="lazy" src="/assets/images/home/elements/arr.svg" />
-                  What makes MAHE different from other AI colleges?
+                  What’s the learning environment like?
                   <img alt="plus" class="arrowIcon closed ms-auto" loading="lazy"
                     src="/assets/images/home/elements/plus.svg" />
                   <img alt="minus" class="arrowIcon open ms-auto" loading="lazy"
@@ -704,9 +866,7 @@
               </h2>
               <div aria-labelledby="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" id="a3">
                 <div class="accordion-body">
-                  MAHE is India’s first AI institute rooted in interdisciplinarity.
-                  You’ll apply AI in domains like healthcare, media, finance, agriculture, and more—powered by the
-                  legacy of Manipal.
+                  It’s collaborative, hands-on, and supported by experienced faculty and modern labs.
                 </div>
               </div>
             </div>
@@ -716,7 +876,7 @@
                   class="accordion-button custom-accordion-button collapsed" data-bs-target="#a4"
                   data-bs-toggle="collapse" type="button">
                   <img alt="" loading="lazy" src="/assets/images/home/elements/arr.svg" />
-                  Are these full-time degree programmes?
+                  Are internships included?
                   <img alt="plus" class="arrowIcon closed ms-auto" loading="lazy"
                     src="/assets/images/home/elements/plus.svg" />
                   <img alt="minus" class="arrowIcon open ms-auto" loading="lazy"
@@ -725,8 +885,7 @@
               </h2>
               <div aria-labelledby="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" id="a4">
                 <div class="accordion-body">
-                  Yes. MAHE offers full-time undergraduate programmes—B.Sc in Artificial
-                  Intelligence and BBA in Artificial Intelligence—with future plans for postgraduate programmes.
+                  Yes, internships are part of the programme to give you practical experience.
                 </div>
               </div>
             </div>
@@ -736,7 +895,7 @@
                   class="accordion-button custom-accordion-button collapsed" data-bs-target="#a5"
                   data-bs-toggle="collapse" type="button">
                   <img alt="" loading="lazy" src="/assets/images/home/elements/arr.svg" />
-                  What career opportunities can I expect after graduating?
+                  Can I go for higher studies after this?
                   <img alt="plus" class="arrowIcon closed ms-auto" loading="lazy"
                     src="/assets/images/home/elements/plus.svg" />
                   <img alt="minus" class="arrowIcon open ms-auto" loading="lazy"
@@ -745,9 +904,7 @@
               </h2>
               <div aria-labelledby="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" id="a5">
                 <div class="accordion-body">
-                  Our graduates will be prepared for roles in AI development, data science,
-                  fintech, digital marketing, UX design, HR tech, and much more. The industry demand for AI talent is
-                  massive and growing.
+                  Absolutely. The programme builds a strong foundation for higher studies and research.
                 </div>
               </div>
             </div>
@@ -757,7 +914,7 @@
                   class="accordion-button custom-accordion-button collapsed" data-bs-target="#a6"
                   data-bs-toggle="collapse" type="button">
                   <img alt="" loading="lazy" src="/assets/images/home/elements/arr.svg" />
-                  Is there a campus I’ll study at?
+                  What facilities are available?
                   <img alt="plus" class="arrowIcon closed ms-auto" loading="lazy"
                     src="/assets/images/home/elements/plus.svg" />
                   <img alt="minus" class="arrowIcon open ms-auto" loading="lazy"
@@ -766,8 +923,7 @@
               </h2>
               <div aria-labelledby="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" id="a6">
                 <div class="accordion-body">
-                  Yes! You’ll be learning at a state-of-the-art campus, part of the Manipal
-                  International University ecosystem, with AI labs, innovation hubs, and vibrant campus life.
+                  You’ll have access to advanced labs, classrooms, and a vibrant campus environment.
                 </div>
               </div>
             </div>
@@ -794,7 +950,6 @@
           </div>
         </div>
       </div>
-    </div>
   </section>
   <footer>
     <div class="container-fluid">
@@ -853,6 +1008,19 @@
             <a href="https://www.youtube.com/@ManipalMAHEPune" target="_blank"><i class="fa fa-youtube-play"></i></a>
             <a href="https://x.com/MAHE_Manipal" target="_blank"><i class="fa fa-twitter"></i></a>
             <a href="https://www.facebook.com/MAHE.pune/" target="_blank"><i class="fa fa-facebook"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="newsletter-signup">
+            <div class="newsletter-content">
+              <h4 class="newsletter-title">Newsletter Signup</h4>
+              <form class="newsletter-form" id="subscribeForm">
+                <input type="email" id="emailInput" placeholder="Email id" required>
+                <button type="submit">SUBSCRIBE</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -1016,7 +1184,7 @@
       <button aria-label="Close popup" class="imgModalClose">
         ×
       </button>
-      <a class="apply-now-btn" data-open="enquiry-modal" href="javascript:void(0)">
+      <a class="" data-open="enquiry-modal" href="javascript:void(0)">
         <img alt="Popup Banner" src="/assets/images/MAHE 800X500 (1).webp" />
       </a>
     </div>
@@ -1519,48 +1687,7 @@
   </script>
   <script src="/assets/js/custom.js">
   </script>
-  <!--slider section-->
-  <!--  <script>-->
-  <!--  let currentSlide = 0;-->
-  <!--  const slides = document.querySelectorAll('.custom-slide');-->
-  <!--  const sliderWrapper = document.querySelector('.custom-slider-wrapper');-->
-  <!--  function moveSlide() {-->
-  <!--    currentSlide = (currentSlide + 1) % slides.length;-->
-  <!--    sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;-->
-  <!--  }-->
-  <!--setInterval(moveSlide, 6000); -->
-  <!--// Change slide every 4 seconds-->
-  <!--</script>-->
-  <script>
-    const sliderWrapper = document.querySelector('.custom-slider-wrapper');
-    let slides = document.querySelectorAll('.custom-slide');
 
-    let currentSlide = 0;
-
-    // Clone first slide and append
-    const firstClone = slides[0].cloneNode(true);
-    sliderWrapper.appendChild(firstClone);
-
-    slides = document.querySelectorAll('.custom-slide'); // reselect after clone
-    const totalSlides = slides.length;
-
-    function moveSlide() {
-      currentSlide++;
-      sliderWrapper.style.transition = 'transform 0.6s ease-in-out';
-      sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-      // If reached clone
-      if (currentSlide === totalSlides - 1) {
-        setTimeout(() => {
-          sliderWrapper.style.transition = 'none';
-          sliderWrapper.style.transform = 'translateX(0%)';
-          currentSlide = 0;
-        }, 600); // match transition duration
-      }
-    }
-
-    setInterval(moveSlide, 8000);
-  </script>
   <!-- <script>
     (function (w, d, s) {
       var f = d.getElementsByTagName(s)[0],
@@ -1593,6 +1720,62 @@
       if (typeof $ !== "undefined" && $(".owl-carousel").length) {
         $(".owl-carousel").trigger("refresh.owl.carousel");
       }
+    }
+  });
+</script>
+<script>
+  function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = `custom-toast ${type}`;
+    
+    toast.innerHTML = `
+      <span class="toast-message">${message}</span>
+    `;
+    
+    container.appendChild(toast);
+    
+    // Force reflow
+    toast.offsetHeight;
+    
+    toast.classList.add('show');
+    
+    // Elegant removal
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => {
+        toast.remove();
+      }, 500);
+    }, 3500);
+  }
+
+  const form = document.getElementById("subscribeForm");
+  const input = document.getElementById("emailInput");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // stop page reload
+
+    const email = input.value;
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (res.status === 200) {
+        showToast("Thank you for subscribing!", "success");
+        input.value = "";
+      } else {
+        showToast(data.message || "Subscription failed", "error");
+      }
+    } catch (error) {
+      showToast("Server error. Please try again later.", "error");
     }
   });
 </script>
