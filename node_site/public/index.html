@@ -79,9 +79,11 @@
       pointer-events: auto;
       min-width: 320px;
       padding: 14px 24px;
-      border-radius: 50px; /* Pill shape for premium feel */
+      border-radius: 50px;
+      /* Pill shape for premium feel */
       background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px); /* Glassmorphism */
+      backdrop-filter: blur(10px);
+      /* Glassmorphism */
       -webkit-backdrop-filter: blur(10px);
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
       display: flex;
@@ -92,7 +94,8 @@
       font-weight: 600;
       font-size: 15px;
       opacity: 0;
-      transform: translateY(-50px) scale(0.9); /* Animation start */
+      transform: translateY(-50px) scale(0.9);
+      /* Animation start */
       transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
       border: 1px solid rgba(255, 255, 255, 0.3);
       color: #333;
@@ -105,12 +108,14 @@
 
     .custom-toast.success {
       background: rgba(255, 255, 255, 0.95);
-      border-bottom: 3px solid #28a745; /* Green for success */
+      border-bottom: 3px solid #28a745;
+      /* Green for success */
     }
 
     .custom-toast.error {
       background: rgba(255, 255, 255, 0.95);
-      border-bottom: 3px solid #dc3545; /* Red for error */
+      border-bottom: 3px solid #dc3545;
+      /* Red for error */
     }
 
     .toast-message {
@@ -228,7 +233,7 @@
                     </a>
                     <ul class="dropdown-menu">
                       <li>
-                        <a class="dropdown-item" href="gallery.html">
+                        <a class="dropdown-item" href="activity.html">
                           Activity
                         </a>
                       </li>
@@ -320,12 +325,14 @@
     <div class="custom-slider-wrapper">
       <div class="custom-slide active">
         <a data-open="enquiry-modal" href="javascript:void(0)">
+          <!-- <img alt="Banner 1" src="/assets/images/gallery1.png" /> -->
           <img alt="Banner 1" src="/assets/images/Picture1.jpg" />
         </a>
       </div>
       <div class="custom-slide">
         <a data-open="enquiry-modal" href="javascript:void(0)">
-          <img alt="Banner 2" src="/assets/images/pic2.jpg" />
+          <!-- <img alt="Banner 2" src="/assets/images/pic2.jpg" /> -->
+          <img class="no-gap-image" alt="Banner 2" src="/assets/images/pic2.jpg" />
         </a>
       </div>
       <div class="custom-slide">
@@ -356,7 +363,7 @@
         // Clone first and last slides for infinite loop
         const firstClone = originalSlides[0].cloneNode(true);
         const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
-        
+
         firstClone.classList.remove('active');
         lastClone.classList.remove('active');
 
@@ -378,12 +385,12 @@
             wrapper.style.transition = 'transform 0.6s ease-in-out';
           }
           wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-          
+
           // Update active class for original slides
           originalSlides.forEach((slide, index) => {
             slide.classList.toggle('active', index === (currentIndex - 1));
           });
-          
+
           // Ensure arrows are always flex
           prevBtn.style.display = 'flex';
           nextBtn.style.display = 'flex';
@@ -559,7 +566,7 @@
             <h3 class="titel32 w700">
               MSc in Artificial Intelligence in Healthcare
             </h3>
-            <img alt="AI Icon" class="ai-icon" loading="lazy" src="/assets/images/home/elements/prog/img1.gif">
+            <img alt="AI Icon" class="ai-icon" loading="lazy" src="/assets/images/home/elements/prog/image1.png">
             </img>
           </div>
           <p class="titel20 w500 mb-1">
@@ -591,10 +598,11 @@
             <h3 class="titel32 w700">
               Integrated MSc–PhD in AI in Healthcare
             </h3>
-            <img alt="AI Icon" class="ai-icon" loading="lazy" src="/assets/images/home/elements/prog/img2.gif" />
+            <img alt="AI Icon" class="ai-icon" loading="lazy" src="/assets/images/home/elements/prog/image2.png" />
           </div>
           <p class="titel20 w500 mb-0">
-            An intensive dual-degree program designed to advance AI-driven research in clinical settings, enabling scholars to contribute to precision medicine and impactful healthcare solutions.
+            An intensive dual-degree program designed to advance AI-driven research in clinical settings, enabling
+            scholars to contribute to precision medicine and impactful healthcare solutions.
           </p>
           <ul class="check-list">
             <li class="titel20 w500 mb-2 mt-0">
@@ -681,7 +689,9 @@
             <div class="pathway-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
-                <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"></path>
+                <path
+                  d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3">
+                </path>
                 <path d="M8 15v1a6 6 0 0 0 6 6h2a6 6 0 0 0 6-6v-4"></path>
                 <circle cx="20" cy="10" r="2"></circle>
               </svg>
@@ -737,9 +747,10 @@
             <div class="pathway-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z">
+                </path>
                 <path
-                  d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
-                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z">
+                  d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z">
                 </path>
                 <path d="M9 12H4s.55-3.03 2-5c1.62-2.2 5-3 5-3"></path>
                 <path d="M15 12v5c0 2.2-1.38 4.38-3 6-2.2-1.62-3-5-3-5"></path>
@@ -752,6 +763,34 @@
       </div>
     </div>
   </section>
+  <!--Section after what makes us different-->
+  <section class="statsSec">
+    <div class="container">
+      <div class="stats-wrapper" data-aos="fade-up">
+        <a href="activity.html#overview" class="stats-card" style="cursor:pointer; text-decoration:none; color:inherit;">
+          <div class="stats-icon"><i class="fa fa-file-text-o"></i></div>
+          <h2 class="stats-number">17+</h2>
+          <p class="stats-label">Clinical Research</p>
+        </a>
+        <a href="activity.html#overview" class="stats-card" style="cursor:pointer; text-decoration:none; color:inherit;">
+          <div class="stats-icon"><i class="fa fa-cube"></i></div>
+          <h2 class="stats-number">5+</h2>
+          <p class="stats-label">Industry Collabs</p>
+        </a>
+        <a href="activity.html#overview" class="stats-card" style="cursor:pointer; text-decoration:none; color:inherit;">
+          <div class="stats-icon"><i class="fa fa-book"></i></div>
+          <h2 class="stats-number">3+</h2>
+          <p class="stats-label">Student Projects</p>
+        </a>
+        <a href="activity.html#overview" class="stats-card" style="cursor:pointer; text-decoration:none; color:inherit;">
+          <div class="stats-icon"><i class="fa fa-trophy"></i></div>
+          <h2 class="stats-number">1</h2>
+          <p class="stats-label">Guest Speakers</p>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!--buid for future starts from here -->
   <section class="futureSec">
     <div class="futureCon">
       <div class="futureLeft">
@@ -764,7 +803,7 @@
         <div class="fetureBox">
           <div class="featureCard w28" data-aos="flip-right">
             <img alt="AI Labs" class="feature-icon" loading="lazy"
-              src="/assets/images/home/elements/feature/img1.gif" />
+              src="/assets/images/home/elements/feature/image3.png" />
             <h6 class="titel24 w600">
               AI Labs &amp; Studio
               <br />
@@ -773,7 +812,7 @@
           </div>
           <div class="featureCard w28" data-aos="flip-right">
             <img alt="Classrooms" class="feature-icon" loading="lazy"
-              src="/assets/images/home/elements/feature/img2.gif" />
+              src="/assets/images/home/elements/feature/image4.png" />
             <h6 class="titel24 w600">
               Interdisciplinary
               <br />
@@ -782,7 +821,7 @@
           </div>
           <div class="featureCard" data-aos="flip-right">
             <img alt="MAHE Ecosystem" class="feature-icon" loading="lazy"
-              src="/assets/images/home/elements/feature/img3.gif" />
+              src="/assets/images/home/elements/feature/image5.png" />
             <h6 class="titel24 w600">
               Access to the MAHE ecosystem
               <br />
@@ -1728,18 +1767,18 @@
     const container = document.getElementById('toast-container');
     const toast = document.createElement('div');
     toast.className = `custom-toast ${type}`;
-    
+
     toast.innerHTML = `
       <span class="toast-message">${message}</span>
     `;
-    
+
     container.appendChild(toast);
-    
+
     // Force reflow
     toast.offsetHeight;
-    
+
     toast.classList.add('show');
-    
+
     // Elegant removal
     setTimeout(() => {
       toast.classList.remove('show');

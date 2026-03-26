@@ -418,6 +418,15 @@ header {
   font-family: 'Montserrat', sans-serif ;
 }
 
+.inner-banner-text p {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 400;
+  max-width: 550px;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
 .about-1 {
   width: 100%;
   height: auto;
@@ -655,9 +664,10 @@ header {
 }
 
 .frm {
-  padding: 25px 15px 0;
-  border: 1px solid #ccc;
-  border-radius: 10px 10px 0 0;
+  padding: 25px 15px 25px;
+  border: 2px solid #D14905;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .inp input,
@@ -2368,4 +2378,43 @@ hr {
 /* Global MAHE Font Reset - Excluding Icons */
 *:not(.fa):not(.fa-stack):not(.fa-inverse):not(.fa-stack-1x):not(.fa-stack-2x) {
   font-family: 'Montserrat', sans-serif;
+}
+
+/* Custom Dropdown Styles */
+.custom-select-wrapper span.selected-value {
+    pointer-events: none;
+}
+
+.custom-select-options {
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.custom-select-options.active {
+    display: block;
+}
+
+.custom-select-options li {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.custom-select-options li:hover {
+    background-color: #D14905 !important;
+    color: #fff !important;
 }

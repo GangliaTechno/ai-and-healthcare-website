@@ -270,14 +270,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
 
                     <!-- Collaboration Type -->
-                    <div class="mb-3 position-relative">
-                        <select class="form-select" name="collaboration_type" required style="height: 45px; border-radius: 6px; border-color: #ced4da;">
-                            <option value="" selected disabled>Collaboration type*</option>
-                            <option value="Academic">Academic</option>
-                            <option value="Research">Research</option>
-                            <option value="Innovation">Innovation</option>
-                            <option value="Project">Project</option>
-                        </select>
+                    <div class="mb-3 position-relative custom-select-wrapper">
+                        <div class="custom-select-btn" id="collabToggle" style="height: 45px; border-radius: 6px; border: 1px solid #ced4da; display: flex; align-items: center; padding: 0 12px; cursor: pointer; background: #fff; justify-content: space-between; transition: border-color 0.2s;">
+                            <span class="selected-value" style="color: #666; font-size: 0.95rem;">Collaboration type*</span>
+                            <i class="fa fa-angle-down" style="color: #999; font-size: 14px;"></i>
+                        </div>
+                        <ul class="custom-select-options">
+                            <li data-value="Academic">Academic</li>
+                            <li data-value="Research">Research</li>
+                            <li data-value="Innovation">Innovation</li>
+                            <li data-value="Project">Project</li>
+                        </ul>
+                        <input type="hidden" name="collaboration_type" required>
                         <div class="invalid-feedback">Please select a type.</div>
                     </div>
 
@@ -434,6 +438,49 @@ document.addEventListener("DOMContentLoaded", function () {
         setupForm: function (form) {
             if (!form || form.dataset.ready) return;
             form.dataset.ready = "true";
+
+            // Custom Dropdown Initialization
+            const wrapper = form.querySelector('.custom-select-wrapper');
+            if (wrapper) {
+                const btn = wrapper.querySelector('.custom-select-btn');
+                const optionsList = wrapper.querySelector('.custom-select-options');
+                const hiddenInput = wrapper.querySelector('input[type="hidden"]');
+                const selectedSpan = wrapper.querySelector('.selected-value');
+
+                // Toggle dropdown
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = optionsList.classList.contains('active');
+                    // Close all other dropdowns
+                    document.querySelectorAll('.custom-select-options').forEach(el => el.classList.remove('active'));
+                    document.querySelectorAll('.custom-select-btn').forEach(el => el.style.borderColor = '#ced4da');
+                    
+                    if (!isOpen) {
+                        optionsList.classList.add('active');
+                        btn.style.borderColor = '#E85626';
+                    }
+                });
+
+                // Option selection
+                optionsList.querySelectorAll('li').forEach(li => {
+                    li.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const val = li.dataset.value;
+                        selectedSpan.innerText = val;
+                        selectedSpan.style.color = '#333';
+                        hiddenInput.value = val;
+                        optionsList.classList.remove('active');
+                        btn.style.borderColor = '#ced4da';
+                        form.classList.add('was-validated');
+                    });
+                });
+
+                // Global close on click outside
+                document.addEventListener('click', () => {
+                    optionsList.classList.remove('active');
+                    btn.style.borderColor = '#ced4da';
+                });
+            }
 
             // Input Validation Logic
             const inputs = form.querySelectorAll('input, select, textarea');
