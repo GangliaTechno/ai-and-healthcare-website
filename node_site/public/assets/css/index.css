@@ -72,12 +72,50 @@
   position: absolute;
   bottom: 0;
   right: 0;
+  z-index: 10;
+  /* High z-index to stay above animation */
+}
+
+.vanta-bg-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 65%;
+  height: 100%;
+  z-index: 5;
+  /* Between video and robot */
+  pointer-events: none;
+  opacity: 0.7;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, black 25%, black 90%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0%, black 25%, black 90%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .bgImg {
   width: 100%;
   object-fit: cover;
   min-height: 500px;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.1) 20%, black 45%, black 88%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.1) 20%, black 45%, black 88%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .bgImgMob,
@@ -479,6 +517,7 @@
   /* Primary orange icons */
   margin-bottom: 20px;
   opacity: 0.9;
+  mix-blend-mode: multiply;
 }
 
 .stats-number {
@@ -576,6 +615,10 @@
   width: 28%;
 }
 
+.featureCard.w32 {
+  width: 32%;
+}
+
 .feature-icon {
   height: 100px;
   margin-bottom: 1rem;
@@ -609,73 +652,7 @@
   margin-top: 1rem;
 }
 
-.newsletter-signup {
-  margin-top: 1rem;
-  padding-top: 1rem;
-}
 
-.newsletter-content {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  /* Align to the right side */
-  gap: 1.2rem;
-}
-
-.newsletter-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
-  font-weight: 500 !important;
-  color: #333;
-  margin: 0;
-}
-
-.newsletter-form {
-  display: flex;
-  flex: 1;
-  max-width: 350px;
-}
-
-.newsletter-form input {
-  flex: 1;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-right: 10px;
-  font-size: 14px;
-  outline: none;
-}
-
-.newsletter-form button {
-  padding: 6px 20px;
-  background-color: #D14905;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(232, 86, 38, 0.3);
-}
-
-.newsletter-form button:hover {
-  background-color: #bd3c14;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(209, 73, 5, 0.4);
-}
-
-@media screen and (max-width: 768px) {
-  .newsletter-content {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .newsletter-form {
-    width: 100%;
-  }
-}
 
 .accordion-button {
   color: #000 !important;
@@ -753,7 +730,13 @@
   }
 
   .titel24 {
+    margin: 0;
     font-size: 24px;
+    /* match FAQ question */
+    font-weight: 400;
+    /* match FAQ */
+    line-height: 32px;
+    color: #000;
   }
 
   .bannerBtns {
@@ -829,7 +812,13 @@
   .titel20,
   .titel24,
   .titel28 {
-    font-size: 21px;
+    margin: 0;
+    font-size: 20px;
+    /* already matches */
+    font-weight: 400;
+    /* ensure consistency */
+    line-height: 1.5;
+    color: #000;
   }
 
   .aboutBG {

@@ -163,11 +163,11 @@
   }
 
   .inner-banner-text h1 {
-    font-size: 84px;
+    font-size: 64px;
   }
 
   .inner-banner-text h2 {
-    font-size: 84px;
+    font-size: 64px;
   }
 
   .p-8-inner-hand {
@@ -369,11 +369,11 @@
     line-height: initial;
   }
 
-  .nav-item.dropdown:hover > .dropdown-menu {
+  .nav-item.dropdown:hover>.dropdown-menu {
     display: block !important;
   }
 
-  .nav-item.dropend:hover > .dropdown-menu {
+  .nav-item.dropend:hover>.dropdown-menu {
     position: absolute;
     top: 0;
     left: 100%;
@@ -392,11 +392,11 @@
   }
 
   .inner-banner-text h1 {
-    font-size: 44px;
+    font-size: 36px;
   }
 
   .inner-banner-text h2 {
-    font-size: 44px;
+    font-size: 36px;
   }
 
   .top-right .navbar-toggler {
@@ -564,11 +564,11 @@
   }
 
   .inner-banner-text h1 {
-    font-size: 36px;
+    font-size: 30px;
   }
 
   .inner-banner-text h2 {
-    font-size: 36px;
+    font-size: 30px;
   }
 
   .inner-banner-text {
@@ -966,7 +966,7 @@
   }
 
   .topSection {
-    margin-top: 60px !important;
+    margin-top: 0 !important;
   }
 
   .sliderBottom {
@@ -1139,7 +1139,8 @@
     right: auto !important;
     bottom: auto !important;
     order: 1 !important;
-    margin: 0 auto !important; /* Account for fixed header + announcement, removed all top margin */
+    margin: 0 auto !important;
+    /* Account for fixed header + announcement, removed all top margin */
   }
 
   .bannerContentBox {
@@ -1221,4 +1222,3 @@
     font-size: 0.85rem;
   }
 }
-

@@ -8,11 +8,14 @@
   <meta content="width=device-width, initial-scale=1,user-scalable=0" name="viewport" />
   <meta content="index,follow" name="robots" />
   <title>Activities – Dept of AI in Healthcare</title>
-  <meta content="Explore our Clinical Research, Industry Collaborations, Student Projects and Guest Speaker activities at the Department of AI in Healthcare, KMC Manipal." name="description" />
-  <link href="/assets/images/fav.png" rel="icon" type="image/ico" />
+  <meta
+    content="Explore our Clinical Research, Industry Collaborations, Student Projects and Guest Speaker activities at the Department of AI in Healthcare, KMC Manipal."
+    name="description" />
+  <link href="/assets/images/fav-transparent.png" rel="icon" type="image/ico" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap"
+    rel="stylesheet" />
   <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/assets/css/owl.carousel.min.css" rel="stylesheet" />
   <link href="/assets/css/owl.theme.default.css" rel="stylesheet" />
@@ -29,12 +32,14 @@
       background: #f5f5f5;
       padding: 80px 0;
     }
+
     .overview-stack {
       display: flex;
       flex-direction: column;
       gap: 24px;
       margin-top: 50px;
     }
+
     .overview-card {
       display: flex;
       align-items: center;
@@ -42,20 +47,22 @@
       background: #fff;
       border-radius: 20px;
       padding: 34px 38px;
-      box-shadow: 0 6px 30px rgba(0,0,0,0.07);
-      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.07);
+      border: 1px solid rgba(0, 0, 0, 0.04);
       transition: all 0.3s ease;
     }
+
     .overview-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(209,73,5,0.15);
-      border-color: rgba(209,73,5,0.2);
+      box-shadow: 0 12px 40px rgba(209, 73, 5, 0.15);
+      border-color: rgba(209, 73, 5, 0.2);
     }
+
     .ov-icon {
       flex-shrink: 0;
       width: 76px;
       height: 76px;
-      background: rgba(209,73,5,0.08);
+      background: rgba(209, 73, 5, 0.08);
       border-radius: 18px;
       display: flex;
       align-items: center;
@@ -63,27 +70,34 @@
       font-size: 32px;
       color: #D14905;
     }
-    .ov-body { flex: 1; }
+
+    .ov-body {
+      flex: 1;
+    }
+
     .ov-body h3 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 700;
       color: #1a1a1a;
       margin: 0 0 10px;
     }
+
     .ov-body p {
       font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-      color: #555;
+      font-size: 17px;
+      color: #333;
       margin: 0;
       line-height: 1.65;
     }
+
     .ov-stat {
       flex-shrink: 0;
       text-align: center;
       padding: 0 24px;
       border-left: 1px solid #f0f0f0;
     }
+
     .ov-stat .s-num {
       font-family: 'Montserrat', sans-serif;
       font-size: 40px;
@@ -91,6 +105,7 @@
       color: #D14905;
       line-height: 1;
     }
+
     .ov-stat .s-lbl {
       font-family: 'Montserrat', sans-serif;
       font-size: 10px;
@@ -100,6 +115,7 @@
       color: #aaa;
       margin-top: 4px;
     }
+
     .btn-learn-more {
       flex-shrink: 0;
       display: inline-flex;
@@ -111,16 +127,17 @@
       font-size: 14px;
       font-weight: 700;
       padding: 12px 22px;
-      border-radius: 50px;
+      border-radius: 12px;
       text-decoration: none !important;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(209,73,5,0.3);
+      box-shadow: 0 4px 12px rgba(209, 73, 5, 0.3);
       white-space: nowrap;
     }
+
     .btn-learn-more:hover {
       background: #bd3c14;
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(209,73,5,0.45);
+      box-shadow: 0 6px 18px rgba(209, 73, 5, 0.45);
     }
 
     /* ── Detail Sections ── */
@@ -129,16 +146,34 @@
       scroll-margin-top: 80px;
       transition: background-color 0.4s ease;
     }
+
     @keyframes highlight-section {
-      0% { background-color: rgba(209,73,5,0.1); box-shadow: 0 0 30px rgba(209,73,5,0.1); }
-      50% { background-color: rgba(209,73,5,0.05); }
-      100% { background-color: transparent; }
+      0% {
+        background-color: rgba(209, 73, 5, 0.1);
+        box-shadow: 0 0 30px rgba(209, 73, 5, 0.1);
+      }
+
+      50% {
+        background-color: rgba(209, 73, 5, 0.05);
+      }
+
+      100% {
+        background-color: transparent;
+      }
     }
+
     .highlight-active {
       animation: highlight-section 2.5s ease-out;
     }
-    .activity-detail:nth-child(even) { background: #fff; }
-    .activity-detail:nth-child(odd)  { background: #f5f5f5; }
+
+    .activity-detail:nth-child(even) {
+      background: #fff;
+    }
+
+    .activity-detail:nth-child(odd) {
+      background: #f5f5f5;
+    }
+
     .detail-inner {
       display: flex;
       align-items: center;
@@ -147,13 +182,18 @@
       margin: 0 auto;
       padding: 0 40px;
     }
-    .detail-inner.reverse { flex-direction: row-reverse; }
+
+    .detail-inner.reverse {
+      flex-direction: row-reverse;
+    }
+
     .detail-img-wrap {
       flex: 0 0 46%;
       border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
     }
+
     .detail-img-wrap img {
       width: 100%;
       height: 360px;
@@ -161,11 +201,18 @@
       display: block;
       transition: transform 0.5s ease;
     }
-    .detail-img-wrap:hover img { transform: scale(1.04); }
-    .detail-content { flex: 1; }
+
+    .detail-img-wrap:hover img {
+      transform: scale(1.04);
+    }
+
+    .detail-content {
+      flex: 1;
+    }
+
     .detail-tag {
       display: inline-block;
-      background: rgba(209,73,5,0.1);
+      background: rgba(209, 73, 5, 0.1);
       color: #D14905;
       font-family: 'Montserrat', sans-serif;
       font-size: 11px;
@@ -176,6 +223,7 @@
       border-radius: 50px;
       margin-bottom: 14px;
     }
+
     .sec-divider {
       width: 52px;
       height: 4px;
@@ -183,6 +231,7 @@
       border-radius: 2px;
       margin-bottom: 18px;
     }
+
     .detail-content h2 {
       font-family: 'Montserrat', sans-serif;
       font-size: 36px;
@@ -191,29 +240,36 @@
       margin: 0 0 16px;
       line-height: 1.2;
     }
+
     .detail-content p {
       font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-      color: #555;
+      font-size: 17px;
+      color: #333;
       line-height: 1.75;
       margin-bottom: 14px;
     }
+
     .detail-highlights {
       list-style: none;
       padding: 0;
       margin: 18px 0 26px;
     }
+
     .detail-highlights li {
       font-family: 'Montserrat', sans-serif;
       font-size: 14px;
-      color: #444;
+      color: #222;
       padding: 8px 0;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: none;
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .detail-highlights li:last-child { border-bottom: none; }
+
+    .detail-highlights li:last-child {
+      border-bottom: none;
+    }
+
     .detail-highlights li::before {
       content: '';
       width: 8px;
@@ -225,18 +281,54 @@
 
     /* ── Responsive ── */
     @media (max-width: 991px) {
-      .activity-hero h1 { font-size: 36px; }
-      .activity-hero p  { font-size: 16px; }
-      .overview-card { flex-wrap: wrap; gap: 18px; padding: 24px; }
-      .ov-stat { border-left: none; padding: 0 10px; }
-      .detail-inner, .detail-inner.reverse { flex-direction: column; gap: 30px; padding: 0 20px; }
-      .detail-img-wrap { flex: none; width: 100%; }
-      .detail-content h2 { font-size: 26px; }
+      .activity-hero h1 {
+        font-size: 36px;
+      }
+
+      .activity-hero p {
+        font-size: 16px;
+      }
+
+      .overview-card {
+        flex-wrap: wrap;
+        gap: 18px;
+        padding: 24px;
+      }
+
+      .ov-stat {
+        border-left: none;
+        padding: 0 10px;
+      }
+
+      .detail-inner,
+      .detail-inner.reverse {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0 20px;
+      }
+
+      .detail-img-wrap {
+        flex: none;
+        width: 100%;
+      }
+
+      .detail-content h2 {
+        font-size: 26px;
+      }
     }
+
     @media (max-width: 575px) {
-      .activity-hero { padding: 100px 20px 60px; }
-      .activity-hero h1 { font-size: 28px; }
-      .ov-stat { display: none; }
+      .activity-hero {
+        padding: 100px 20px 60px;
+      }
+
+      .activity-hero h1 {
+        font-size: 28px;
+      }
+
+      .ov-stat {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -248,14 +340,17 @@
       <h5 class="announce-txt">Announcement</h5>
       <div class="text-wp js-announce-carousel owl-carousel owl-theme">
         <div class="item">
-          <a href="https://MAHE.ishinfo.com/SYMMAHEY25/Register/Index.aspx" target="_blank">Applications for B.Sc. and B.B.A. Artificial Intelligence are now open! Click here to Apply.</a>
+          <a href="https://MAHE.ishinfo.com/SYMMAHEY25/Register/Index.aspx" target="_blank">Applications for B.Sc. and
+            B.B.A. Artificial Intelligence are now open! Click here to Apply.</a>
         </div>
         <div class="item">
-          <a href="https://MAHE.ishinfo.com/SYMMAHEY25/Register/Index.aspx" target="_blank">Applications for B.Sc. and B.B.A. Artificial Intelligence are now open! Click here to Apply.</a>
+          <a href="https://MAHE.ishinfo.com/SYMMAHEY25/Register/Index.aspx" target="_blank">Applications for B.Sc. and
+            B.B.A. Artificial Intelligence are now open! Click here to Apply.</a>
         </div>
       </div>
       <div class="announce-close-icon">
-        <a href="#" class="js-announce-close" onclick="document.getElementById('mahe-announcement-bar').style.display='none'; return false;">X</a>
+        <a href="#" class="js-announce-close"
+          onclick="document.getElementById('mahe-announcement-bar').style.display='none'; return false;">X</a>
       </div>
     </div>
   </div>
@@ -290,7 +385,8 @@
                       data-bs-toggle="dropdown" href="#" role="button">About Us</a>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item active" href="activity.html">Activity</a></li>
-                      <li><a class="dropdown-item" href="https://www.manipal.edu/kmc-manipal/department-faculty.html" target="_blank">Faculty</a></li>
+                      <li><a class="dropdown-item" href="https://www.manipal.edu/kmc-manipal/department-faculty.html"
+                          target="_blank">Faculty</a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown">
@@ -335,9 +431,10 @@
         <div class="row">
           <div class="col-md-12 d-flex flex-column align-items-start justify-content-start">
             <h2>
-              Empowering the Next Generation of Healthcare-AI Leaders
+              Empowering the Next Generation of<br> Healthcare-AI Leaders
 
-            </h2>
+            </h2><br>
+
             <p>
               Moving beyond traditional medical education. We provide a 360-degree integration of clinical expertise,
               data science, and engineering to translate AI research into real-world patient care.
@@ -359,10 +456,17 @@
 
         <!-- 1. Clinical Research -->
         <div class="overview-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="ov-icon"><i class="fa fa-file-text-o"></i></div>
+          <div class="ov-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
+              <path d="M8 15v1a6 6 0 0 0 6 6h2a6 6 0 0 0 6-6v-4"/>
+              <circle cx="20" cy="10" r="2"/>
+            </svg>
+          </div>
           <div class="ov-body">
             <h3>Clinical Research</h3>
-            <p>Our department conducts pioneering clinical research integrating AI with patient data to improve diagnostics, treatment planning, and patient outcomes across multiple healthcare domains.</p>
+            <p>Our department conducts pioneering clinical research integrating AI with patient data to improve
+              diagnostics, treatment planning, and patient outcomes across multiple healthcare domains.</p>
           </div>
           <div class="ov-stat">
             <div class="s-num">17+</div>
@@ -373,10 +477,19 @@
 
         <!-- 2. Industry Collabs -->
         <div class="overview-card" data-aos="fade-up" data-aos-delay="140">
-          <div class="ov-icon"><i class="fa fa-cube"></i></div>
+          <div class="ov-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m11 17 2 2a1 1 0 1 0 3-3"/>
+              <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/>
+              <path d="m21 3 1 11h-2"/>
+              <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/>
+              <path d="M3 4h8"/>
+            </svg>
+          </div>
           <div class="ov-body">
             <h3>Industry Collaborations</h3>
-            <p>We partner with leading healthcare companies and technology firms to bridge the gap between academic research and real-world medical AI solutions, offering students industry exposure.</p>
+            <p>We partner with leading healthcare companies and technology firms to bridge the gap between academic
+              research and real-world medical AI solutions, offering students industry exposure.</p>
           </div>
           <div class="ov-stat">
             <div class="s-num">5+</div>
@@ -387,10 +500,16 @@
 
         <!-- 3. Student Projects -->
         <div class="overview-card" data-aos="fade-up" data-aos-delay="180">
-          <div class="ov-icon"><i class="fa fa-book"></i></div>
+          <div class="ov-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c0 2.21 2.686 4 6 4s6-1.79 6-4v-5"/>
+            </svg>
+          </div>
           <div class="ov-body">
             <h3>Student Projects</h3>
-            <p>Students work on hands-on AI projects addressing real healthcare challenges — from medical imaging tools to predictive models for epidemic surveillance and hospital management.</p>
+            <p>Students work on hands-on AI projects addressing real healthcare challenges — from medical imaging tools
+              to predictive models for epidemic surveillance and hospital management.</p>
           </div>
           <div class="ov-stat">
             <div class="s-num">3+</div>
@@ -401,10 +520,18 @@
 
         <!-- 4. Guest Speakers -->
         <div class="overview-card" data-aos="fade-up" data-aos-delay="220">
-          <div class="ov-icon"><i class="fa fa-trophy"></i></div>
+          <div class="ov-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="2" width="6" height="11" rx="3"/>
+              <path d="M5 10a7 7 0 0 0 14 0"/>
+              <line x1="12" y1="19" x2="12" y2="22"/>
+              <line x1="8" y1="22" x2="16" y2="22"/>
+            </svg>
+          </div>
           <div class="ov-body">
             <h3>Guest Speakers</h3>
-            <p>We regularly host distinguished experts from academia, industry, and hospitals who share their insights on the latest breakthroughs in AI, healthcare, and medical technology.</p>
+            <p>We regularly host distinguished experts from academia, industry, and hospitals who share their insights
+              on the latest breakthroughs in AI, healthcare, and medical technology.</p>
           </div>
           <div class="ov-stat">
             <div class="s-num">1</div>
@@ -426,8 +553,6 @@
         <img src="/assets/images/home/img2.png" alt="Clinical Research at KMC Manipal" />
       </div>
       <div class="detail-content" data-aos="fade-left">
-        <span class="detail-tag">Research</span>
-        <div class="sec-divider"></div>
         <h2>Clinical Research</h2>
         <p>
           At the Department of AI in Healthcare, clinical research forms the backbone of our scientific mission.
@@ -458,8 +583,6 @@
         <img src="/assets/images/activities/industry-collabs.png" alt="Industry Collaborations" />
       </div>
       <div class="detail-content" data-aos="fade-right">
-        <span class="detail-tag">Partnerships</span>
-        <div class="sec-divider"></div>
         <h2>Industry Collaborations</h2>
         <p>
           We believe the best AI solutions for healthcare emerge when academia and industry work side by side.
@@ -490,8 +613,6 @@
         <img src="/assets/images/activities/student-projects.png" alt="Student Projects" />
       </div>
       <div class="detail-content" data-aos="fade-left">
-        <span class="detail-tag">Innovation</span>
-        <div class="sec-divider"></div>
         <h2>Student Projects</h2>
         <p>
           Our students are not just learners — they are innovators. From their first semester, students are
@@ -521,8 +642,6 @@
         <img src="/assets/images/mahe2.webp" alt="Guest Speakers" style="object-position: center top;" />
       </div>
       <div class="detail-content" data-aos="fade-right">
-        <span class="detail-tag">Events</span>
-        <div class="sec-divider"></div>
         <h2>Guest Speakers</h2>
         <p>
           We regularly invite distinguished researchers, clinicians, and technology leaders to share their
@@ -586,15 +705,28 @@
             </p>
           </div>
           <div class="footer-social">
-            <a href="https://www.linkedin.com/school/Manipal-artificial-intelligence-institute-MAHE" target="_blank"><i class="fa fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/school/Manipal-artificial-intelligence-institute-MAHE" target="_blank"><i
+                class="fa fa-linkedin"></i></a>
             <a href="https://www.instagram.com/Manipal_MAHE/" target="_blank"><i class="fa fa-instagram"></i></a>
             <a href="https://www.youtube.com/@ManipalMAHEPune" target="_blank"><i class="fa fa-youtube-play"></i></a>
             <a href="https://x.com/MAHE_Manipal" target="_blank"><i class="fa fa-twitter"></i></a>
             <a href="https://www.facebook.com/MAHE.pune/" target="_blank"><i class="fa fa-facebook"></i></a>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="newsletter-signup">
+              <div class="newsletter-content">
+                <h4 class="newsletter-title">Newsletter Signup</h4>
+                <form class="newsletter-form" id="subscribeForm">
+                  <input type="email" id="emailInput" placeholder="Email id" required>
+                  <button type="submit">SUBSCRIBE</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
   </footer>
   <div class="last-footer">© 2026 Manipal Academy of Higher Education</div>
 
@@ -606,7 +738,7 @@
   <script>
     AOS.init({ duration: 700, once: false });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
       // Function to highlight and scroll to a section
       function highlightAndScroll(targetId) {
         if (targetId.startsWith('#') && targetId.length > 1) {
@@ -614,17 +746,17 @@
           if ($target.length) {
             // Remove highlight from any other section first
             $('.activity-detail').removeClass('highlight-active');
-            
+
             // Trigger highlight
             $target.addClass('highlight-active');
-            
+
             // Smooth scroll
             $('html, body').animate({
               scrollTop: $target.offset().top - 80
             }, 600);
-            
+
             // Optional: remove class after animation finishes
-            setTimeout(function() {
+            setTimeout(function () {
               $target.removeClass('highlight-active');
             }, 2600);
           }
@@ -643,7 +775,7 @@
       // Handle loading with hash (legacy support)
       var currentHash = window.location.hash;
       if (currentHash && currentHash !== '#overview') {
-        setTimeout(function() {
+        setTimeout(function () {
           highlightAndScroll(currentHash);
         }, 500);
       }
@@ -658,4 +790,5 @@
     }
   </script>
 </body>
+
 </html>
