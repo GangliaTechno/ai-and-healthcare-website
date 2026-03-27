@@ -270,14 +270,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
 
                     <!-- Collaboration Type -->
-                    <div class="mb-3 position-relative">
-                        <select class="form-select" name="collaboration_type" required style="height: 45px; border-radius: 6px; border-color: #ced4da;">
-                            <option value="" selected disabled>Collaboration type*</option>
-                            <option value="Academic">Academic</option>
-                            <option value="Research">Research</option>
-                            <option value="Innovation">Innovation</option>
-                            <option value="Project">Project</option>
-                        </select>
+                    <div class="mb-3 position-relative custom-select-wrapper">
+                        <div class="custom-select-btn" id="collabToggle" style="height: 45px; border-radius: 6px; border: 1px solid #ced4da; display: flex; align-items: center; padding: 0 12px; cursor: pointer; background: #fff; justify-content: space-between; transition: border-color 0.2s;">
+                            <span class="selected-value" style="color: #666; font-size: 0.95rem;">Collaboration type*</span>
+                            <i class="fa fa-angle-down" style="color: #999; font-size: 14px;"></i>
+                        </div>
+                        <ul class="custom-select-options">
+                            <li data-value="Academic">Academic</li>
+                            <li data-value="Research">Research</li>
+                            <li data-value="Innovation">Innovation</li>
+                            <li data-value="Project">Project</li>
+                        </ul>
+                        <input type="hidden" name="collaboration_type" required>
                         <div class="invalid-feedback">Please select a type.</div>
                     </div>
 
@@ -435,6 +439,49 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!form || form.dataset.ready) return;
             form.dataset.ready = "true";
 
+            // Custom Dropdown Initialization
+            const wrapper = form.querySelector('.custom-select-wrapper');
+            if (wrapper) {
+                const btn = wrapper.querySelector('.custom-select-btn');
+                const optionsList = wrapper.querySelector('.custom-select-options');
+                const hiddenInput = wrapper.querySelector('input[type="hidden"]');
+                const selectedSpan = wrapper.querySelector('.selected-value');
+
+                // Toggle dropdown
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = optionsList.classList.contains('active');
+                    // Close all other dropdowns
+                    document.querySelectorAll('.custom-select-options').forEach(el => el.classList.remove('active'));
+                    document.querySelectorAll('.custom-select-btn').forEach(el => el.style.borderColor = '#ced4da');
+                    
+                    if (!isOpen) {
+                        optionsList.classList.add('active');
+                        btn.style.borderColor = '#E85626';
+                    }
+                });
+
+                // Option selection
+                optionsList.querySelectorAll('li').forEach(li => {
+                    li.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const val = li.dataset.value;
+                        selectedSpan.innerText = val;
+                        selectedSpan.style.color = '#333';
+                        hiddenInput.value = val;
+                        optionsList.classList.remove('active');
+                        btn.style.borderColor = '#ced4da';
+                        form.classList.add('was-validated');
+                    });
+                });
+
+                // Global close on click outside
+                document.addEventListener('click', () => {
+                    optionsList.classList.remove('active');
+                    btn.style.borderColor = '#ced4da';
+                });
+            }
+
             // Input Validation Logic
             const inputs = form.querySelectorAll('input, select, textarea');
             inputs.forEach(input => {
@@ -529,3 +576,100 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+// ======================================================
+// Newsletter Subscription & Toast Logic
+// ======================================================
+(function() {
+    // 1. Inject Toast CSS
+    const toastStyles = `
+        #toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100000;
+        }
+        .custom-toast {
+            min-width: 250px;
+            margin-bottom: 10px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transform: translateX(120%);
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-left: 5px solid #E85626;
+        }
+        .custom-toast.show {
+            transform: translateX(0);
+        }
+        .custom-toast.success { border-left-color: #2e7d32; }
+        .custom-toast.error { border-left-color: #c62828; }
+        .toast-message { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #333; font-weight: 500; }
+    `;
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = toastStyles;
+    document.head.appendChild(styleSheet);
+
+    // 2. Inject Toast Container
+    const container = document.createElement("div");
+    container.id = "toast-container";
+    document.body.appendChild(container);
+
+    // 3. Show Toast Function
+    window.showToast = function(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `custom-toast ${type}`;
+        toast.innerHTML = `<span class="toast-message">${message}</span>`;
+        container.appendChild(toast);
+        void toast.offsetHeight; // force reflow
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 500);
+        }, 3500);
+    };
+
+    // 4. Newsletter Form Handler
+    document.addEventListener("submit", async (e) => {
+        if (e.target.id === "subscribeForm") {
+            e.preventDefault();
+            const input = e.target.querySelector("#emailInput");
+            if (!input) return;
+            const email = input.value;
+            const btn = e.target.querySelector("button");
+            const origText = btn ? btn.innerText : "SUBSCRIBE";
+
+            if (btn) {
+                btn.disabled = true;
+                btn.innerText = "Wait...";
+            }
+
+            try {
+                const res = await fetch("/api/subscribe", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email }),
+                });
+                const data = await res.json();
+                if (res.status === 200) {
+                    showToast("Thank you for subscribing!", "success");
+                    input.value = "";
+                } else {
+                    showToast(data.message || "Subscription failed", "error");
+                }
+            } catch (error) {
+                showToast("Server error. Please try again later.", "error");
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerText = origText;
+                }
+            }
+        }
+    });
+})();

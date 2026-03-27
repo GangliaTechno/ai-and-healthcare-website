@@ -10,7 +10,7 @@ footer {
 }
 
 .footer-title {
-    color: #E85626;
+    color: #D14905;
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -37,7 +37,7 @@ footer {
 }
 
 .footer-links a:hover {
-    color: #E85626;
+    color: #D14905;
     padding-left: 5px;
 }
 
@@ -65,7 +65,7 @@ footer {
 }
 
 .footer-contact a:hover {
-    color: #E85626;
+    color: #D14905;
 }
 
 .footer-social {
@@ -90,14 +90,14 @@ footer {
 }
 
 .footer-social a:hover {
-    background-color: #E85626;
-    border-color: #E85626;
+    background-color: #D14905;
+    border-color: #D14905;
     color: #fff;
     transform: translateY(-3px);
 }
 
 .last-footer {
-    background-color: #E85626;
+    background-color: #D14905;
     color: #fff;
     text-align: center;
     padding: 15px 0;
