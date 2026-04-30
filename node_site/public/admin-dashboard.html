@@ -1,0 +1,3479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | AI in Healthcare</title>
+    <link href="/assets/images/fav-transparent.png" rel="icon" type="image/ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous">
+    <style>
+        :root {
+            --primary: #D14905;
+            --primary-light: #fef2f2;
+            --secondary: #2c3e50;
+            --bg-body: #ffffff;
+            --bg-sidebar: #f5f5f5;
+            --text-dark: #222;
+            --text-muted: #666;
+            --sidebar-width: 280px;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --border: #eeeeee;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        body.loading {
+            display: none;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header img {
+            max-width: 100%;
+            height: auto;
+            max-height: 50px;
+            object-fit: contain;
+        }
+
+        .sidebar-header h2 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        .sidebar-nav {
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            padding: 14px 25px;
+            display: flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+            background-color: rgba(209, 73, 5, 0.05);
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+            background-color: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            font-weight: 700;
+        }
+
+        .nav-item i {
+            margin-right: 15px;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Main Content styles */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--bg-sidebar);
+            padding-bottom: 20px;
+        }
+
+        .welcome h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .admin-email {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
+
+        .view-site-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(209, 73, 5, 0.3);
+        }
+
+        .view-site-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(209, 73, 5, 0.4);
+            color: var(--white);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card.impact {
+            border-top: 5px solid #3498db;
+        }
+
+        .stat-card.innovation {
+            border-top: 5px solid #9b59b6;
+        }
+
+        .stat-card.educators {
+            border-top: 5px solid #2ecc71;
+        }
+
+        .stat-card.users {
+            border-top: 5px solid var(--primary);
+        }
+
+        .stat-card.modified {
+            border-top: 5px solid #f39c12;
+        }
+
+        .stat-card.deleted {
+            border-top: 5px solid #e74c3c;
+        }
+
+        .stat-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        /* Activity Section */
+        .activity-section {
+            background-color: var(--white);
+            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .activity-section h3 {
+            margin-bottom: 30px;
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-dark);
+        }
+
+        .activity-section h3 i {
+            color: var(--primary);
+        }
+
+        .activity-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .activity-table th {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 2px solid var(--bg-sidebar);
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .activity-table td {
+            padding: 18px 15px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .timestamp {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .action-tag {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        /* Logout btn */
+        .logout-btn-container {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .logout-link {
+            width: 100%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            color: #d63031;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .logout-link:hover {
+            background-color: #fff5f5;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 80px;
+            }
+
+            .sidebar-header img {
+                max-width: 40px;
+            }
+
+            .sidebar-header h2,
+            .nav-item span,
+            .dropdown-icon {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 80px;
+                width: calc(100% - 80px);
+            }
+
+            .nav-item {
+                justify-content: center;
+                padding: 20px 0;
+            }
+
+            .nav-item i {
+                margin-right: 0;
+            }
+        }
+
+        /* Course Card Styles from programs.html */
+        .msc-card {
+            background: #fff;
+            border-radius: 12px;
+            border: 2px solid #E85626;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            padding: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .msc-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .msc-card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+            flex: 1;
+            line-height: 1.3;
+        }
+
+        .msc-card-desc {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .msc-focus-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .msc-focus-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        .msc-check {
+            color: #E85626;
+            font-weight: bold;
+        }
+
+        .msc-card-btn-wrap {
+            margin-top: auto;
+            padding-top: 12px;
+        }
+
+        .learn-more-btn {
+            display: inline-block;
+            background-color: #D14905;
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Compact Action Bar Redesign */
+        .mgmt-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #ffffff;
+            padding: 20px 25px;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            margin-top: 10px;
+        }
+
+        .t-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-right: 10px;
+        }
+
+        .btn-t {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-t:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.1);
+        }
+
+        .btn-t i {
+            font-size: 14px;
+        }
+
+        .btn-t-add {
+            background: #2ecc71;
+        }
+
+        .btn-t-add:hover {
+            background: #27ae60;
+        }
+
+        .btn-t-edit {
+            background: #3498db;
+        }
+
+        .btn-t-edit:hover {
+            background: #2980b9;
+        }
+
+        .btn-t-delete {
+            background: #e74c3c;
+        }
+
+        .btn-t-delete:hover {
+            background: #c0392b;
+        }
+
+        /* Add Entry Card Styling */
+        .add-entry-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f0f0f0;
+            display: none;
+            animation: slideDownFade 0.3s ease;
+        }
+
+        .add-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .add-card-header h4 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .add-card-body label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .premium-select {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+            background: #fff;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .premium-select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .add-card-footer {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-p {
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-p-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-p-primary:hover {
+            background: #b53f04;
+            transform: translateY(-1px);
+        }
+
+        .btn-p-cancel {
+            background: #f5f5f5;
+            color: #666;
+        }
+
+        .btn-p-cancel:hover {
+            background: #eee;
+        }
+
+        @keyframes slideDownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Embedded Card Wizard Styles --- */
+        #researchImpactWizard {
+            display: none;
+            width: 100%;
+            margin-top: 20px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 20px;
+            animation: slideDownFade 0.4s ease;
+        }
+
+        .wizard-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Futuristic Stepper - Scaled for Card */
+
+        .wizard-progress::before {
+            content: '';
+            position: absolute;
+            top: 45px;
+            left: 80px;
+            right: 80px;
+            height: 2px;
+            background: #e2e8f0;
+            z-index: 1;
+        }
+
+        .wizard-progress {
+            padding: 10px 20px 25px;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-line-fill {
+            position: absolute;
+            top: 45px;
+            left: 80px;
+            width: 0%;
+            max-width: calc(100% - 160px);
+            height: 2px;
+            background: var(--primary);
+            z-index: 2;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-step {
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 80px;
+        }
+
+        .step-node {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: #94a3b8;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: color 0.4s;
+        }
+
+        .progress-step.active .step-node {
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+
+        .progress-step.active .step-label {
+            color: var(--primary);
+        }
+
+        .progress-step.completed .step-node {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .wizard-content {
+            flex: 1;
+            padding: 50px;
+            overflow-y: auto;
+            background: #ffffff;
+        }
+
+        .form-step {
+            display: none;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-step.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Premium Type Grid */
+        .type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .type-card {
+            background: white;
+            border: 1px solid #f1f5f9;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .type-card i {
+            font-size: 26px;
+            color: #64748b;
+        }
+
+        .type-card span {
+            font-size: 12px;
+            font-weight: 700;
+            color: #334155;
+            letter-spacing: 0.2px;
+            line-height: 1.4;
+        }
+
+        .type-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .type-card:hover .icon-circle {
+            background: var(--primary-light);
+            transform: rotate(5deg);
+        }
+
+        .type-card:hover i {
+            color: var(--primary);
+        }
+
+        .type-card.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .type-card.selected::before {
+            transform: scaleX(1);
+        }
+
+        .type-card.selected .icon-circle {
+            background: var(--primary);
+        }
+
+        .type-card.selected i,
+        .type-card.selected span {
+            color: var(--primary);
+        }
+
+        /* Refined Form Fields */
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0px;
+            letter-spacing: 0.2px;
+        }
+
+        .form-label-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .visibility-group {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .visibility-option,
+        .simple-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s;
+        }
+
+        .visibility-option {
+            color: #64748b;
+        }
+
+        .visibility-option:hover,
+        .simple-checkbox:hover {
+            color: var(--primary);
+        }
+
+        .visibility-option input,
+        .simple-checkbox input {
+            cursor: pointer;
+            accent-color: var(--primary);
+            margin: 0;
+            width: 14px;
+            height: 14px;
+        }
+
+        .global-visibility-section {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .global-visibility-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1e293b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .global-visibility-options {
+            display: flex;
+            gap: 30px;
+        }
+
+        .field-visibility input {
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-family: inherit;
+            color: #0f172a;
+        }
+
+        .form-control::placeholder {
+            color: #94a3b8;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+        }
+
+        /* Premium Tag Inputs */
+        .tag-input-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            min-height: 54px;
+            background: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .tag-input-container:focus-within {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .tag {
+            background: var(--primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: tagPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes tagPop {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .tag i {
+            cursor: pointer;
+            font-size: 11px;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .tag i:hover {
+            opacity: 1;
+        }
+
+        .tag-input-field {
+            border: none;
+            outline: none;
+            flex: 1;
+            min-width: 140px;
+            font-size: 15px;
+            padding: 6px;
+            background: transparent;
+            font-family: inherit;
+        }
+
+        /* Wizard Footer */
+        .wizard-footer {
+            padding: 30px 50px;
+            background: white;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-wizard {
+            height: 52px;
+            padding: 0 32px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+        }
+
+        .btn-prev {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .btn-prev:hover {
+            background: #e2e8f0;
+            transform: translateX(-4px);
+        }
+
+        .btn-next {
+            background: #0f172a;
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn-next:hover {
+            background: #1e293b;
+            transform: translateX(4px);
+            box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn-submit {
+            background: var(--primary);
+            color: white;
+            display: none;
+            box-shadow: 0 10px 15px -3px rgba(209, 73, 5, 0.3);
+        }
+
+        .btn-submit:hover {
+            background: #b53f04;
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(209, 73, 5, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="loading">
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img alt="MAHE" src="/assets/images/logo.webp" />
+            <h2>Admin Panel</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="javascript:void(0)" class="nav-item active" id="nav-dashboard" onclick="showView('dashboard')">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" id="nav-courses" onclick="showView('courses')">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Courses</span>
+            </a>
+            <a href="activity.html?view=admin" class="nav-item">
+                <i class="fas fa-tasks"></i>
+                <span>Activities</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" id="nav-research-impact"
+                onclick="showView('research-impact')">
+                <i class="fas fa-chart-line"></i>
+                <span>Research & Impact</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" id="nav-research-innovation"
+                onclick="showView('research-innovation')">
+                <i class="fas fa-flask"></i>
+                <span>For research & innovation</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" id="nav-educators" onclick="showView('educators')">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>For educators</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" id="nav-member-requests"
+                onclick="showView('member-requests')">
+                <i class="fas fa-user-clock"></i>
+                <span>Member Requests</span>
+                <span id="pendingBadge"
+                    style="display:none; margin-left:auto; background:#e85626; color:white; font-size:10px; font-weight:800; border-radius:10px; padding:2px 7px; line-height:1.4;">0</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" id="nav-audit-logs" onclick="showView('audit-logs')">
+                <i class="fas fa-history"></i>
+                <span>Audit Logs</span>
+            </a>
+        </nav>
+        <div class="logout-btn-container">
+            <a href="#" class="logout-link" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sign Out</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <div class="welcome">
+                <h1>Dashboard Overview</h1>
+                <p id="welcomeText">Welcome back! System status is <span id="sessionStatus"
+                        style="color: var(--primary); font-weight:700;">Online</span></p>
+            </div>
+            <div class="admin-info">
+                <span class="admin-email" id="adminEmailDisp">Loading...</span>
+                <a href="index.html" class="view-site-btn">View Live Site</a>
+            </div>
+        </header>
+
+        <div id="dashboardView">
+            <div class="stats-grid">
+                <div class="stat-card impact">
+                    <span class="stat-title">Research & Impact</span>
+                    <span class="stat-value" id="impactCount">0</span>
+                </div>
+                <div class="stat-card innovation">
+                    <span class="stat-title">Research & Innovation</span>
+                    <span class="stat-value" id="innovationCount">0</span>
+                </div>
+                <div class="stat-card educators">
+                    <span class="stat-title">For Educators</span>
+                    <span class="stat-value" id="educatorsCount">0</span>
+                </div>
+                <div class="stat-card users">
+                    <span class="stat-title">Total Users</span>
+                    <span class="stat-value" id="userCount">0</span>
+                </div>
+                <div class="stat-card modified">
+                    <span class="stat-title">Modified Projects</span>
+                    <span class="stat-value" id="editedCount">0</span>
+                </div>
+                <div class="stat-card deleted">
+                    <span class="stat-title">Deleted</span>
+                    <span class="stat-value" id="deletedCount" style="color: #e74c3c;">0</span>
+                </div>
+            </div>
+
+            <div class="activity-section">
+                <h3><i class="fas fa-bolt"></i> Recent Activity Log</h3>
+                <div style="overflow-x: auto;">
+                    <table class="activity-table">
+                        <thead>
+                            <tr>
+                                <th>Activity Type</th>
+                                <th>Admin Email</th>
+                                <th>Time & Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activityLog">
+                            <!-- Dynamic items will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="coursesView" style="display: none;">
+            <div class="activity-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3><i class="fas fa-graduation-cap"></i> Academic Programs & Courses</h3>
+                </div>
+                <div id="coursesListContainer" class="courses-grid">
+                    <div style="text-align: center; padding: 40px; grid-column: 1/-1;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary);"></i>
+                        <p style="margin-top: 15px;">Loading courses...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="researchImpactView" style="display: none;">
+            <div class="activity-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3><i class="fas fa-chart-line"></i> Research & Impact</h3>
+                </div>
+
+                <div id="researchImpactListContainer"
+                    style="margin-top: 20px; display: grid; gap: 20px; margin-bottom: 30px;">
+                    <!-- Impact entries will be loaded here -->
+                </div>
+
+                <div id="impactViewMoreContainer"
+                    style="margin-top: 15px; text-align: center; display: none; margin-bottom: 30px;">
+                    <button onclick="toggleImpact()" id="impactViewMoreBtn"
+                        style="background: transparent; border: none; color: #ea580c; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px; margin: 0 auto; transition: all 0.2s; padding: 10px 20px; border-radius: 8px;">
+                        <span>View More</span> <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <!-- Completed Projects Section -->
+                <div style="margin-top: 40px; border-top: 2px solid #f1f5f9; padding-top: 30px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                        <i class="fas fa-check-circle" style="color: #16a34a; font-size: 20px;"></i>
+                        <h4 style="margin: 0; color: #1e293b; font-size: 16px;">Completed Research Projects</h4>
+                    </div>
+                    <div id="completedImpactListContainer" style="display: grid; gap: 20px;"></div>
+
+                    <div id="completedImpactViewMoreContainer"
+                        style="margin-top: 15px; text-align: center; display: none; margin-bottom: 30px;">
+                        <button onclick="toggleCompletedImpact()" id="completedImpactViewMoreBtn"
+                            style="background: transparent; border: none; color: #ea580c; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px; margin: 0 auto; transition: all 0.2s; padding: 10px 20px; border-radius: 8px;">
+                            <span>View More</span> <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mgmt-toolbar">
+                    <span class="t-label">Quick Actions:</span>
+                    <button class="btn-t btn-t-edit"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="btn-t btn-t-delete"><i class="fas fa-trash-alt"></i> Delete</button>
+                </div>
+
+                <!-- Add Entry Card -->
+                <div class="add-entry-card" id="sharedAddEntryCard">
+                    <div class="add-card-header">
+                        <h4>Add New Research Entry</h4>
+                        <button onclick="this.closest('.add-entry-card').style.display='none'; closeImpactWizard();"
+                            style="background:none; border:none; color:#ccc; cursor:pointer;"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                    <div class="add-card-body">
+                        <label>Select Publication Area:</label>
+                        <select class="premium-select" id="wizardTypeSelect" onchange="updateStep4Fields(this.value)">
+                            <option value="">-- Choose an area --</option>
+                            <option>JOURNAL ARTICLE</option>
+                            <option>CONFERENCE PAPER</option>
+                            <option>PATENT</option>
+                            <option>SOFTWARE / ALGORITHM</option>
+                            <option>CLINICAL DEVICE / DEPLOYED TOOL</option>
+                            <option>AWARD / GRANT</option>
+                            <option>SYSTEMATIC REVIEW</option>
+                            <option>DATASET RELEASE</option>
+                            <option>CASE REPORT</option>
+                            <option>BOOK CHAPTER</option>
+                            <option>WHITE PAPER / POLICY BRIEF</option>
+                            <option>MEDIA COVERAGE</option>
+                            <option>OTHER</option>
+                        </select>
+
+                        <!-- Embedded Wizard Content -->
+                        <div id="researchImpactWizard" style="display: none;">
+                            <div class="wizard-container">
+                                <div class="wizard-progress">
+                                    <div class="progress-line-fill" id="progressLine"></div>
+                                    <div class="progress-step active" data-step="2">
+                                        <div class="step-node">1</div>
+                                        <span class="step-label">Core</span>
+                                    </div>
+                                    <div class="progress-step" data-step="3">
+                                        <div class="step-node">2</div>
+                                        <span class="step-label">Authors</span>
+                                    </div>
+                                    <div class="progress-step" data-step="4">
+                                        <div class="step-node">3</div>
+                                        <span class="step-label">Specifics</span>
+                                    </div>
+                                    <div class="progress-step" data-step="5">
+                                        <div class="step-node">4</div>
+                                        <span class="step-label">Search</span>
+                                    </div>
+                                    <div class="progress-step" data-step="6">
+                                        <div class="step-node">5</div>
+                                        <span class="step-label">Media</span>
+                                    </div>
+                                </div>
+
+                                <div class="wizard-content">
+
+                                    <!-- Step 2: Core Information -->
+                                    <div class="form-step" id="wizardStep2">
+                                        <div class="form-group">
+                                            <div class="form-label-header">
+                                                <label>Title of Work</label>
+                                                <div class="visibility-group">
+                                                    <label class="simple-checkbox"><input type="checkbox"
+                                                            id="v_impactTitle" checked></label>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" id="impactTitle"
+                                                placeholder="Enter full title of your work">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="form-label-header">
+                                                    <label>Year of Publication/Completion</label>
+                                                    <div class="visibility-group">
+                                                        <label class="simple-checkbox"><input type="checkbox"
+                                                                id="v_impactYear" checked></label>
+                                                    </div>
+                                                </div>
+                                                <input type="number" class="form-control" id="impactYear"
+                                                    placeholder="e.g. 2024">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-label-header">
+                                                    <label>Research Domain</label>
+                                                    <div class="visibility-group">
+                                                        <label class="simple-checkbox"><input type="checkbox"
+                                                                id="v_impactDomain" checked></label>
+                                                    </div>
+                                                </div>
+                                                <select class="form-control" id="impactDomain">
+                                                    <option value="">Select Domain</option>
+                                                    <option>Medical Imaging</option>
+                                                    <option>NLP in Healthcare</option>
+                                                    <option>Predictive Analytics</option>
+                                                    <option>Genomics & Precision Medicine</option>
+                                                    <option>Clinical Decision Support</option>
+                                                    <option>Federated Learning</option>
+                                                    <option>AI Ethics & Governance</option>
+                                                    <option>Digital Health</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="form-label-header">
+                                                    <label>Project Status</label>
+                                                    <div class="visibility-group">
+                                                        <label class="simple-checkbox"><input type="checkbox"
+                                                                id="v_impactStatus" checked></label>
+                                                    </div>
+                                                </div>
+                                                <select class="form-control" id="impactStatus">
+                                                    <option value="ongoing">Ongoing</option>
+                                                    <option value="upcoming">Upcoming</option>
+                                                    <option value="completed">Completed</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- Placeholder for future field or just to keep alignment -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-label-header">
+                                                <label>One-line Impact Statement</label>
+                                                <div class="visibility-group">
+                                                    <label class="simple-checkbox"><input type="checkbox"
+                                                            id="v_impactStatement" checked></label>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" id="impactStatement"
+                                                placeholder="Make it specific and punchy (e.g. Achieved 91.4% AUC...)">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-label-header">
+                                                <label>Full Abstract/Description (Optional)</label>
+                                                <div class="visibility-group">
+                                                    <label class="simple-checkbox"><input type="checkbox"
+                                                            id="v_impactAbstract" checked></label>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" id="impactAbstract" rows="4"
+                                                placeholder="Deep dive into the methodology or results"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 3: Authors & Funding -->
+                                    <div class="form-step" id="wizardStep3">
+                                        <div class="form-group">
+                                            <div class="form-label-header">
+                                                <label>Authors (PI first, press Enter after each name)</label>
+                                                <div class="visibility-group">
+                                                    <label class="simple-checkbox"><input type="checkbox"
+                                                            id="v_impactAuthors" checked></label>
+                                                </div>
+                                            </div>
+                                            <div class="tag-input-container" id="authorsContainer">
+                                                <input type="text" class="tag-input-field"
+                                                    placeholder="Add author name..."
+                                                    onkeydown="handleTagInput(event, 'authors')">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="form-label-header">
+                                                    <label>PI Email</label>
+                                                    <div class="visibility-group">
+                                                        <label class="simple-checkbox"><input type="checkbox"
+                                                                id="v_impactPiEmail" checked></label>
+                                                    </div>
+                                                </div>
+                                                <input type="email" class="form-control" id="impactPiEmail"
+                                                    placeholder="admin@example.com">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-label-header">
+                                                    <label>Funding Acknowledgement</label>
+                                                    <div class="visibility-group">
+                                                        <label class="simple-checkbox"><input type="checkbox"
+                                                                id="v_impactFunding" checked></label>
+                                                    </div>
+                                                </div>
+                                                <input type="text" class="form-control" id="impactFunding"
+                                                    placeholder="e.g. DST-SERB CRG/2023/...">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 4: Type-Specific Fields (Dynamic) -->
+                                    <div class="form-step" id="wizardStep4">
+                                        <div id="dynamicStep4Container">
+                                            <!-- Dynamic fields will be injected here -->
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 5: Keywords -->
+                                    <div class="form-step" id="wizardStep5">
+                                        <div class="form-group">
+                                            <div class="form-label-header">
+                                                <label>Keywords (Used for search, press Enter after each)</label>
+                                                <div class="visibility-group">
+                                                    <label class="simple-checkbox"><input type="checkbox"
+                                                            id="v_impactKeywords" checked></label>
+                                                </div>
+                                            </div>
+                                            <div class="tag-input-container" id="keywordsContainer">
+                                                <input type="text" class="tag-input-field" placeholder="Add keyword..."
+                                                    onkeydown="handleTagInput(event, 'keywords')">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 6: Media -->
+                                    <div class="form-step" id="wizardStep6">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="form-label-header">
+                                                    <label>Cover Image (Max 2MB)</label>
+                                                    <div class="visibility-group">
+                                                        <label class="simple-checkbox"><input type="checkbox"
+                                                                id="v_impactCover" checked></label>
+                                                    </div>
+                                                </div>
+                                                <input type="file" class="form-control" accept="image/*">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-label-header">
+                                                    <label>Supplementary PDF</label>
+                                                    <div class="visibility-group">
+                                                        <label class="simple-checkbox"><input type="checkbox"
+                                                                id="v_impactPdf" checked></label>
+                                                    </div>
+                                                </div>
+                                                <input type="file" class="form-control" accept=".pdf">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-label-header">
+                                                <label>Video/Demo Link (YouTube/Vimeo)</label>
+                                                <div class="visibility-group">
+                                                    <label class="simple-checkbox"><input type="checkbox"
+                                                            id="v_impactVideo" checked></label>
+                                                </div>
+                                            </div>
+                                            <input type="url" class="form-control" id="impactVideo"
+                                                placeholder="https://youtube.com/...">
+                                        </div>
+
+                                        <!-- Overall Entry Visibility Section -->
+                                        <div class="global-visibility-section">
+                                            <div class="global-visibility-options">
+                                                <label class="visibility-option"
+                                                    style="color: #1e293b; font-size: 13px;">
+                                                    <input type="radio" name="v_global_status"
+                                                        value="research-innovation" checked
+                                                        onclick="this.parentElement.parentElement.querySelectorAll('input').forEach(i => i.checked = (i === this))">
+                                                    Public
+                                                </label>
+                                                <label class="visibility-option"
+                                                    style="color: #1e293b; font-size: 13px;">
+                                                    <input type="radio" name="v_global_status" value="educators"
+                                                        onclick="this.parentElement.parentElement.querySelectorAll('input').forEach(i => i.checked = (i === this))">
+                                                    Private
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Wizard Footer Buttons -->
+                                <div class="wizard-footer" style="padding: 20px 0;">
+                                    <button class="btn-wizard btn-prev" onclick="moveWizard(-1)">
+                                        <i class="fas fa-arrow-left"></i> Previous
+                                    </button>
+                                    <div style="display: flex; gap: 10px;">
+                                        <button class="btn-wizard btn-next" onclick="moveWizard(1)">
+                                            Next <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                        <button class="btn-wizard btn-submit" style="display:none;"
+                                            onclick="submitImpactForm()">
+                                            Submit <i class="fas fa-check"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-card-footer">
+                        <button class="btn-p btn-p-primary" onclick="openImpactWizard()">Continue</button>
+                        <button class="btn-p btn-p-cancel"
+                            onclick="this.closest('.add-entry-card').style.display='none'">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="researchInnovationView" style="display: none;">
+            <div class="activity-section">
+
+                <!-- Display Container -->
+                <div id="resInnovListContainer" style="margin-top: 20px; display: grid; gap: 20px;"></div>
+
+                <div id="resInnovViewMoreContainer" style="margin-top: 15px; text-align: center; display: none;">
+                    <button onclick="toggleResInnov()" id="resInnovViewMoreBtn"
+                        style="background: transparent; border: none; color: #ea580c; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px; margin: 0 auto; transition: all 0.2s; padding: 10px 20px; border-radius: 8px;">
+                        <span>View More</span> <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <div class="mgmt-toolbar">
+                    <span class="t-label">Quick Actions:</span>
+                    <button class="btn-t btn-t-add" onclick="toggleAddCard(this, 'research-innovation')"><i
+                            class="fas fa-plus"></i> Add</button>
+                    <button class="btn-t btn-t-edit"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="btn-t btn-t-delete"><i class="fas fa-trash-alt"></i> Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="educatorsView" style="display: none;">
+            <div class="activity-section">
+
+                <!-- Display Container -->
+                <div id="educatorsListContainer" style="margin-top: 20px; display: grid; gap: 20px;"></div>
+
+                <div id="eduViewMoreContainer" style="margin-top: 15px; text-align: center; display: none;">
+                    <button onclick="toggleEdu()" id="eduViewMoreBtn"
+                        style="background: transparent; border: none; color: #ea580c; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px; margin: 0 auto; transition: all 0.2s; padding: 10px 20px; border-radius: 8px;">
+                        <span>View More</span> <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <div class="mgmt-toolbar">
+                    <span class="t-label">Quick Actions:</span>
+                    <button class="btn-t btn-t-add" onclick="toggleAddCard(this, 'educators')"><i
+                            class="fas fa-plus"></i> Add</button>
+                    <button class="btn-t btn-t-edit"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="btn-t btn-t-delete"><i class="fas fa-trash-alt"></i> Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== MEMBER REQUESTS VIEW ===== -->
+        <div id="memberRequestsView" style="display: none;">
+            <div class="activity-section">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                    <h3 style="margin:0;"><i class="fas fa-user-clock" style="color:var(--primary);"></i>&nbsp; Member
+                        Access Requests</h3>
+                    <button onclick="loadMemberRequests()"
+                        style="background:#f1f5f9; border:1px solid #e2e8f0; color:#475569; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+
+                <!-- Filter tabs -->
+                <div style="display:flex; gap:20px; margin-bottom:24px; flex-wrap:wrap;">
+                    <button id="filterAll" onclick="filterRequests('all')"
+                        style="padding:7px 18px; border-radius:20px; border:1.5px solid #e85626; background:#e85626; color:white; font-size:12px; font-weight:700; cursor:pointer;">All</button>
+                    <button id="filterPending" onclick="filterRequests('pending')"
+                        style="padding:7px 18px; border-radius:20px; border:1.5px solid #e2e8f0; background:white; color:#64748b; font-size:12px; font-weight:700; cursor:pointer;">Pending</button>
+                    <button id="filterApproved" onclick="filterRequests('approved')"
+                        style="padding:7px 18px; border-radius:20px; border:1.5px solid #e2e8f0; background:white; color:#64748b; font-size:12px; font-weight:700; cursor:pointer;">Approved</button>
+                    <button id="filterRejected" onclick="filterRequests('rejected')"
+                        style="padding:7px 18px; border-radius:20px; border:1.5px solid #e2e8f0; background:white; color:#64748b; font-size:12px; font-weight:700; cursor:pointer;">Rejected</button>
+                </div>
+
+                <div id="memberRequestsContainer" style="display: flex; flex-direction: column; gap: 24px;">
+                    <div style="text-align:center; padding:40px; color:#94a3b8;">
+                        <i class="fas fa-spinner fa-spin" style="font-size:2rem;"></i>
+                        <p style="margin-top:14px;">Loading requests…</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== AUDIT LOGS VIEW ===== -->
+        <div id="auditLogsView" style="display: none;">
+            <div class="activity-section">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                    <h3 style="margin:0;"><i class="fas fa-history" style="color:var(--primary);"></i>&nbsp; System
+                        Audit Logs</h3>
+                    <button onclick="fetchActivity()"
+                        style="background:#f1f5f9; border:1px solid #e2e8f0; color:#475569; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-sync-alt"></i> Refresh Logs
+                    </button>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="activity-table">
+                        <thead>
+                            <tr>
+                                <th>Action Performed</th>
+                                <th>Admin/User</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fullActivityLog">
+                            <!-- Injected dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Edit Modal -->
+    <div id="editCourseModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        <div
+            style="background: white; padding: 35px; border-radius: 20px; width: 90%; max-width: 650px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); border: 1px solid #f0f0f0; animation: fadeIn 0.3s ease;">
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #f5f5f5;">
+                <h4
+                    style="margin: 0; font-size: 20px; font-weight: 800; color: #1e293b; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-edit" style="color: var(--primary);"></i> Edit Course Program
+                </h4>
+                <button onclick="closeEditModal()"
+                    style="background:none; border:none; color:#94a3b8; cursor:pointer; font-size: 20px; transition: color 0.2s;"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+                <input type="hidden" id="editCourseId">
+                <div class="form-group">
+                    <label>Program Title</label>
+                    <input type="text" class="form-control" id="editCourseTitle"
+                        placeholder="e.g. MSc in Artificial Intelligence">
+                </div>
+                <div class="form-group">
+                    <label>Program Description (Short Summary)</label>
+                    <textarea class="form-control" id="editCourseDesc" rows="3"
+                        placeholder="Brief overview of the program..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Detailed Information (Full Page Content)</label>
+                    <textarea class="form-control" id="editCourseDetailedInfo" rows="6"
+                        placeholder="Full detailed content for the program page..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Core Focus Items (One per line)</label>
+                    <textarea class="form-control" id="editCourseFocus" rows="4"
+                        placeholder="Item 1&#10;Item 2&#10;Item 3..."></textarea>
+                    <small style="color: #64748b; font-size: 12px; margin-top: 5px; display: block;">These will appear
+                        as a bulleted list on the public site.</small>
+                </div>
+            </div>
+            <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: flex-end;">
+                <button class="btn-p btn-p-cancel" onclick="closeEditModal()" style="padding: 12px 25px;">Back to
+                    Dashboard</button>
+                <button class="btn-p btn-p-primary" id="saveCourseBtn" onclick="saveCourseChanges()"
+                    style="padding: 12px 30px; border-radius: 12px;">Save Global Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Research Edit Modal -->
+    <div id="editResearchModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        <div
+            style="background: white; padding: 35px; border-radius: 20px; width: 90%; max-width: 650px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); border: 1px solid #f0f0f0; animation: fadeIn 0.3s ease;">
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #f5f5f5;">
+                <h4
+                    style="margin: 0; font-size: 20px; font-weight: 800; color: #1e293b; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-edit" style="color: var(--primary);"></i> Edit Research Entry
+                </h4>
+                <button onclick="closeEditResearchModal()"
+                    style="background:none; border:none; color:#94a3b8; cursor:pointer; font-size: 20px; transition: color 0.2s;"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div style="max-height: 70vh; overflow-y: auto; padding-right: 10px;">
+                <input type="hidden" id="editResearchId">
+
+                <!-- Category Section -->
+                <div
+                    style="margin-bottom: 25px; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <label
+                        style="font-weight: 700; margin-bottom: 10px; display: block; color: #475569; font-size: 13px;">Entry
+                        Category</label>
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                        <label
+                            style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; color: #1e293b; font-weight: 600;">
+                            <input type="radio" name="edit_v_global_status" value="research-innovation"
+                                style="accent-color: #e85626; width: 16px; height: 16px;"> Public
+                        </label>
+                        <label
+                            style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; color: #1e293b; font-weight: 600;">
+                            <input type="radio" name="edit_v_global_status" value="educators"
+                                style="accent-color: #e85626; width: 16px; height: 16px;"> Private
+                        </label>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label-header">
+                        <label>Title of Work</label>
+                        <div class="visibility-group">
+                            <label class="simple-checkbox"><input type="checkbox" id="edit_v_impactTitle"
+                                    checked></label>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" id="editResearchTitle">
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label-header">
+                        <label>One-line Impact Statement</label>
+                        <div class="visibility-group">
+                            <label class="simple-checkbox"><input type="checkbox" id="edit_v_impactStatement"
+                                    checked></label>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" id="editResearchStatement">
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label-header">
+                        <label>Full Abstract/Description</label>
+                        <div class="visibility-group">
+                            <label class="simple-checkbox"><input type="checkbox" id="edit_v_impactAbstract"
+                                    checked></label>
+                        </div>
+                    </div>
+                    <textarea class="form-control" id="editResearchAbstract" rows="4"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label-header">
+                            <label>Year</label>
+                            <div class="visibility-group">
+                                <label class="simple-checkbox"><input type="checkbox" id="edit_v_impactYear"
+                                        checked></label>
+                            </div>
+                        </div>
+                        <input type="number" class="form-control" id="editResearchYear">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-header">
+                            <label>Domain</label>
+                            <div class="visibility-group">
+                                <label class="simple-checkbox"><input type="checkbox" id="edit_v_impactDomain"
+                                        checked></label>
+                            </div>
+                        </div>
+                        <select class="form-control" id="editResearchDomain">
+                            <option value="">Select Domain</option>
+                            <option>Medical Imaging</option>
+                            <option>NLP in Healthcare</option>
+                            <option>Predictive Analytics</option>
+                            <option>Genomics & Precision Medicine</option>
+                            <option>Clinical Decision Support</option>
+                            <option>Federated Learning</option>
+                            <option>AI Ethics & Governance</option>
+                            <option>Digital Health</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label style="font-weight: 600; margin-bottom: 5px; display: block; color: #334155;">Project
+                        Status</label>
+                    <select class="form-control" id="editResearchStatus">
+                        <option value="ongoing">Ongoing</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                <!-- Publication Type & Dynamic Specifics -->
+                <div class="form-group">
+                    <label>Publication Type</label>
+                    <select class="form-control" id="editResearchPubType" onchange="updateEditStep4Fields(this.value)">
+                        <option value="">-- Choose an area --</option>
+                        <option>JOURNAL ARTICLE</option>
+                        <option>CONFERENCE PAPER</option>
+                        <option>PATENT</option>
+                        <option>SOFTWARE / ALGORITHM</option>
+                        <option>CLINICAL DEVICE / DEPLOYED TOOL</option>
+                        <option>AWARD / GRANT</option>
+                        <option>SYSTEMATIC REVIEW</option>
+                        <option>DATASET RELEASE</option>
+                        <option>CASE REPORT</option>
+                        <option>BOOK CHAPTER</option>
+                        <option>WHITE PAPER / POLICY BRIEF</option>
+                        <option>MEDIA COVERAGE</option>
+                        <option>OTHER</option>
+                    </select>
+                </div>
+
+                <div id="editDynamicSpecificsContainer">
+                    <!-- Dynamic fields injected here -->
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label-header">
+                        <label>Authors</label>
+                        <div class="visibility-group">
+                            <label class="simple-checkbox"><input type="checkbox" id="edit_v_impactAuthors"
+                                    checked></label>
+                        </div>
+                    </div>
+                    <div class="tag-input-container" id="edit_authorsContainer"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label-header">
+                            <label>PI Email</label>
+                            <div class="visibility-group">
+                                <label class="simple-checkbox"><input type="checkbox" id="edit_v_impactPiEmail"
+                                        checked></label>
+                            </div>
+                        </div>
+                        <input type="email" class="form-control" id="editResearchPiEmail">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-header">
+                            <label>Funding</label>
+                            <div class="visibility-group">
+                                <label class="simple-checkbox"><input type="checkbox" id="edit_v_impactFunding"
+                                        checked></label>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="editResearchFunding">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label-header">
+                        <label>Keywords</label>
+                        <div class="visibility-group">
+                            <label class="simple-checkbox"><input type="checkbox" id="edit_v_impactKeywords"
+                                    checked></label>
+                        </div>
+                    </div>
+                    <div class="tag-input-container" id="edit_keywordsContainer"></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label-header">
+                        <label>Video/Demo Link</label>
+                        <div class="visibility-group">
+                            <label class="simple-checkbox"><input type="checkbox" id="edit_v_impactVideo"
+                                    checked></label>
+                        </div>
+                    </div>
+                    <input type="url" class="form-control" id="editResearchVideo" placeholder="https://youtube.com/...">
+                </div>
+            </div>
+            <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: flex-end;">
+                <button class="btn-p btn-p-cancel" onclick="closeEditResearchModal()"
+                    style="padding: 12px 25px;">Cancel</button>
+                <button class="btn-p btn-p-primary" id="saveResearchBtn" onclick="saveResearchChanges()"
+                    style="padding: 12px 30px; border-radius: 12px;">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // PROTECTION LOGIC - Run this first!
+        if (localStorage.getItem("isAdmin") !== "true" || !localStorage.getItem("adminToken")) {
+            window.location.href = "/Admin.html";
+        } else {
+            document.body.classList.remove("loading");
+            const adminEmail = localStorage.getItem("adminEmail");
+            if (adminEmail) {
+                const disp = document.getElementById("adminEmailDisp");
+                if (disp) disp.innerText = adminEmail;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem("isAdmin");
+            localStorage.removeItem("adminEmail");
+            window.location.href = "/Admin.html";
+        }
+
+        function toggleAddCard(btn, defaultCategory) {
+            const container = btn.closest('.activity-section');
+            const card = document.getElementById('sharedAddEntryCard');
+
+            // Move card to current container if not already there
+            if (card && card.parentElement !== container) {
+                container.appendChild(card);
+            }
+
+            // Set default category if provided
+            if (defaultCategory) {
+                const radio = card.querySelector(`input[name="v_global_status"][value="${defaultCategory}"]`);
+                if (radio) radio.click();
+            }
+
+            const isHidden = card.style.display === 'none' || card.style.display === '';
+            card.style.display = isHidden ? 'block' : 'none';
+
+            if (isHidden) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function showView(viewName) {
+            const dashboardView = document.getElementById("dashboardView");
+            const coursesView = document.getElementById("coursesView");
+            const researchImpactView = document.getElementById("researchImpactView");
+            const researchInnovationView = document.getElementById("researchInnovationView");
+            const educatorsView = document.getElementById("educatorsView");
+            const memberRequestsView = document.getElementById("memberRequestsView");
+
+            const navDashboard = document.getElementById("nav-dashboard");
+            const navCourses = document.getElementById("nav-courses");
+            const navResearchImpact = document.getElementById("nav-research-impact");
+            const navResearchInnovation = document.getElementById("nav-research-innovation");
+            const navEducators = document.getElementById("nav-educators");
+            const navMemberRequests = document.getElementById("nav-member-requests");
+
+            // Hide all views
+            if (dashboardView) dashboardView.style.display = 'none';
+            if (coursesView) coursesView.style.display = 'none';
+            if (researchImpactView) researchImpactView.style.display = 'none';
+            if (researchInnovationView) researchInnovationView.style.display = 'none';
+            if (educatorsView) educatorsView.style.display = 'none';
+            if (memberRequestsView) memberRequestsView.style.display = 'none';
+            const auditLogsView = document.getElementById("auditLogsView");
+            if (auditLogsView) auditLogsView.style.display = 'none';
+
+            // Remove all active classes
+            if (navDashboard) navDashboard.classList.remove('active');
+            if (navCourses) navCourses.classList.remove('active');
+            if (navResearchImpact) navResearchImpact.classList.remove('active');
+            if (navResearchInnovation) navResearchInnovation.classList.remove('active');
+            if (navEducators) navEducators.classList.remove('active');
+            if (navMemberRequests) navMemberRequests.classList.remove('active');
+            const navAuditLogs = document.getElementById("nav-audit-logs");
+            if (navAuditLogs) navAuditLogs.classList.remove('active');
+
+            if (viewName === 'dashboard') {
+                if (dashboardView) dashboardView.style.display = 'block';
+                if (navDashboard) navDashboard.classList.add('active');
+            } else if (viewName === 'courses') {
+                if (coursesView) coursesView.style.display = 'block';
+                if (navCourses) navCourses.classList.add('active');
+                loadCoursesContent();
+            } else if (viewName === 'research-impact') {
+                if (researchImpactView) researchImpactView.style.display = 'block';
+                if (navResearchImpact) navResearchImpact.classList.add('active');
+                loadResearchEntries();
+            } else if (viewName === 'research-innovation') {
+                if (researchInnovationView) researchInnovationView.style.display = 'block';
+                if (navResearchInnovation) navResearchInnovation.classList.add('active');
+                loadResearchEntries();
+            } else if (viewName === 'educators') {
+                if (educatorsView) educatorsView.style.display = 'block';
+                if (navEducators) navEducators.classList.add('active');
+                loadResearchEntries();
+            } else if (viewName === 'member-requests') {
+                if (memberRequestsView) memberRequestsView.style.display = 'block';
+                if (navMemberRequests) navMemberRequests.classList.add('active');
+                loadMemberRequests();
+            } else if (viewName === 'audit-logs') {
+                if (auditLogsView) auditLogsView.style.display = 'block';
+                if (navAuditLogs) navAuditLogs.classList.add('active');
+                fetchActivity();
+            }
+
+            // Update Header Title
+            const titleMap = {
+                'dashboard': 'Dashboard Overview',
+                'courses': 'Course Management',
+                'research-impact': 'Research & Impact',
+                'research-innovation': 'Research & Innovation',
+                'educators': 'Educators Projects',
+                'member-requests': 'Access Requests',
+                'audit-logs': 'System Audit Logs'
+            };
+            document.querySelector('.welcome h1').innerText = titleMap[viewName] || 'Admin Panel';
+
+            const welcomeText = document.getElementById('welcomeText');
+            if (welcomeText) {
+                welcomeText.style.display = (viewName === 'dashboard') ? 'block' : 'none';
+            }
+        }
+
+        /* --- Research Impact Wizard Logic --- */
+        let currentStep = 1;
+        let selectedType = '';
+        const wizardData = {
+            authors: [],
+            keywords: []
+        };
+
+        function openImpactWizard() {
+            const card = document.getElementById('sharedAddEntryCard');
+            const select = document.getElementById('wizardTypeSelect');
+            const type = select.value;
+            const wizard = document.getElementById('researchImpactWizard');
+            const cardFooter = card ? card.querySelector('.add-card-footer') : null;
+
+            if (!type) {
+                alert("Please select a publication area first.");
+                return;
+            }
+
+            wizard.style.display = 'block';
+            if (cardFooter) cardFooter.style.display = 'none';
+
+            selectedType = type;
+            updateStep4Fields(type);
+            setStep(2);
+        }
+
+        function closeImpactWizard() {
+            if (confirm("Are you sure you want to close the form? Progress will be lost.")) {
+                document.getElementById('researchImpactWizard').style.display = 'none';
+                document.querySelector('#researchImpactView .add-card-footer').style.display = 'flex';
+                resetWizard();
+            }
+        }
+
+        function resetWizard() {
+            currentStep = 2;
+            selectedType = '';
+            wizardData.authors = [];
+            wizardData.keywords = [];
+            const authorsCont = document.getElementById('authorsContainer');
+            const keywordsCont = document.getElementById('keywordsContainer');
+            if (authorsCont) authorsCont.innerHTML = '<input type="text" class="tag-input-field" placeholder="Add author name..." onkeydown="handleTagInput(event, \'authors\')">';
+            if (keywordsCont) keywordsCont.innerHTML = '<input type="text" class="tag-input-field" placeholder="Add keyword..." onkeydown="handleTagInput(event, \'keywords\')">';
+            if (document.getElementById('progressLine')) document.getElementById('progressLine').style.width = '0%';
+            // Clear other fields
+            document.querySelectorAll('.form-control').forEach(input => input.value = '');
+        }
+
+        function selectPublicationType(card, type) {
+            document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedType = type;
+            updateStep4Fields(type);
+        }
+
+        function setStep(n) {
+            const steps = document.querySelectorAll('.form-step');
+            const indicators = document.querySelectorAll('.progress-step');
+            const progressLine = document.getElementById('progressLine');
+
+            // Manage Active/Completed States
+            steps.forEach(s => s.classList.remove('active'));
+            indicators.forEach((ind, idx) => {
+                ind.classList.remove('active', 'completed');
+                const stepNum = parseInt(ind.getAttribute('data-step'));
+                if (stepNum < n) ind.classList.add('completed');
+                if (stepNum === n) ind.classList.add('active');
+            });
+
+            // Update Stepper Line (steps 2-6, line runs between their centers within the track)
+            const totalSteps = indicators.length; // 5
+            const progressPercent = (n - 2) / (totalSteps - 1) * 100;
+            // The fill sits between left:80px and right:80px (track width = container - 160px)
+            // We express fill width as a % of the track, not the container
+            const trackFraction = (n - 2) / (totalSteps - 1); // 0 to 1
+            if (progressLine) {
+                // Convert track fraction to container %: (trackFraction * (containerW - 160)) / containerW * 100
+                const container = progressLine.closest('.wizard-progress');
+                if (container) {
+                    const cw = container.offsetWidth;
+                    const trackW = cw - 160;
+                    const pxFill = Math.min(trackFraction * trackW, trackW);
+                    progressLine.style.width = pxFill + 'px';
+                } else {
+                    progressLine.style.width = progressPercent + '%';
+                }
+            }
+
+            // Slide transition using active class
+            setTimeout(() => {
+                const stepEl = document.getElementById(`wizardStep${n}`);
+                if (stepEl) stepEl.classList.add('active');
+            }, 50);
+
+            currentStep = n;
+
+            // Button visibility
+            const prevBtn = document.querySelector('.btn-prev');
+            const nextBtn = document.querySelector('.btn-next');
+            const submitBtn = document.querySelector('.btn-submit');
+
+            if (prevBtn) prevBtn.style.visibility = n === 2 ? 'hidden' : 'visible';
+
+            if (n === 6) {
+                if (nextBtn) nextBtn.style.display = 'none';
+                if (submitBtn) submitBtn.style.display = 'flex';
+            } else {
+                if (nextBtn) nextBtn.style.display = 'flex';
+                if (submitBtn) submitBtn.style.display = 'none';
+            }
+        }
+
+        function moveWizard(n) {
+            if (n === 1 && !validateStep(currentStep)) return;
+            const newStep = currentStep + n;
+            if (newStep >= 2 && newStep <= 6) setStep(newStep);
+        }
+
+        function validateStep(n) {
+            if (n === 2) {
+                const title = document.getElementById('impactTitle').value;
+                const year = document.getElementById('impactYear').value;
+                const domain = document.getElementById('impactDomain').value;
+                const statement = document.getElementById('impactStatement').value;
+
+                if (!title || !year || !domain || !statement) {
+                    alert("Please fill all required fields in Step 2.");
+                    return false;
+                }
+            }
+            if (n === 3 && wizardData.authors.length === 0) {
+                alert("Please add at least one author.");
+                return false;
+            }
+            if (n === 5 && wizardData.keywords.length === 0) {
+                alert("Please add at least one keyword.");
+                return false;
+            }
+            return true;
+        }
+
+        function handleTagInput(e, type) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const val = e.target.value.trim();
+                if (val && !wizardData[type].includes(val)) {
+                    wizardData[type].push(val);
+                    renderTags(type);
+                }
+                e.target.value = '';
+            }
+        }
+
+        function renderTags(type) {
+            const container = document.getElementById(`${type}Container`);
+            container.innerHTML = '';
+
+            wizardData[type].forEach((tag, index) => {
+                const tagEl = document.createElement('div');
+                tagEl.className = 'tag';
+                tagEl.innerHTML = `${tag} <i class="fas fa-times" onclick="removeTag('${type}', ${index})"></i>`;
+                container.appendChild(tagEl);
+            });
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'tag-input-field';
+            input.placeholder = type === 'authors' ? 'Add author...' : 'Add keyword...';
+            input.onkeydown = (e) => handleTagInput(e, type);
+            container.appendChild(input);
+            input.focus();
+        }
+
+        function removeTag(type, index) {
+            wizardData[type].splice(index, 1);
+            renderTags(type);
+        }
+
+        // --- Edit Modal Tag Helpers ---
+        let editData = {
+            authors: [],
+            keywords: []
+        };
+
+        function handleEditTagInput(e, type) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const val = e.target.value.trim();
+                if (val && !editData[type].includes(val)) {
+                    editData[type].push(val);
+                    renderEditTags(type);
+                }
+                e.target.value = '';
+            }
+        }
+
+        function renderEditTags(type) {
+            const container = document.getElementById(`edit_${type}Container`);
+            if (!container) return;
+            container.innerHTML = '';
+
+            editData[type].forEach((tag, index) => {
+                const tagEl = document.createElement('div');
+                tagEl.className = 'tag';
+                tagEl.innerHTML = `${tag} <i class="fas fa-times" onclick="removeEditTag('${type}', ${index})"></i>`;
+                container.appendChild(tagEl);
+            });
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'tag-input-field';
+            input.placeholder = type === 'authors' ? 'Add author...' : 'Add keyword...';
+            input.onkeydown = (e) => handleEditTagInput(e, type);
+            container.appendChild(input);
+        }
+
+        function removeEditTag(type, index) {
+            editData[type].splice(index, 1);
+            renderEditTags(type);
+        }
+
+        function updateEditStep4Fields(type, currentSpecifics = {}) {
+            const container = document.getElementById('editDynamicSpecificsContainer');
+            if (!container) return;
+            
+            // Detect category for dynamic labels
+            const catRadio = document.querySelector('input[name="edit_v_global_status"]:checked');
+            const isEducator = catRadio && catRadio.value === 'educators';
+            const probLabel = isEducator ? 'The Educational Problem*' : 'The Clinical Problem*';
+
+            const fieldGroups = {
+                'JOURNAL ARTICLE': [
+                    { label: 'Journal Name*', id: 'j_name', placeholder: 'Nature Medicine' },
+                    { label: 'DOI*', id: 'j_doi', placeholder: '10.1038/...' },
+                    { label: 'Impact Factor', id: 'j_if', placeholder: '11.2' },
+                    { label: 'Volume/Issue/Pages', id: 'j_vol', placeholder: 'Vol 12, Issue 3' },
+                    { label: 'Indexing', id: 'j_idx', placeholder: 'SCOPUS, PubMed' },
+                    { label: 'PubMed ID / PMID', id: 'j_pmid', placeholder: '12345678' },
+                    { label: probLabel, id: 'j_prob', placeholder: 'Describe the core challenge...' },
+                    { label: 'Tech Stack', id: 'j_tech', placeholder: 'Python, PyTorch...' },
+                    { label: 'Your Role', id: 'j_role', placeholder: 'Lead Researcher...' },
+                    { label: 'Skills Needed', id: 'j_skills', placeholder: 'ML, Data Analysis...' },
+                    { label: 'Time Commitment', id: 'j_time', placeholder: '10-12 hrs/week' },
+                    { label: 'What You Get', id: 'j_get', placeholder: 'Co-authorship, Certificate...' }
+                ],
+                'CONFERENCE PAPER': [
+                    { label: 'Conference Name*', id: 'c_name', placeholder: 'NeurIPS 2024' },
+                    { label: 'Location', id: 'c_loc', placeholder: 'Chicago, USA' },
+                    { label: 'DOI / Proceedings Link', id: 'c_doi', placeholder: '10.1109/...' },
+                    { label: 'Indexing', id: 'c_idx', placeholder: 'IEEE Xplore, SCOPUS' },
+                    { label: probLabel, id: 'c_prob' },
+                    { label: 'Your Role', id: 'c_role' },
+                    { label: 'Skills Needed', id: 'c_skills' }
+                ],
+                'PATENT': [
+                    { label: 'Patent/Application Number*', id: 'p_num' },
+                    { label: 'Patent Office', id: 'p_off', placeholder: 'Indian Patent Office / USPTO' },
+                    { label: 'Filing Date', id: 'p_file', type: 'date' },
+                    { label: 'Grant Date', id: 'p_grant', type: 'date' },
+                    { label: 'Current Status', id: 'p_stat', type: 'select', options: ['Filed', 'Published', 'Granted'] },
+                    { label: 'Technical Problem Solved*', id: 'p_prob' },
+                    { label: 'Tech Stack', id: 'p_tech' }
+                ],
+                'SOFTWARE / ALGORITHM': [
+                    { label: 'Repository/DOI URL*', id: 's_url' },
+                    { label: 'Zenodo/Figshare DOI', id: 's_doi' },
+                    { label: 'License', id: 's_lic', placeholder: 'MIT / Apache 2.0' },
+                    { label: 'Version', id: 's_ver', placeholder: 'v1.0.0' },
+                    { label: 'Language/Stack', id: 's_stack', placeholder: 'Python, PyTorch' },
+                    { label: probLabel, id: 's_prob' },
+                    { label: 'Your Role', id: 's_role' },
+                    { label: 'Benefits/What You Get', id: 's_get' }
+                ],
+                'CLINICAL DEVICE / DEPLOYED TOOL': [
+                    { label: 'Device/Tool Name*', id: 'd_name' },
+                    { label: 'Deployment Site', id: 'd_site', placeholder: 'KMC Ophthalmology OPD' },
+                    { label: 'Regulatory Approval', id: 'd_reg', placeholder: 'CE mark / CDSCO / FDA' },
+                    { label: 'Clinical Trial ID', id: 'd_ctri', placeholder: 'CTRI/2024/...' },
+                    { label: 'Clinical Problem Solved*', id: 'd_prob' },
+                    { label: 'Your Role', id: 'd_role' },
+                    { label: 'Skills Needed', id: 'd_skills' }
+                ],
+                'AWARD / GRANT': [
+                    { label: 'Award/Grant Name*', id: 'a_name' },
+                    { label: 'Awarding Body', id: 'a_body', placeholder: 'DST / ICMR' },
+                    { label: 'Grant Amount', id: 'a_amt', placeholder: '₹25,00,000' },
+                    { label: 'Duration', id: 'a_dur', placeholder: '3 years' },
+                    { label: 'Project Aim/Problem*', id: 'a_prob' },
+                    { label: 'Skills Needed', id: 'a_skills' }
+                ],
+                'SYSTEMATIC REVIEW': [
+                    { label: 'Journal Name*', id: 'sr_name' },
+                    { label: 'DOI*', id: 'sr_doi' },
+                    { label: 'Number of Studies Reviewed', id: 'sr_count', placeholder: '94 studies' },
+                    { label: 'Databases Searched', id: 'sr_db', placeholder: 'PubMed, EMBASE' },
+                    { label: 'PRISMA Compliant', id: 'sr_prisma', type: 'select', options: ['Yes', 'No'] },
+                    { label: probLabel, id: 'sr_prob' },
+                    { label: 'Skills Needed', id: 'sr_skills' }
+                ],
+                'DATASET RELEASE': [
+                    { label: 'Repository URL*', id: 'ds_url' },
+                    { label: 'DOI', id: 'ds_doi' },
+                    { label: 'Dataset Size', id: 'ds_size', placeholder: '4.2 GB' },
+                    { label: 'Data Modality', id: 'ds_mod', placeholder: 'Imaging / EHR' },
+                    { label: 'IRB Approval Number', id: 'ds_irb', placeholder: 'MAHE-IEC-2024-XXX' },
+                    { label: 'Problem Addressed*', id: 'ds_prob' },
+                    { label: 'Skills Needed', id: 'ds_skills' }
+                ],
+                'CASE REPORT': [
+                    { label: 'Journal/Venue*', id: 'cr_name' },
+                    { label: 'DOI*', id: 'cr_doi' },
+                    { label: 'Clinical Condition', id: 'cr_cond', placeholder: 'Diabetic Macular Oedema' },
+                    { label: 'Outcome Summary', id: 'cr_out', placeholder: '98% sensitivity' },
+                    { label: probLabel, id: 'cr_prob' },
+                    { label: 'Your Role', id: 'cr_role' }
+                ],
+                'BOOK CHAPTER': [
+                    { label: 'Book Title*', id: 'b_title' },
+                    { label: 'Editor(s)', id: 'b_edi' },
+                    { label: 'Publisher', id: 'b_pub', placeholder: 'Springer / Elsevier' },
+                    { label: 'ISBN', id: 'b_isbn' },
+                    { label: 'DOI / Chapter Link', id: 'b_doi' },
+                    { label: probLabel, id: 'b_prob' },
+                    { label: 'Skills Needed', id: 'b_skills' }
+                ],
+                'WHITE PAPER / POLICY BRIEF': [
+                    { label: 'Commissioning Organisation*', id: 'w_org', placeholder: 'MoHFW' },
+                    { label: 'Publication URL', id: 'w_url' },
+                    { label: 'Policy Scope', id: 'w_scope', placeholder: 'National AI Guidelines' },
+                    { label: probLabel, id: 'w_prob' },
+                    { label: 'Skills Needed', id: 'w_skills' }
+                ],
+                'MEDIA COVERAGE': [
+                    { label: 'Media Outlet*', id: 'm_out', placeholder: 'Nature News / The Hindu' },
+                    { label: 'Article URL', id: 'm_url' },
+                    { label: 'Publication Date', id: 'm_date', type: 'date' },
+                    { label: 'Journalist Name', id: 'm_jour' },
+                    { label: 'The Problem/Context*', id: 'm_prob' }
+                ],
+                'OTHER': [
+                    { label: 'Work/Publication Name*', id: 'o_name' },
+                    { label: 'Venue/Platform', id: 'o_venue' },
+                    { label: 'Reference Link/DOI', id: 'o_doi' },
+                    { label: 'Date', id: 'o_date', type: 'date' },
+                    { label: probLabel, id: 'o_prob' },
+                    { label: 'Skills Needed', id: 'o_skills' }
+                ]
+            };
+
+            const fields = fieldGroups[type] || fieldGroups['OTHER'];
+            let html = '<div class="form-row" style="grid-template-columns: 1fr 1fr;">';
+            fields.forEach(f => {
+                const val = currentSpecifics[f.id] || '';
+                html += `<div class="form-group">
+                    <div class="form-label-header">
+                        <label>${f.label}</label>
+                        <div class="visibility-group">
+                            <label class="simple-checkbox"><input type="checkbox" id="edit_v_${f.id}" checked></label>
+                        </div>
+                    </div>`;
+                if (f.type === 'select') {
+                    html += `<select class="form-control" id="edit_${f.id}">
+                        ${f.options.map(opt => `<option ${val === opt ? 'selected' : ''}>${opt}</option>`).join('')}
+                    </select>`;
+                } else if (f.type === 'date') {
+                    html += `<input type="date" class="form-control" id="edit_${f.id}" value="${val}">`;
+                } else {
+                    html += `<input type="text" class="form-control" id="edit_${f.id}" placeholder="${f.placeholder || ''}" value="${val}">`;
+                }
+                html += `</div>`;
+            });
+            html += '</div>';
+
+            container.innerHTML = html;
+
+            // Update visibility checkboxes if needed
+            const visibility = window.currentEntryVisibility || {};
+            fields.forEach(f => {
+                const cb = document.getElementById(`edit_v_${f.id}`);
+                if (cb) cb.checked = visibility[`v_${f.id}`] !== false;
+            });
+        }
+
+        function updateStep4Fields(type) {
+            const container = document.getElementById('dynamicStep4Container');
+            if (!container) return;
+
+            // Detect category for dynamic labels
+            const catRadio = document.querySelector('input[name="v_global_status"]:checked');
+            const isEducator = catRadio && catRadio.value === 'educators';
+            const probLabel = isEducator ? 'The Educational Problem*' : 'The Clinical Problem*';
+
+            const fieldGroups = {
+                'JOURNAL ARTICLE': [
+                    { label: 'Journal Name*', id: 'j_name', placeholder: 'Nature Medicine' },
+                    { label: 'DOI*', id: 'j_doi', placeholder: '10.1038/...' },
+                    { label: 'Impact Factor', id: 'j_if', placeholder: '11.2' },
+                    { label: 'Volume/Issue/Pages', id: 'j_vol', placeholder: 'Vol 12, Issue 3' },
+                    { label: 'Indexing', id: 'j_idx', placeholder: 'SCOPUS, PubMed' },
+                    { label: 'PubMed ID / PMID', id: 'j_pmid', placeholder: '12345678' },
+                    { label: probLabel, id: 'j_prob', placeholder: 'Describe the core challenge...' },
+                    { label: 'Tech Stack', id: 'j_tech', placeholder: 'Python, PyTorch...' },
+                    { label: 'Your Role', id: 'j_role', placeholder: 'Lead Researcher...' },
+                    { label: 'Skills Needed', id: 'j_skills', placeholder: 'ML, Data Analysis...' },
+                    { label: 'Time Commitment', id: 'j_time', placeholder: '10-12 hrs/week' },
+                    { label: 'What You Get', id: 'j_get', placeholder: 'Co-authorship, Certificate...' }
+                ],
+                'CONFERENCE PAPER': [
+                    { label: 'Conference Name*', id: 'c_name', placeholder: 'NeurIPS 2024' },
+                    { label: 'Location', id: 'c_loc', placeholder: 'Chicago, USA' },
+                    { label: 'DOI / Proceedings Link', id: 'c_doi', placeholder: '10.1109/...' },
+                    { label: 'Indexing', id: 'c_idx', placeholder: 'IEEE Xplore, SCOPUS' },
+                    { label: probLabel, id: 'c_prob' },
+                    { label: 'Your Role', id: 'c_role' },
+                    { label: 'Skills Needed', id: 'c_skills' }
+                ],
+                'PATENT': [
+                    { label: 'Patent/Application Number*', id: 'p_num' },
+                    { label: 'Patent Office', id: 'p_off', placeholder: 'Indian Patent Office / USPTO' },
+                    { label: 'Filing Date', id: 'p_file', type: 'date' },
+                    { label: 'Grant Date', id: 'p_grant', type: 'date' },
+                    { label: 'Current Status', id: 'p_stat', type: 'select', options: ['Filed', 'Published', 'Granted'] },
+                    { label: 'Technical Problem Solved*', id: 'p_prob' },
+                    { label: 'Tech Stack', id: 'p_tech' }
+                ],
+                'SOFTWARE / ALGORITHM': [
+                    { label: 'Repository/DOI URL*', id: 's_url' },
+                    { label: 'Zenodo/Figshare DOI', id: 's_doi' },
+                    { label: 'License', id: 's_lic', placeholder: 'MIT / Apache 2.0' },
+                    { label: 'Version', id: 's_ver', placeholder: 'v1.0.0' },
+                    { label: 'Language/Stack', id: 's_stack', placeholder: 'Python, PyTorch' },
+                    { label: probLabel, id: 's_prob' },
+                    { label: 'Your Role', id: 's_role' },
+                    { label: 'Benefits/What You Get', id: 's_get' }
+                ],
+                'CLINICAL DEVICE / DEPLOYED TOOL': [
+                    { label: 'Device/Tool Name*', id: 'd_name' },
+                    { label: 'Deployment Site', id: 'd_site', placeholder: 'KMC Ophthalmology OPD' },
+                    { label: 'Regulatory Approval', id: 'd_reg', placeholder: 'CE mark / CDSCO / FDA' },
+                    { label: 'Clinical Trial ID', id: 'd_ctri', placeholder: 'CTRI/2024/...' },
+                    { label: 'Clinical Problem Solved*', id: 'd_prob' },
+                    { label: 'Your Role', id: 'd_role' },
+                    { label: 'Skills Needed', id: 'd_skills' }
+                ],
+                'AWARD / GRANT': [
+                    { label: 'Award/Grant Name*', id: 'a_name' },
+                    { label: 'Awarding Body', id: 'a_body', placeholder: 'DST / ICMR' },
+                    { label: 'Grant Amount', id: 'a_amt', placeholder: '₹25,00,000' },
+                    { label: 'Duration', id: 'a_dur', placeholder: '3 years' },
+                    { label: 'Project Aim/Problem*', id: 'a_prob' },
+                    { label: 'Skills Needed', id: 'a_skills' }
+                ],
+                'SYSTEMATIC REVIEW': [
+                    { label: 'Journal Name*', id: 'sr_name' },
+                    { label: 'DOI*', id: 'sr_doi' },
+                    { label: 'Number of Studies Reviewed', id: 'sr_count', placeholder: '94 studies' },
+                    { label: 'Databases Searched', id: 'sr_db', placeholder: 'PubMed, EMBASE' },
+                    { label: 'PRISMA Compliant', id: 'sr_prisma', type: 'select', options: ['Yes', 'No'] },
+                    { label: probLabel, id: 'sr_prob' },
+                    { label: 'Skills Needed', id: 'sr_skills' }
+                ],
+                'DATASET RELEASE': [
+                    { label: 'Repository URL*', id: 'ds_url' },
+                    { label: 'DOI', id: 'ds_doi' },
+                    { label: 'Dataset Size', id: 'ds_size', placeholder: '4.2 GB' },
+                    { label: 'Data Modality', id: 'ds_mod', placeholder: 'Imaging / EHR' },
+                    { label: 'IRB Approval Number', id: 'ds_irb', placeholder: 'MAHE-IEC-2024-XXX' },
+                    { label: 'Problem Addressed*', id: 'ds_prob' },
+                    { label: 'Skills Needed', id: 'ds_skills' }
+                ],
+                'CASE REPORT': [
+                    { label: 'Journal/Venue*', id: 'cr_name' },
+                    { label: 'DOI*', id: 'cr_doi' },
+                    { label: 'Clinical Condition', id: 'cr_cond', placeholder: 'Diabetic Macular Oedema' },
+                    { label: 'Outcome Summary', id: 'cr_out', placeholder: '98% sensitivity' },
+                    { label: probLabel, id: 'cr_prob' },
+                    { label: 'Your Role', id: 'cr_role' }
+                ],
+                'BOOK CHAPTER': [
+                    { label: 'Book Title*', id: 'b_title' },
+                    { label: 'Editor(s)', id: 'b_edi' },
+                    { label: 'Publisher', id: 'b_pub', placeholder: 'Springer / Elsevier' },
+                    { label: 'ISBN', id: 'b_isbn' },
+                    { label: 'DOI / Chapter Link', id: 'b_doi' },
+                    { label: probLabel, id: 'b_prob' },
+                    { label: 'Skills Needed', id: 'b_skills' }
+                ],
+                'WHITE PAPER / POLICY BRIEF': [
+                    { label: 'Commissioning Organisation*', id: 'w_org', placeholder: 'MoHFW' },
+                    { label: 'Publication URL', id: 'w_url' },
+                    { label: 'Policy Scope', id: 'w_scope', placeholder: 'National AI Guidelines' },
+                    { label: probLabel, id: 'w_prob' },
+                    { label: 'Skills Needed', id: 'w_skills' }
+                ],
+                'MEDIA COVERAGE': [
+                    { label: 'Media Outlet*', id: 'm_out', placeholder: 'Nature News / The Hindu' },
+                    { label: 'Article URL', id: 'm_url' },
+                    { label: 'Publication Date', id: 'm_date', type: 'date' },
+                    { label: 'Journalist Name', id: 'm_jour' },
+                    { label: 'The Problem/Context*', id: 'm_prob' }
+                ],
+                'OTHER': [
+                    { label: 'Work/Publication Name*', id: 'o_name' },
+                    { label: 'Venue/Platform', id: 'o_venue' },
+                    { label: 'Reference Link/DOI', id: 'o_doi' },
+                    { label: 'Date', id: 'o_date', type: 'date' },
+                    { label: probLabel, id: 'o_prob' },
+                    { label: 'Skills Needed', id: 'o_skills' }
+                ]
+            };
+
+            const normalizedType = (type || '').toUpperCase().trim();
+            const fields = fieldGroups[normalizedType] || fieldGroups['OTHER'];
+
+            let html = '<div class="form-row" style="grid-template-columns: 1fr 1fr;">';
+            fields.forEach(f => {
+                html += `<div class="form-group">
+                    <div class="form-label-header">
+                        <label>${f.label}</label>
+                        <div class="visibility-group">
+                            <label class="simple-checkbox"><input type="checkbox" id="v_${f.id}" checked></label>
+                        </div>
+                    </div>`;
+                if (f.type === 'select') {
+                    html += `<select class="form-control" id="${f.id}">
+                        ${f.options.map(opt => `<option>${opt}</option>`).join('')}
+                    </select>`;
+                } else if (f.type === 'date') {
+                    html += `<input type="date" class="form-control" id="${f.id}">`;
+                } else {
+                    html += `<input type="text" class="form-control" id="${f.id}" placeholder="${f.placeholder || ''}">`;
+                }
+                html += `</div>`;
+            });
+            html += '</div>';
+
+            container.innerHTML = html;
+        }
+
+        async function submitImpactForm() {
+            const saveBtn = document.querySelector('.btn-wizard.btn-submit');
+            saveBtn.innerHTML = 'Submitting <i class="fas fa-spinner fa-spin"></i>';
+            saveBtn.disabled = true;
+
+            const categoryRadio = document.querySelector('input[name="v_global_status"]:checked');
+            const category = categoryRadio ? categoryRadio.value : 'research-innovation';
+
+            const status = document.getElementById('impactStatus')?.value || 'ongoing';
+
+            // Gather standard fields
+            const data = {
+                title: document.getElementById('impactTitle')?.value || '',
+                year: document.getElementById('impactYear')?.value || '',
+                domain: document.getElementById('impactDomain')?.value || '',
+                statement: document.getElementById('impactStatement')?.value || '',
+                abstract: document.getElementById('impactAbstract')?.value || '',
+                piEmail: document.getElementById('impactPiEmail')?.value || '',
+                funding: document.getElementById('impactFunding')?.value || '',
+                videoLink: document.getElementById('impactVideo')?.value || '',
+                authors: wizardData.authors || [],
+                keywords: wizardData.keywords || [],
+                category: category,
+                status: status,
+                publicationType: selectedType || '',
+                specifics: {},
+                visibility: {},
+                adminEmail: localStorage.getItem("adminEmail") || ""
+            };
+
+            // Gather dynamic specific fields
+            const dynamicContainer = document.getElementById('dynamicStep4Container');
+            if (dynamicContainer) {
+                const inputs = dynamicContainer.querySelectorAll('input[type="text"], input[type="date"], select');
+                inputs.forEach(input => {
+                    if (input.id && !input.id.startsWith('v_')) {
+                        data.specifics[input.id] = input.value;
+                    }
+                });
+            }
+
+            // Gather visibility states
+            const visibilityCheckboxes = document.querySelectorAll('.visibility-group input[type="checkbox"]');
+            visibilityCheckboxes.forEach(cb => {
+                if (cb.id) {
+                    data.visibility[cb.id] = cb.checked;
+                }
+            });
+
+            try {
+                const response = await fetch('/api/research', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+                        'X-Admin-Auth': 'aih_admin_secret_2024'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert("Research Entry submitted successfully.");
+                    document.getElementById('researchImpactWizard').style.display = 'none';
+                    resetWizard();
+                    fetchStats(); // Update dashboard counts
+                    loadResearchEntries(); // Refresh lists
+
+                    // Switch to appropriate view based on category
+                    if (category === 'educators') {
+                        showView('educatorsView');
+                        const navEducators = document.getElementById("nav-educators");
+                        if (navEducators) {
+                            document.querySelectorAll('.sidebar-nav li').forEach(li => li.classList.remove('active'));
+                            navEducators.classList.add('active');
+                        }
+                    } else {
+                        showView('researchInnovationView');
+                        const navRes = document.getElementById("nav-research-innovation");
+                        if (navRes) {
+                            document.querySelectorAll('.sidebar-nav li').forEach(li => li.classList.remove('active'));
+                            navRes.classList.add('active');
+                        }
+                    }
+                } else {
+                    alert("Error submitting entry. Please try again.");
+                }
+            } catch (err) {
+                console.error("Submission failed:", err);
+                alert("Server error during submission.");
+            } finally {
+                saveBtn.innerHTML = 'Submit <i class="fas fa-check"></i>';
+                saveBtn.disabled = false;
+            }
+        }
+
+        async function loadCoursesContent() {
+            const container = document.getElementById("coursesListContainer");
+            try {
+                const response = await fetch('/api/courses');
+                const courses = await response.json();
+
+                container.innerHTML = "";
+
+                if (courses.length > 0) {
+                    courses.forEach(course => {
+                        const card = document.createElement('div');
+                        card.className = 'course-card-wrapper';
+                        card.innerHTML = `
+                            <div class="msc-card">
+                                <div class="msc-card-header">
+                                    <h3 class="msc-card-title">${course.title}</h3>
+                                    <div class="msc-card-icon">
+                                        <i class="fas fa-graduation-cap" style="font-size: 30px; color: var(--primary);"></i>
+                                    </div>
+                                </div>
+                                <p class="msc-card-desc">${course.description}</p>
+                                <div class="msc-core-focus">
+                                    <strong>Core Focus:</strong>
+                                    <ul class="msc-focus-list">
+                                        ${course.focusItems.map(item => `<li><span class="msc-check">✓</span> ${item}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div class="msc-card-btn-wrap" style="display: flex; gap: 10px;">
+                                    <a href="edit-course-details.html?id=${course._id}" class="learn-more-btn">
+                                        <i class="fas fa-edit"></i> Edit Page
+                                    </a>
+                                    <button onclick="openEditModal('${course._id}', \`${course.title.replace(/'/g, "\\'")}\`, \`${course.description.replace(/'/g, "\\'")}\`, \`${course.focusItems.join('\\n').replace(/'/g, "\\'")}\`, \`${(course.detailedInfo || '').replace(/'/g, "\\'").replace(/`/g, "\\`")}\`)" 
+                                            class="learn-more-btn" style="background: #475569; border: none; color: white;">
+                                        <i class="fas fa-list"></i> Edit Fields
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+                } else {
+                    container.innerHTML = "<p>No courses found in database.</p>";
+                }
+            } catch (err) {
+                console.error("Error loading courses:", err);
+                container.innerHTML = "<p>Error loading courses. Please check server connection.</p>";
+            }
+        }
+
+        function openEditModal(id, title, desc, focus, detailed) {
+            document.getElementById("editCourseId").value = id;
+            document.getElementById("editCourseTitle").value = title;
+            document.getElementById("editCourseDesc").value = desc;
+            document.getElementById("editCourseFocus").value = focus;
+            document.getElementById("editCourseDetailedInfo").value = detailed || '';
+            document.getElementById("editCourseModal").style.display = 'flex';
+        }
+
+        function closeEditModal() {
+            document.getElementById("editCourseModal").style.display = 'none';
+        }
+
+        async function saveCourseChanges() {
+            const id = document.getElementById("editCourseId").value;
+            const title = document.getElementById("editCourseTitle").value;
+            const description = document.getElementById("editCourseDesc").value;
+            const detailedInfo = document.getElementById("editCourseDetailedInfo").value;
+            const focusItems = document.getElementById("editCourseFocus").value.split('\n').filter(i => i.trim() !== "");
+            const saveBtn = document.getElementById("saveCourseBtn");
+
+            saveBtn.innerText = "Saving...";
+            saveBtn.disabled = true;
+
+            try {
+                const res = await fetch(`/api/courses/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title,
+                        description,
+                        detailedInfo,
+                        focusItems,
+                        adminEmail: localStorage.getItem("adminEmail")
+                    })
+                });
+
+                if (res.ok) {
+                    alert("Course updated successfully!");
+                    closeEditModal();
+                    loadCoursesContent();
+                    fetchActivity(); // Refresh activity log
+                } else {
+                    alert("Failed to update course.");
+                }
+            } catch (err) {
+                console.error("Error saving course:", err);
+                alert("Server error while saving.");
+            } finally {
+                saveBtn.innerText = "Save Changes";
+                saveBtn.disabled = false;
+            }
+        }
+
+        function openEditResearchModal(id) {
+            const entry = window.globalResearchEntries.find(e => e._id === id);
+            if (!entry) return;
+
+            document.getElementById("editResearchId").value = entry._id;
+            document.getElementById("editResearchTitle").value = entry.title || '';
+            document.getElementById("editResearchStatement").value = entry.statement || '';
+            document.getElementById("editResearchAbstract").value = entry.abstract || '';
+            document.getElementById("editResearchYear").value = entry.year || '';
+            document.getElementById("editResearchVideo").value = entry.videoLink || '';
+
+            const domainSelect = document.getElementById("editResearchDomain");
+            if (Array.from(domainSelect.options).some(opt => opt.value === entry.domain)) {
+                domainSelect.value = entry.domain;
+            } else {
+                domainSelect.value = "";
+            }
+
+            document.getElementById("editResearchPiEmail").value = entry.piEmail || '';
+            document.getElementById("editResearchFunding").value = entry.funding || '';
+            document.getElementById("editResearchStatus").value = entry.status || 'ongoing';
+
+            // Category radios
+            const categoryRadios = document.querySelectorAll('input[name="edit_v_global_status"]');
+            categoryRadios.forEach(radio => {
+                radio.checked = (radio.value === entry.category);
+            });
+
+            // Visibility checkboxes
+            const vis = entry.visibility || {};
+            window.currentEntryVisibility = vis; // Store for dynamic fields
+            const visibilityMap = {
+                'v_impactTitle': 'edit_v_impactTitle',
+                'v_impactStatement': 'edit_v_impactStatement',
+                'v_impactAbstract': 'edit_v_impactAbstract',
+                'v_impactYear': 'edit_v_impactYear',
+                'v_impactDomain': 'edit_v_impactDomain',
+                'v_impactAuthors': 'edit_v_impactAuthors',
+                'v_impactPiEmail': 'edit_v_impactPiEmail',
+                'v_impactFunding': 'edit_v_impactFunding',
+                'v_impactKeywords': 'edit_v_impactKeywords',
+                'v_impactVideo': 'edit_v_impactVideo'
+            };
+
+            for (let key in visibilityMap) {
+                const cb = document.getElementById(visibilityMap[key]);
+                if (cb) cb.checked = (vis[key] !== false);
+            }
+
+            // Tags
+            editData.authors = [...(entry.authors || [])];
+            editData.keywords = [...(entry.keywords || [])];
+            renderEditTags('authors');
+            renderEditTags('keywords');
+
+            // Publication Type & Specifics
+            const pubTypeSelect = document.getElementById("editResearchPubType");
+            pubTypeSelect.value = entry.publicationType || '';
+            updateEditStep4Fields(entry.publicationType || '', entry.specifics || {});
+
+            document.getElementById("editResearchModal").style.display = 'flex';
+        }
+
+        function closeEditResearchModal() {
+            document.getElementById("editResearchModal").style.display = 'none';
+        }
+
+        async function saveResearchChanges() {
+            const id = document.getElementById("editResearchId").value;
+
+            const categoryRadio = document.querySelector('input[name="edit_v_global_status"]:checked');
+            const category = categoryRadio ? categoryRadio.value : 'research-innovation';
+
+            const data = {
+                title: document.getElementById("editResearchTitle").value,
+                statement: document.getElementById("editResearchStatement").value,
+                abstract: document.getElementById("editResearchAbstract").value,
+                year: document.getElementById("editResearchYear").value,
+                domain: document.getElementById("editResearchDomain").value,
+                piEmail: document.getElementById("editResearchPiEmail").value,
+                funding: document.getElementById("editResearchFunding").value,
+                status: document.getElementById("editResearchStatus").value,
+                videoLink: document.getElementById("editResearchVideo").value,
+                publicationType: document.getElementById("editResearchPubType").value,
+                category: category,
+                authors: editData.authors,
+                keywords: editData.keywords,
+                specifics: {},
+                visibility: {},
+                adminEmail: localStorage.getItem("adminEmail")
+            };
+
+            // Gather dynamic specific fields
+            const dynamicContainer = document.getElementById('editDynamicSpecificsContainer');
+            if (dynamicContainer) {
+                const inputs = dynamicContainer.querySelectorAll('input[type="text"], input[type="date"], select');
+                inputs.forEach(input => {
+                    if (input.id && input.id.startsWith('edit_') && !input.id.startsWith('edit_v_')) {
+                        const actualId = input.id.replace('edit_', '');
+                        data.specifics[actualId] = input.value;
+                    }
+                });
+            }
+
+            // Gather visibility states
+            const visibilityCheckboxes = document.querySelectorAll('#editResearchModal .visibility-group input[type="checkbox"]');
+            visibilityCheckboxes.forEach(cb => {
+                if (cb.id) {
+                    const actualId = cb.id.replace('edit_', '');
+                    data.visibility[actualId] = cb.checked;
+                }
+            });
+
+            const saveBtn = document.getElementById("saveResearchBtn");
+            saveBtn.innerText = "Saving...";
+            saveBtn.disabled = true;
+
+            try {
+                const res = await fetch(`/api/research/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+                        'X-Admin-Auth': 'aih_admin_secret_2024'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (res.ok) {
+                    alert("Research entry updated successfully!");
+                    closeEditResearchModal();
+                    loadResearchEntries();
+                    fetchActivity();
+                } else {
+                    alert("Failed to update entry.");
+                }
+            } catch (err) {
+                console.error("Error saving research:", err);
+                alert("Server error while saving.");
+            } finally {
+                saveBtn.innerText = "Save Changes";
+                saveBtn.disabled = false;
+            }
+        }
+
+
+        async function fetchStats() {
+            try {
+                const res = await fetch("/api/admin/dashboard-stats");
+                const data = await res.json();
+
+                document.getElementById("impactCount").innerText = data.impactCount || 0;
+                document.getElementById("innovationCount").innerText = data.innovationCount || 0;
+                document.getElementById("educatorsCount").innerText = data.educatorsCount || 0;
+                document.getElementById("userCount").innerText = data.userCount || 0;
+                document.getElementById("editedCount").innerText = data.editedCount || 0;
+                document.getElementById("deletedCount").innerText = data.deletedCount || 0;
+            } catch (err) {
+                console.error("Error fetching stats:", err);
+            }
+        }
+
+        async function fetchActivity() {
+            try {
+                const res = await fetch("/api/admin/activity");
+                const data = await res.json();
+
+                const logBody = document.getElementById("activityLog");
+                logBody.innerHTML = "";
+
+                if (data.length === 0) {
+                    logBody.innerHTML = "<tr><td colspan='3' style='text-align:center; padding: 20px;'>No recent activity found.</td></tr>";
+                    return;
+                }
+
+                data.forEach(log => {
+                    const row = `
+                        <tr>
+                            <td><span class="action-tag">${log.action}</span></td>
+                            <td>${log.performedBy}</td>
+                            <td class="timestamp">${new Date(log.timestamp).toLocaleString()}</td>
+                        </tr>
+                    `;
+                    logBody.innerHTML += row;
+                    if (document.getElementById("fullActivityLog")) {
+                        document.getElementById("fullActivityLog").innerHTML += row;
+                    }
+                });
+            } catch (err) {
+                console.error("Error fetching activity:", err);
+            }
+        }
+
+        async function deleteResearchEntry(id, title) {
+            if (!confirm(`Are you sure you want to delete "${title}"? This action cannot be undone.`)) return;
+
+            try {
+                const res = await fetch(`/api/research/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+                        'X-Admin-Auth': 'aih_admin_secret_2024'
+                    },
+                    body: JSON.stringify({ adminEmail: localStorage.getItem("adminEmail") || "Admin" })
+                });
+
+                if (res.ok) {
+                    alert("Entry deleted successfully!");
+                    loadResearchEntries();
+                    fetchStats();
+                    fetchActivity();
+                } else {
+                    alert("Failed to delete entry.");
+                }
+            } catch (err) {
+                console.error("Delete error:", err);
+                alert("Error connecting to server.");
+            }
+        }
+
+        async function loadResearchEntries() {
+            try {
+                const res = await fetch('/api/research', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+                        'X-Admin-Auth': 'aih_admin_secret_2024'
+                    }
+                });
+                if (!res.ok) throw new Error('Failed to fetch research entries');
+                const entries = await res.json();
+                console.log("Admin Dashboard: Loaded " + entries.length + " total research entries.");
+                const educatorCount = entries.filter(e => e.category === 'educators').length;
+                console.log("Admin Dashboard: Found " + educatorCount + " educator projects.");
+
+                window.globalResearchEntries = entries;
+
+                const resContainer = document.getElementById('resInnovListContainer');
+                const eduContainer = document.getElementById('educatorsListContainer');
+                const impactContainer = document.getElementById('researchImpactListContainer');
+                const completedContainer = document.getElementById('completedImpactListContainer');
+
+                console.log("Containers found:", {
+                    res: !!resContainer,
+                    edu: !!eduContainer,
+                    impact: !!impactContainer,
+                    completed: !!completedContainer
+                });
+
+                if (resContainer) resContainer.innerHTML = '';
+                if (eduContainer) eduContainer.innerHTML = '';
+                if (impactContainer) impactContainer.innerHTML = '';
+                if (completedContainer) completedContainer.innerHTML = '';
+
+                // Check if any educator entries are redacted (indicates token issue)
+                const isRedacted = entries.some(e => e.category === 'educators' && e.title === "[Members Only Content]");
+                if (isRedacted) {
+                    console.warn("Detected redacted content. Redirecting to login to refresh token.");
+                    localStorage.removeItem("adminToken");
+                    window.location.href = "/Admin.html";
+                    return;
+                }
+
+                entries.forEach(entry => {
+                    console.log("Processing entry:", entry.title, "Status:", entry.status, "Category:", entry.category);
+                    const vis = entry.visibility || {};
+                    // Construct blocks conditionally
+                    let titleHTML = vis['v_impactTitle'] !== false ? `<h4 style="margin: 0; color: #1e293b; font-size: 20px; font-weight: 700; line-height: 1.4;">${entry.title || 'Untitled'}</h4>` : '<div></div>';
+                    let statementHTML = vis['v_impactStatement'] !== false ? `<p style="margin: 0; color: #475569; font-size: 16px; line-height: 1.6;">${entry.statement || 'No specific statement provided.'}</p>` : '';
+
+                    let abstractHTML = (vis['v_impactAbstract'] !== false && entry.abstract) ? `
+                        <div style="font-size: 15px; color: #475569; background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #cbd5e1; margin-bottom: 12px; line-height: 1.6;">
+                            <strong style="color: #334155; display: block; margin-bottom: 5px; font-size: 16px;">Abstract:</strong> ${entry.abstract}
+                        </div>` : '';
+
+                    let authorsHTML = (vis['v_impactAuthors'] !== false && entry.authors && entry.authors.length > 0) ? `
+                        <div style="display: flex; align-items: baseline; gap: 15px; font-size: 15px; margin-bottom: 10px;">
+                            <span style="font-weight: 600; color: #64748b; min-width: 100px; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;">Authors</span>
+                            <span style="color: #1e293b; font-weight: 500;">${entry.authors.join(', ')}</span>
+                        </div>` : '';
+
+                    let piEmailHTML = (vis['v_impactPiEmail'] !== false && entry.piEmail) ? `
+                        <div style="display: flex; align-items: baseline; gap: 15px; font-size: 15px; margin-bottom: 10px;">
+                            <span style="font-weight: 600; color: #64748b; min-width: 100px; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;">PI Email</span>
+                            <a href="mailto:${entry.piEmail}" style="color: #ea580c; text-decoration: none; font-weight: 500;">${entry.piEmail}</a>
+                        </div>` : '';
+
+                    let fundingHTML = (vis['v_impactFunding'] !== false && entry.funding) ? `
+                        <div style="display: flex; align-items: baseline; gap: 15px; font-size: 15px; margin-bottom: 10px;">
+                            <span style="font-weight: 600; color: #64748b; min-width: 100px; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;">Funding</span>
+                            <span style="color: #15803d; font-weight: 600;">${entry.funding}</span>
+                        </div>` : '';
+
+                    let keywordsHTML = (vis['v_impactKeywords'] !== false && entry.keywords && entry.keywords.length > 0) ? `
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 15px;">
+                            ${entry.keywords.map(k => `<span style="background: #f0f9ff; color: #0284c7; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; border: 1px solid #bae6fd;">${k}</span>`).join('')}
+                        </div>` : '';
+
+                    let videoHTML = (vis['v_impactVideo'] !== false && entry.videoLink) ? `
+                        <div style="font-size: 15px; margin-top: 15px; margin-bottom: 5px;">
+                            <a href="${entry.videoLink}" target="_blank" style="color: #ea580c; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; background: #fff7ed; padding: 8px 16px; border-radius: 8px; border: 1px solid #ffedd5;">
+                                <i class="fab fa-youtube" style="font-size: 18px;"></i> View Video/Demo
+                            </a>
+                        </div>` : '';
+
+                    // Add type specifics
+                    let specificsHTML = '';
+                    if (entry.specifics) {
+                        for (let key in entry.specifics) {
+                            if (vis['v_' + key] !== false && entry.specifics[key]) {
+                                // Better label formatting
+                                let rawLabel = key.replace(/^[a-z]+_/, '');
+                                let labelTitle = rawLabel.replace(/_/g, ' ').toUpperCase();
+                                
+                                // Specific label overrides for clarity
+                                if (rawLabel === 'prob') {
+                                    labelTitle = entry.category === 'educators' ? 'EDUCATIONAL PROBLEM' : 'CLINICAL PROBLEM';
+                                } else if (rawLabel === 'if') labelTitle = 'IMPACT FACTOR';
+                                else if (rawLabel === 'ctri') labelTitle = 'CTRI ID';
+                                else if (rawLabel === 'irb') labelTitle = 'IRB NUMBER';
+                                else if (rawLabel === 'if') labelTitle = 'IMPACT FACTOR';
+
+                                specificsHTML += `
+                                    <div style="display: flex; align-items: baseline; gap: 15px; font-size: 15px; margin-bottom: 10px;">
+                                        <span style="font-weight: 600; color: #64748b; min-width: 150px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">${labelTitle}</span>
+                                        <span style="color: #1e293b; font-weight: 500;">${entry.specifics[key]}</span>
+                                    </div>`;
+                            }
+                        }
+                    }
+
+                    // Metadata bar (Year, Domain)
+                    let yearItem = vis['v_impactYear'] !== false ? `<span style="display: flex; align-items: center; gap: 6px; background: #f1f5f9; padding: 6px 14px; border-radius: 20px; font-weight: 600; color: #475569; font-size: 14px;"><i class="fas fa-calendar-alt"></i> ${entry.year || 'N/A'}</span>` : '';
+                    let domainItem = vis['v_impactDomain'] !== false ? `<span style="display: flex; align-items: center; gap: 6px; background: #fff7ed; padding: 6px 14px; border-radius: 20px; font-weight: 600; color: #c2410c; font-size: 14px;"><i class="fas fa-microscope"></i> ${entry.domain || 'N/A'}</span>` : '';
+                    let metadataHTML = '';
+                    if (yearItem || domainItem) {
+                        metadataHTML = `<div style="display: flex; gap: 15px; align-items: center; margin-top: 20px; border-top: 1px solid #e2e8f0; padding-top: 16px;">
+                            ${yearItem}
+                            ${domainItem}
+                        </div>`;
+                    }
+
+                    let contentDetails = [abstractHTML, authorsHTML, piEmailHTML, fundingHTML, specificsHTML, videoHTML, keywordsHTML].filter(Boolean).join('');
+
+                    const statusColors = {
+                        ongoing: { bg: '#e0f2fe', color: '#0369a1', border: '#bae6fd' },
+                        upcoming: { bg: '#fef3c7', color: '#92400e', border: '#fde68a' },
+                        completed: { bg: '#dcfce7', color: '#15803d', border: '#bbf7d0' }
+                    };
+                    const sc = statusColors[(entry.status || '').toLowerCase()] || { bg: '#f1f5f9', color: '#475569', border: '#e2e8f0' };
+                    const statusBadge = `<span style="background: ${sc.bg}; color: ${sc.color}; border: 1px solid ${sc.border}; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">${entry.status || 'Ongoing'}</span>`;
+
+                    const card = `
+                        <div class="research-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 16px; transition: transform 0.2s ease, box-shadow 0.2s ease; margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
+                                <div style="display: flex; flex-direction: column; gap: 12px; flex: 1;">
+                                    ${titleHTML}
+                                    <div>${statusBadge}</div>
+                                </div>
+                                <div style="display: flex; gap: 10px; flex-shrink: 0;">
+                                    <button onclick="openEditResearchModal('${entry._id}')" style="background: #f0f9ff; border: 1px solid #bae6fd; color: #0284c7; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px;">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button onclick="deleteResearchEntry('${entry._id}', '${(entry.title || 'this project').replace(/'/g, "\\'")}')" style="background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px;">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            ${vis['v_impactStatement'] !== false && entry.statement ? `
+                            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
+                                ${statementHTML}
+                            </div>
+                            ` : ''}
+                            
+                            ${contentDetails ? `<div style="display: flex; flex-direction: column; margin-top: 5px;">${contentDetails}</div>` : ''}
+                            ${metadataHTML}
+                        </div>
+                    `;
+
+                    if (entry.category === 'educators' && eduContainer) {
+                        eduContainer.innerHTML += card;
+                    } else if (entry.status === 'completed' && completedContainer) {
+                        console.log("Adding to completed container");
+                        completedContainer.innerHTML += card;
+                    } else if (entry.category === 'research-innovation' && resContainer) {
+                        resContainer.innerHTML += card;
+                    } else if (entry.category === 'research-impact' && impactContainer) {
+                        impactContainer.innerHTML += card;
+                    }
+                });
+
+                if (resContainer && resContainer.innerHTML === '') resContainer.innerHTML = '<p style="color: #94a3b8; font-size: 14px;">No public research entries found.</p>';
+                if (eduContainer && eduContainer.innerHTML === '') eduContainer.innerHTML = '<p style="color: #94a3b8; font-size: 14px;">No private educator entries found.</p>';
+                if (impactContainer && impactContainer.innerHTML === '') impactContainer.innerHTML = '<p style="color: #94a3b8; font-size: 14px;">No research impact cases found.</p>';
+                if (completedContainer && completedContainer.innerHTML === '') completedContainer.innerHTML = '<p style="color: #94a3b8; font-size: 14px;">No completed projects yet.</p>';
+
+                // View More logic for Innovation
+                const resInnovCards = resContainer.querySelectorAll('.research-card');
+                const viewMoreContainer = document.getElementById('resInnovViewMoreContainer');
+                if (resInnovCards.length > 1) {
+                    if (viewMoreContainer) viewMoreContainer.style.display = 'block';
+                    // Reset expansion state on load
+                    isResInnovExpanded = false;
+                    const btn = document.getElementById('resInnovViewMoreBtn');
+                    if (btn) {
+                        btn.querySelector('span').textContent = 'View More';
+                        btn.querySelector('i').className = 'fas fa-chevron-down';
+                    }
+                    // Hide all but first
+                    resInnovCards.forEach((c, idx) => {
+                        if (idx > 0) c.style.display = 'none';
+                        else c.style.display = 'flex';
+                    });
+                } else {
+                    if (viewMoreContainer) viewMoreContainer.style.display = 'none';
+                }
+
+                // View More logic for Educators
+                const eduCards = eduContainer.querySelectorAll('.research-card');
+                const eduViewMoreContainer = document.getElementById('eduViewMoreContainer');
+                if (eduCards.length > 1) {
+                    if (eduViewMoreContainer) eduViewMoreContainer.style.display = 'block';
+                    // Reset expansion state on load
+                    isEduExpanded = false;
+                    const btn = document.getElementById('eduViewMoreBtn');
+                    if (btn) {
+                        btn.querySelector('span').textContent = 'View More';
+                        btn.querySelector('i').className = 'fas fa-chevron-down';
+                    }
+                    // Hide all but first
+                    eduCards.forEach((c, idx) => {
+                        if (idx > 0) c.style.display = 'none';
+                        else c.style.display = 'flex';
+                    });
+                } else {
+                    if (eduViewMoreContainer) eduViewMoreContainer.style.display = 'none';
+                }
+
+                // View More logic for Impact
+                const impactCards = impactContainer.querySelectorAll('.research-card');
+                const impactViewMoreContainer = document.getElementById('impactViewMoreContainer');
+                if (impactCards.length > 1) {
+                    if (impactViewMoreContainer) impactViewMoreContainer.style.display = 'block';
+                    isImpactExpanded = false;
+                    const btn = document.getElementById('impactViewMoreBtn');
+                    if (btn) {
+                        btn.querySelector('span').textContent = 'View More';
+                        btn.querySelector('i').className = 'fas fa-chevron-down';
+                    }
+                    impactCards.forEach((c, idx) => {
+                        if (idx > 0) c.style.display = 'none';
+                        else c.style.display = 'flex';
+                    });
+                } else {
+                    if (impactViewMoreContainer) impactViewMoreContainer.style.display = 'none';
+                }
+
+                // View More logic for Completed Impact
+                const completedImpactCards = completedContainer.querySelectorAll('.research-card');
+                const completedImpactViewMoreContainer = document.getElementById('completedImpactViewMoreContainer');
+                if (completedImpactCards.length > 1) {
+                    if (completedImpactViewMoreContainer) completedImpactViewMoreContainer.style.display = 'block';
+                    isCompletedImpactExpanded = false;
+                    const btn = document.getElementById('completedImpactViewMoreBtn');
+                    if (btn) {
+                        btn.querySelector('span').textContent = 'View More';
+                        btn.querySelector('i').className = 'fas fa-chevron-down';
+                    }
+                    completedImpactCards.forEach((c, idx) => {
+                        if (idx > 0) c.style.display = 'none';
+                        else c.style.display = 'flex';
+                    });
+                } else {
+                    if (completedImpactViewMoreContainer) completedImpactViewMoreContainer.style.display = 'none';
+                }
+
+            } catch (err) {
+                console.error("Error rendering research entries:", err);
+            }
+        }
+
+        let isResInnovExpanded = false;
+        function toggleResInnov() {
+            const container = document.getElementById('resInnovListContainer');
+            const cards = container.querySelectorAll('.research-card');
+            const btn = document.getElementById('resInnovViewMoreBtn');
+
+            isResInnovExpanded = !isResInnovExpanded;
+
+            cards.forEach((c, idx) => {
+                if (idx > 0) {
+                    c.style.display = isResInnovExpanded ? 'flex' : 'none';
+                }
+            });
+
+            if (btn) {
+                btn.querySelector('span').textContent = isResInnovExpanded ? 'View Less' : 'View More';
+                btn.querySelector('i').className = isResInnovExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+            }
+        }
+
+        let isEduExpanded = false;
+        function toggleEdu() {
+            const container = document.getElementById('educatorsListContainer');
+            const cards = container.querySelectorAll('.research-card');
+            const btn = document.getElementById('eduViewMoreBtn');
+
+            isEduExpanded = !isEduExpanded;
+
+            cards.forEach((c, idx) => {
+                if (idx > 0) {
+                    c.style.display = isEduExpanded ? 'flex' : 'none';
+                }
+            });
+
+            if (btn) {
+                btn.querySelector('span').textContent = isEduExpanded ? 'View Less' : 'View More';
+                btn.querySelector('i').className = isEduExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+            }
+        }
+
+        let isImpactExpanded = false;
+        function toggleImpact() {
+            const container = document.getElementById('researchImpactListContainer');
+            const cards = container.querySelectorAll('.research-card');
+            const btn = document.getElementById('impactViewMoreBtn');
+
+            isImpactExpanded = !isImpactExpanded;
+
+            cards.forEach((c, idx) => {
+                if (idx > 0) {
+                    c.style.display = isImpactExpanded ? 'flex' : 'none';
+                }
+            });
+
+            if (btn) {
+                btn.querySelector('span').textContent = isImpactExpanded ? 'View Less' : 'View More';
+                btn.querySelector('i').className = isImpactExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+            }
+        }
+
+        let isCompletedImpactExpanded = false;
+        function toggleCompletedImpact() {
+            const container = document.getElementById('completedImpactListContainer');
+            const cards = container.querySelectorAll('.research-card');
+            const btn = document.getElementById('completedImpactViewMoreBtn');
+
+            isCompletedImpactExpanded = !isCompletedImpactExpanded;
+
+            cards.forEach((c, idx) => {
+                if (idx > 0) {
+                    c.style.display = isCompletedImpactExpanded ? 'flex' : 'none';
+                }
+            });
+
+            if (btn) {
+                btn.querySelector('span').textContent = isCompletedImpactExpanded ? 'View Less' : 'View More';
+                btn.querySelector('i').className = isCompletedImpactExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+            }
+        }
+
+        /* ============================================================
+           MEMBER REQUESTS — load, filter, approve, reject
+        ============================================================ */
+        let allMemberRequests = [];
+        let currentFilter = 'all';
+
+        async function loadMemberRequests() {
+            const container = document.getElementById('memberRequestsContainer');
+            if (!container) return;
+            container.innerHTML = '<div style="text-align:center;padding:40px;color:#94a3b8;"><i class="fas fa-spinner fa-spin" style="font-size:2rem;"></i><p style="margin-top:14px;">Loading…</p></div>';
+
+            try {
+                const res = await fetch('/api/admin/member-requests');
+                if (!res.ok) throw new Error('Failed');
+                allMemberRequests = await res.json();
+
+                // Update pending badge
+                const pending = allMemberRequests.filter(r => r.registrationStatus === 'pending').length;
+                const badge = document.getElementById('pendingBadge');
+                if (badge) {
+                    badge.style.display = pending > 0 ? 'inline-block' : 'none';
+                    badge.textContent = pending;
+                }
+
+                renderMemberRequests(currentFilter);
+            } catch (err) {
+                container.innerHTML = '<p style="color:#dc2626;padding:20px;">Error loading member requests.</p>';
+            }
+        }
+
+        function filterRequests(status) {
+            currentFilter = status;
+            // Update tab styles
+            ['all', 'pending', 'approved', 'rejected'].forEach(s => {
+                const btn = document.getElementById('filter' + s.charAt(0).toUpperCase() + s.slice(1));
+                if (!btn) return;
+                if (s === status) {
+                    btn.style.background = '#e85626';
+                    btn.style.color = 'white';
+                    btn.style.borderColor = '#e85626';
+                } else {
+                    btn.style.background = 'white';
+                    btn.style.color = '#64748b';
+                    btn.style.borderColor = '#e2e8f0';
+                }
+            });
+            renderMemberRequests(status);
+        }
+
+        function renderMemberRequests(filter) {
+            const container = document.getElementById('memberRequestsContainer');
+            if (!container) return;
+
+            const filtered = filter === 'all'
+                ? allMemberRequests
+                : allMemberRequests.filter(r => r.registrationStatus === filter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center;padding:50px;color:#94a3b8;">
+                        <i class="fas fa-inbox" style="font-size:2.5rem;margin-bottom:16px;"></i>
+                        <p style="font-size:15px;font-weight:600;">No ${filter === 'all' ? '' : filter + ' '}requests found.</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(r => {
+                const statusColors = {
+                    pending: { bg: '#fef9c3', color: '#a16207', icon: 'fa-clock' },
+                    approved: { bg: '#dcfce7', color: '#15803d', icon: 'fa-check-circle' },
+                    rejected: { bg: '#fee2e2', color: '#dc2626', icon: 'fa-times-circle' }
+                };
+                const sc = statusColors[r.registrationStatus] || statusColors.pending;
+                const date = new Date(r.registeredAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+                const reviewDate = r.reviewedAt ? new Date(r.reviewedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : null;
+
+                return `
+                <div id="req-${r._id}" style="background:white;border:1px solid #f1f5f9;border-radius:16px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.04);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;transition:box-shadow 0.2s;">
+                    <div style="flex:1;min-width:220px;">
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+                            <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1e293b,#334155);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:16px;flex-shrink:0;">${r.name.charAt(0).toUpperCase()}</div>
+                            <div>
+                                <div style="font-size:15px;font-weight:700;color:#1e293b;">${r.name}</div>
+                                <div style="font-size:12px;color:#64748b;">${r.email}</div>
+                            </div>
+                        </div>
+                        ${r.institution ? `<div style="font-size:12px;color:#475569;margin-bottom:6px;"><i class="fas fa-building" style="margin-right:5px;color:#94a3b8;"></i>${r.institution}</div>` : ''}
+                        ${r.reason ? `<div style="font-size:12px;color:#475569;background:#f8fafc;border-radius:8px;padding:10px 12px;margin-top:8px;border-left:3px solid #e85626;line-height:1.5;">${r.reason}</div>` : ''}
+                        <div style="margin-top:10px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+                            <span style="font-size:11px;color:#94a3b8;"><i class="fas fa-calendar-alt" style="margin-right:4px;"></i>Registered: ${date}</span>
+                            ${reviewDate ? `<span style="font-size:11px;color:#94a3b8;"><i class="fas fa-check" style="margin-right:4px;"></i>Reviewed: ${reviewDate}</span>` : ''}
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:25px;flex-shrink:0;">
+                        <span style="display:inline-flex;align-items:center;gap:6px;background:${sc.bg};color:${sc.color};padding:5px 13px;border-radius:20px;font-size:11px;font-weight:700;">
+                            <i class="fas ${sc.icon}"></i> ${r.registrationStatus.charAt(0).toUpperCase() + r.registrationStatus.slice(1)}
+                        </span>
+                        ${r.registrationStatus === 'pending' ? `
+                        <div style="display:flex;gap:10px;">
+                            <button onclick="approveMember('${r._id}')" style="background:#16a34a;color:white;border:none;padding:9px 20px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.2s;" onmouseover="this.style.background='#15803d'" onmouseout="this.style.background='#16a34a'">
+                                <i class="fas fa-check"></i> Approve
+                            </button>
+                            <button onclick="rejectMember('${r._id}')" style="background:#dc2626;color:white;border:none;padding:9px 20px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.2s;" onmouseover="this.style.background='#b91c1c'" onmouseout="this.style.background='#dc2626'">
+                                <i class="fas fa-times"></i> Reject
+                            </button>
+                        </div>` : ''}
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        async function approveMember(id) {
+            if (!confirm('Approve this member? They will be able to log in immediately.')) return;
+            try {
+                const res = await fetch(`/api/admin/member-requests/${id}/approve`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ adminEmail: localStorage.getItem('adminEmail') || 'Admin' })
+                });
+                if (res.ok) {
+                    // Optimistically update the local list
+                    const idx = allMemberRequests.findIndex(r => r._id === id);
+                    if (idx !== -1) allMemberRequests[idx].registrationStatus = 'approved';
+                    renderMemberRequests(currentFilter);
+                    // Update badge
+                    const pending = allMemberRequests.filter(r => r.registrationStatus === 'pending').length;
+                    const badge = document.getElementById('pendingBadge');
+                    if (badge) { badge.textContent = pending; badge.style.display = pending > 0 ? 'inline-block' : 'none'; }
+                    fetchActivity();
+                } else {
+                    alert('Failed to approve member.');
+                }
+            } catch (err) {
+                alert('Server error. Please try again.');
+            }
+        }
+
+        async function rejectMember(id) {
+            if (!confirm('Reject this member? They will not be able to log in.')) return;
+            try {
+                const res = await fetch(`/api/admin/member-requests/${id}/reject`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ adminEmail: localStorage.getItem('adminEmail') || 'Admin' })
+                });
+                if (res.ok) {
+                    const idx = allMemberRequests.findIndex(r => r._id === id);
+                    if (idx !== -1) allMemberRequests[idx].registrationStatus = 'rejected';
+                    renderMemberRequests(currentFilter);
+                    fetchActivity();
+                } else {
+                    alert('Failed to reject member.');
+                }
+            } catch (err) {
+                alert('Server error. Please try again.');
+            }
+        }
+
+        // Initial Load
+        fetchStats();
+        fetchActivity();
+        loadResearchEntries();
+        loadMemberRequests(); // pre-load so badge shows on dashboard
+
+        // Refresh periodically
+        setInterval(() => {
+            fetchStats();
+            fetchActivity();
+            loadResearchEntries();
+            loadMemberRequests();
+        }, 30000);
+    </script>
+</body>
+
+</html>

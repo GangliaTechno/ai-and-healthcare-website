@@ -16,3 +16,8 @@ Thumbs.db
 # Editor folders
 .vscode/
 .idea/
+tmp/
+scratch/
+
+# Ignore helper script
+fix_activity_links.js

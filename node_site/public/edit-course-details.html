@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Course Details | Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+    <style>
+        :root {
+            --primary: #D14905;
+            --secondary: #2c3e50;
+            --bg-light: #f8f9fa;
+            --text-dark: #1a1a1a;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: var(--white);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo-wrap img {
+            height: 40px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(209, 73, 5, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(209, 73, 5, 0.3);
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .edit-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .edit-card-header {
+            padding: 40px;
+            background: #faf0f0;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .edit-card-header h1 {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 2.2rem;
+            margin: 0 0 15px;
+        }
+
+        .edit-card-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .edit-card-body {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            color: var(--text-dark);
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .detailed-info-container {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .detailed-info-container:hover {
+            border-color: var(--primary);
+            background: #fafafa;
+        }
+
+        .detailed-info-display {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+            white-space: pre-wrap;
+        }
+
+        .detailed-info-editor {
+            display: none;
+        }
+
+        .detailed-info-editor textarea {
+            width: 100%;
+            min-height: 200px;
+            border: none;
+            background: transparent;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+            resize: vertical;
+        }
+
+        .detailed-info-editor textarea:focus {
+            outline: none;
+        }
+
+        .help-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            display: block;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: #e2e8f0;
+            color: #64748b;
+            margin-top: 10px;
+        }
+
+        /* Loading Overlay */
+        #loadingOverlay {
+            position: fixed;
+            inset: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Loading course data...</p>
+    </div>
+
+    <header>
+        <a href="admin-dashboard.html" class="logo-wrap">
+            <img src="/assets/images/logo.webp" alt="MAHE">
+            <div style="display: flex; flex-direction: column;">
+                <span style="font-weight: 700; font-size: 14px;">Admin Panel</span>
+                <span style="font-size: 11px; color: var(--text-muted);">AI in Healthcare</span>
+            </div>
+        </a>
+        <div class="header-actions">
+            <a href="admin-dashboard.html" class="btn btn-outline">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+            <button onclick="saveCourse()" class="btn btn-primary" id="saveBtn">
+                <i class="fas fa-save"></i> Save Changes
+            </button>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="edit-card">
+            <div class="edit-card-header">
+                <input type="text" id="courseTitle" class="form-control" style="font-size: 2.2rem; font-weight: 800; text-align: center; border: none; background: transparent; color: var(--primary); width: 100%;" placeholder="Course Title">
+                <div class="status-badge">Course Program Detail Page</div>
+            </div>
+            
+            <div class="edit-card-body">
+                <div class="form-group">
+                    <label>Short Description (Card Summary)</label>
+                    <textarea id="courseDesc" class="form-control" rows="3" placeholder="Enter a brief summary..."></textarea>
+                    <span class="help-text">This appears on the main programs listing page cards.</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Detailed Information (Editable Content)</label>
+                    <div class="detailed-info-container" onclick="enableEditor()" id="detailedInfoBox">
+                        <div id="detailedInfoDisplay" class="detailed-info-display">
+                            Click here to add detailed course information that will appear on the specific program page...
+                        </div>
+                        <div id="detailedInfoEditor" class="detailed-info-editor">
+                            <textarea id="detailedInfoTextarea" placeholder="Enter full detailed content here..." onblur="disableEditor()"></textarea>
+                        </div>
+                    </div>
+                    <span class="help-text">Tip: This section is for the deep-dive content. Click above to edit.</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Core Focus Items (One per line)</label>
+                    <textarea id="courseFocus" class="form-control" rows="5" placeholder="Focus Item 1&#10;Focus Item 2..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('id');
+
+        if (!courseId) {
+            alert("No course ID provided.");
+            window.location.href = "admin-dashboard.html";
+        }
+
+        // Protection Logic
+        if (localStorage.getItem("isAdmin") !== "true") {
+            window.location.href = "/Admin.html";
+        }
+
+        async function fetchCourse() {
+            try {
+                const response = await fetch(`/api/courses/${courseId}`);
+                if (!response.ok) throw new Error("Course not found");
+                const course = await response.json();
+
+                document.getElementById('courseTitle').value = course.title || '';
+                document.getElementById('courseDesc').value = course.description || '';
+                document.getElementById('courseFocus').value = (course.focusItems || []).join('\n');
+                
+                const detailedInfo = course.detailedInfo || '';
+                if (detailedInfo) {
+                    document.getElementById('detailedInfoDisplay').innerText = detailedInfo;
+                    document.getElementById('detailedInfoTextarea').value = detailedInfo;
+                }
+
+                document.getElementById('loadingOverlay').style.display = 'none';
+            } catch (err) {
+                console.error(err);
+                alert("Error loading course details.");
+                window.location.href = "admin-dashboard.html";
+            }
+        }
+
+        function enableEditor() {
+            document.getElementById('detailedInfoDisplay').style.display = 'none';
+            document.getElementById('detailedInfoEditor').style.display = 'block';
+            document.getElementById('detailedInfoTextarea').focus();
+        }
+
+        function disableEditor() {
+            const val = document.getElementById('detailedInfoTextarea').value.trim();
+            if (val) {
+                document.getElementById('detailedInfoDisplay').innerText = val;
+            } else {
+                document.getElementById('detailedInfoDisplay').innerText = "Click here to add detailed course information...";
+            }
+            document.getElementById('detailedInfoDisplay').style.display = 'block';
+            document.getElementById('detailedInfoEditor').style.display = 'none';
+        }
+
+        async function saveCourse() {
+            const saveBtn = document.getElementById('saveBtn');
+            const originalHtml = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            saveBtn.disabled = true;
+
+            const data = {
+                title: document.getElementById('courseTitle').value,
+                description: document.getElementById('courseDesc').value,
+                detailedInfo: document.getElementById('detailedInfoTextarea').value,
+                focusItems: document.getElementById('courseFocus').value.split('\n').filter(i => i.trim() !== ''),
+                adminEmail: localStorage.getItem("adminEmail")
+            };
+
+            try {
+                const response = await fetch(`/api/courses/${courseId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert("Changes saved successfully!");
+                } else {
+                    alert("Failed to save changes.");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Server error while saving.");
+            } finally {
+                saveBtn.innerHTML = originalHtml;
+                saveBtn.disabled = false;
+            }
+        }
+
+        window.onload = fetchCourse;
+    </script>
+</body>
+</html>

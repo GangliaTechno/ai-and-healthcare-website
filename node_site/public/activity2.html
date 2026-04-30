@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+<meta content="text/html;charset=utf-8" http-equiv="content-type" />
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="ie=edge" http-equiv="x-ua-compatible" />
+  <meta content="width=device-width, initial-scale=1,user-scalable=0" name="viewport" />
+  <meta content="index,follow" name="robots" />
+  <title>Activities (2) – Dept of AI in Healthcare</title>
+  <meta
+    content="Explore our Clinical Research, Industry Collaborations, Student Projects and Guest Speaker activities at the Department of AI in Healthcare, KMC Manipal."
+    name="description" />
+  <link href="/assets/images/fav-transparent.png" rel="icon" type="image/ico" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap"
+    rel="stylesheet" />
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/assets/css/owl.carousel.min.css" rel="stylesheet" />
+  <link href="/assets/css/owl.theme.default.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous">
+
+  <style>
+    :root {
+      --primary: #D14905;
+      --primary-light: #fef2f2;
+      --secondary: #2c3e50;
+      --bg-body: #ffffff;
+      --bg-sidebar: #f5f5f5;
+      --text-dark: #222;
+      --text-muted: #666;
+      --sidebar-width: 280px;
+      --white: #ffffff;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --border: #eeeeee;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-dark);
+      display: flex;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Force Font Awesome for icons */
+    .fas,
+    .fa-solid,
+    .fa {
+      font-family: "Font Awesome 6 Free" !important;
+      font-weight: 900 !important;
+      display: inline-block !important;
+      font-style: normal !important;
+      font-variant: normal !important;
+      text-rendering: auto !important;
+      -webkit-font-smoothing: antialiased !important;
+    }
+
+    /* Sidebar styles - EXACT MATCH to admin-dashboard.html */
+    .sidebar {
+      width: var(--sidebar-width);
+      height: 100vh;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      left: 0;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      z-index: 1000;
+    }
+
+    .sidebar-header {
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .sidebar-header img {
+      max-width: 100%;
+      height: auto;
+      max-height: 50px;
+      object-fit: contain;
+    }
+
+    .sidebar-header h2 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    .sidebar-nav {
+      flex-grow: 1;
+    }
+
+    .nav-item {
+      padding: 14px 25px;
+      display: flex;
+      align-items: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: all 0.3s;
+      border-left: 4px solid transparent;
+    }
+
+    .nav-item:hover {
+      color: var(--primary);
+      background-color: rgba(209, 73, 5, 0.05);
+    }
+
+    .nav-item.active {
+      color: var(--primary);
+      background-color: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      font-weight: 700;
+    }
+
+    .nav-item i {
+      margin-right: 15px;
+      font-size: 18px;
+      width: 24px;
+      text-align: center;
+    }
+
+    /* Main Content styles */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      width: calc(100% - var(--sidebar-width));
+      padding: 0;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0;
+      border-bottom: 1px solid var(--border);
+      padding: 15px 40px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+    }
+
+    .welcome h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+
+    .welcome p {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 0;
+    }
+
+    .admin-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .admin-email {
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: 14px;
+    }
+
+    .view-site-btn {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 10px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 10px rgba(209, 73, 5, 0.3);
+    }
+
+    .view-site-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(209, 73, 5, 0.4);
+      color: var(--white);
+    }
+
+    .logout-btn-container {
+      padding: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .logout-link {
+      width: 100%;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      color: #d63031;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .logout-link:hover {
+      background-color: #fff5f5;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        width: 80px;
+      }
+
+      .sidebar-header img {
+        max-width: 40px;
+      }
+
+      .sidebar-header h2,
+      .nav-item span {
+        display: none;
+      }
+
+      .main-content {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+      }
+
+      .nav-item {
+        justify-content: center;
+        padding: 20px 0;
+      }
+
+      .nav-item i {
+        margin-right: 0;
+      }
+    }
+
+    /* ── Overview Stack ── */
+    .activities-overview {
+      background: #f5f5f5;
+      padding: 80px 0;
+    }
+
+    .overview-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .overview-card {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 34px 38px;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.07);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .overview-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(209, 73, 5, 0.15);
+      border-color: rgba(209, 73, 5, 0.2);
+    }
+
+    .ov-icon {
+      flex-shrink: 0;
+      width: 76px;
+      height: 76px;
+      background: rgba(209, 73, 5, 0.08);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: #D14905;
+    }
+
+    .ov-body {
+      flex: 1;
+    }
+
+    .ov-body h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 10px;
+    }
+
+    .ov-body p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 17px;
+      color: #333;
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    .ov-stat {
+      flex-shrink: 0;
+      text-align: center;
+      padding: 0 24px;
+      border-left: 1px solid #f0f0f0;
+    }
+
+    .ov-stat .s-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: #D14905;
+      line-height: 1;
+    }
+
+    .ov-stat .s-lbl {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    .btn-learn-more {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #D14905;
+      color: #fff !important;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: 12px;
+      text-decoration: none !important;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(209, 73, 5, 0.3);
+      white-space: nowrap;
+    }
+
+    .btn-learn-more:hover {
+      background: #bd3c14;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(209, 73, 5, 0.45);
+    }
+
+    /* ── Detail Sections ── */
+    .activity-detail {
+      padding: 90px 0;
+      scroll-margin-top: 80px;
+      transition: background-color 0.4s ease;
+    }
+
+    @keyframes highlight-section {
+      0% {
+        background-color: rgba(209, 73, 5, 0.1);
+        box-shadow: 0 0 30px rgba(209, 73, 5, 0.1);
+      }
+
+      50% {
+        background-color: rgba(209, 73, 5, 0.05);
+      }
+
+      100% {
+        background-color: transparent;
+      }
+    }
+
+    .highlight-active {
+      animation: highlight-section 2.5s ease-out;
+    }
+
+    .activity-detail:nth-child(even) {
+      background: #fff;
+    }
+
+    .activity-detail:nth-child(odd) {
+      background: #f5f5f5;
+    }
+
+    .detail-inner {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .detail-inner.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .detail-img-wrap {
+      flex: 0 0 46%;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    .detail-img-wrap img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .detail-img-wrap:hover img {
+      transform: scale(1.04);
+    }
+
+    .detail-content {
+      flex: 1;
+    }
+
+    .detail-tag {
+      display: inline-block;
+      background: rgba(209, 73, 5, 0.1);
+      color: #D14905;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+
+    .sec-divider {
+      width: 52px;
+      height: 4px;
+      background: #D14905;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+
+    .detail-content h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin: 0 0 16px;
+      line-height: 1.2;
+    }
+
+    .detail-content p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 17px;
+      color: #333;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .detail-highlights {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 26px;
+    }
+
+    .detail-highlights li {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      color: #222;
+      padding: 8px 0;
+      border-bottom: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .detail-highlights li:last-child {
+      border-bottom: none;
+    }
+
+    .detail-highlights li::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #D14905;
+      flex-shrink: 0;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 991px) {
+      .activity-hero h1 {
+        font-size: 36px;
+      }
+
+      .activity-hero p {
+        font-size: 16px;
+      }
+
+      .overview-card {
+        flex-wrap: wrap;
+        gap: 18px;
+        padding: 24px;
+      }
+
+      .ov-stat {
+        border-left: none;
+        padding: 0 10px;
+      }
+
+      .detail-inner,
+      .detail-inner.reverse {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0 20px;
+      }
+
+      .detail-img-wrap {
+        flex: none;
+        width: 100%;
+      }
+
+      .detail-content h2 {
+        font-size: 26px;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .activity-hero {
+        padding: 100px 20px 60px;
+      }
+
+      .activity-hero h1 {
+        font-size: 28px;
+      }
+
+      .ov-stat {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img alt="MAHE" src="/assets/images/logo.webp" />
+      <h2>Admin Panel</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin-dashboard.html" class="nav-item">
+        <i class="fas fa-th-large"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="admin-dashboard.html" class="nav-item">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Courses</span>
+      </a>
+      <a href="activity2.html" class="nav-item active">
+        <i class="fas fa-tasks"></i>
+        <span>Activities (2)</span>
+      </a>
+      <a href="admin-dashboard.html" class="nav-item">
+        <i class="fas fa-chart-line"></i>
+        <span>Research & Impact</span>
+      </a>
+      <a href="admin-dashboard.html" class="nav-item">
+        <i class="fas fa-flask"></i>
+        <span>For research & innovation</span>
+      </a>
+      <a href="admin-dashboard.html" class="nav-item">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <span>For educators</span>
+      </a>
+      <a href="admin-dashboard.html" class="nav-item">
+        <i class="fas fa-user-clock"></i>
+        <span>Member Requests</span>
+        <span class="badge"
+          style="background-color: var(--primary); color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; margin-left: auto;">1</span>
+      </a>
+      <a href="admin-dashboard.html" class="nav-item">
+        <i class="fas fa-history"></i>
+        <span>Audit Logs</span>
+      </a>
+    </nav>
+    <div class="logout-btn-container">
+      <a href="#" class="logout-link">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Sign Out</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <header class="dashboard-header">
+      <div class="welcome">
+        <h1>Activities (2) Overview</h1>
+        <p>Manage secondary projects and initiatives</p>
+      </div>
+      <div class="admin-info">
+        <span class="admin-email" id="displayEmail">admin@manipal.edu</span>
+        <a href="index.html" class="view-site-btn" style="padding: 8px 20px;">View Site</a>
+      </div>
+    </header>
+
+    <!-- ── Hero Banner ── -->
+    <div class="inner-banner topSection" style="margin-top: 0;">
+      <div class="inner-banner-pic">
+        <img class="for-dec" src="/assets/images/gallery1.png"
+          style="max-height: 35vh; width: 100%; object-fit: cover; object-position: center 25%;" />
+        <img class="for-mob" src="/assets/images/gallery1.png"
+          style="max-height: 35vh; width: 100%; object-fit: cover; object-position: center 25%;" />
+      </div>
+      <div class="inner-banner-text" style="padding-top: 50px !important; padding-left: 60px !important;">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-10 d-flex flex-column align-items-start justify-content-start">
+              <h2 style="font-size: 32px; line-height: 1.1; margin-bottom: 15px;">
+                Empowering the Next Generation of<br> Healthcare-AI Leaders
+              </h2>
+              <p style="max-width: 600px; font-size: 16px; line-height: 1.5; color: rgba(255,255,255,0.95);">
+                Moving beyond traditional medical education. We provide a 360-degree integration of clinical expertise,
+                data science, and engineering to translate AI research into real-world patient care.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Overview Cards ── -->
+    <section class="activities-overview" id="overview">
+      <div class="container">
+        <p class="act-eyebrow text-center" data-aos="fade-up">What We Do</p>
+        <h2 class="titel48 w700 text-center" data-aos="fade-up" data-aos-delay="80" style="color:#1a1a1a;">
+          Explore Our Activities
+        </h2>
+        <div class="overview-stack">
+
+          <!-- 1. Clinical Research -->
+          <div class="overview-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="ov-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3" />
+                <path d="M8 15v1a6 6 0 0 0 6 6h2a6 6 0 0 0 6-6v-4" />
+                <circle cx="20" cy="10" r="2" />
+              </svg>
+            </div>
+            <div class="ov-body">
+              <h3>Clinical Research</h3>
+              <p>Our department conducts pioneering clinical research integrating AI with patient data to improve
+                diagnostics, treatment planning, and patient outcomes across multiple healthcare domains.</p>
+            </div>
+            <div class="ov-stat">
+              <div class="s-num">17+</div>
+              <div class="s-lbl">Projects</div>
+            </div>
+            <a href="#clinical-research" class="btn-learn-more">Learn More →</a>
+          </div>
+
+          <!-- 2. Industry Collabs -->
+          <div class="overview-card" data-aos="fade-up" data-aos-delay="140">
+            <div class="ov-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                <path
+                  d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+                <path d="m21 3 1 11h-2" />
+                <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+                <path d="M3 4h8" />
+              </svg>
+            </div>
+            <div class="ov-body">
+              <h3>Industry Collaborations</h3>
+              <p>We partner with leading healthcare companies and technology firms to bridge the gap between academic
+                research and real-world medical AI solutions, offering students industry exposure.</p>
+            </div>
+            <div class="ov-stat">
+              <div class="s-num">5+</div>
+              <div class="s-lbl">Partners</div>
+            </div>
+            <a href="#industry-collabs" class="btn-learn-more">Learn More →</a>
+          </div>
+
+          <!-- 3. Student Projects -->
+          <div class="overview-card" data-aos="fade-up" data-aos-delay="180">
+            <div class="ov-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                <path d="M6 12v5c0 2.21 2.686 4 6 4s6-1.79 6-4v-5" />
+              </svg>
+            </div>
+            <div class="ov-body">
+              <h3>Student Projects</h3>
+              <p>Students work on hands-on AI projects addressing real healthcare challenges — from medical imaging
+                tools
+                to predictive models for epidemic surveillance and hospital management.</p>
+            </div>
+            <div class="ov-stat">
+              <div class="s-num">3+</div>
+              <div class="s-lbl">Projects</div>
+            </div>
+            <a href="#student-projects" class="btn-learn-more">Learn More →</a>
+          </div>
+
+          <!-- 4. Guest Speakers -->
+          <div class="overview-card" data-aos="fade-up" data-aos-delay="220">
+            <div class="ov-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="2" width="6" height="11" rx="3" />
+                <path d="M5 10a7 7 0 0 0 14 0" />
+                <line x1="12" y1="19" x2="12" y2="22" />
+                <line x1="8" y1="22" x2="16" y2="22" />
+              </svg>
+            </div>
+            <div class="ov-body">
+              <h3>Guest Speakers</h3>
+              <p>We regularly host distinguished experts from academia, industry, and hospitals who share their insights
+                on the latest breakthroughs in AI, healthcare, and medical technology.</p>
+            </div>
+            <div class="ov-stat">
+              <div class="s-num">1</div>
+              <div class="s-lbl">Event</div>
+            </div>
+            <a href="#guest-speakers" class="btn-learn-more">Learn More →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ DETAIL SECTIONS ═══════════════ -->
+
+    <!-- 1. Clinical Research -->
+    <section class="activity-detail" id="clinical-research">
+      <div class="detail-inner">
+        <div class="detail-img-wrap" data-aos="fade-right">
+          <img src="/assets/images/home/img2.png" alt="Clinical Research at KMC Manipal" />
+        </div>
+        <div class="detail-content" data-aos="fade-left">
+          <h2>Clinical Research</h2>
+          <p>
+            At the Department of AI in Healthcare, clinical research forms the backbone of our scientific mission.
+            Our interdisciplinary teams work at the intersection of medicine, data science, and engineering to design
+            studies that directly improve patient care.
+          </p>
+          <p>
+            Collaborating with KMC hospitals and Manipal's vast clinical network, we have access to rich de-identified
+            patient datasets that fuel research in diagnostics, disease prediction, medical imaging analysis, and
+            personalised medicine.
+          </p>
+          <ul class="detail-highlights">
+            <li>AI-driven early detection of chronic diseases</li>
+            <li>Medical imaging analysis using deep learning</li>
+            <li>Predictive modelling for ICU patient outcomes</li>
+            <li>NLP-based clinical documentation systems</li>
+            <li>Federated learning for privacy-preserving healthcare AI</li>
+          </ul>
+          <a href="contact-us.html" class="btn-learn-more">Get Involved →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Industry Collaborations -->
+    <section class="activity-detail" id="industry-collabs">
+      <div class="detail-inner reverse">
+        <div class="detail-img-wrap" data-aos="fade-left">
+          <img src="/assets/images/activities/industry-collabs.png" alt="Industry Collaborations" />
+        </div>
+        <div class="detail-content" data-aos="fade-right">
+          <h2>Industry Collaborations</h2>
+          <p>
+            We believe the best AI solutions for healthcare emerge when academia and industry work side by side.
+            Our department actively cultivates relationships with healthcare technology companies, hospitals, and
+            startups to co-develop solutions that scale.
+          </p>
+          <p>
+            These partnerships provide our students and faculty with access to real-world datasets, cutting-edge
+            infrastructure, and mentorship from industry leaders — ensuring that our graduates are industry-ready
+            from day one.
+          </p>
+          <ul class="detail-highlights">
+            <li>Joint R&amp;D projects with health-tech firms</li>
+            <li>Industry-sponsored student capstone projects</li>
+            <li>Internship and placement pipelines</li>
+            <li>Co-authored publications and IP development</li>
+            <li>Workshops and technology transfer sessions</li>
+          </ul>
+          <a href="contact-us.html" class="btn-learn-more">Partner With Us →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Student Projects -->
+    <section class="activity-detail" id="student-projects">
+      <div class="detail-inner">
+        <div class="detail-img-wrap" data-aos="fade-right">
+          <img src="/assets/images/activities/student-projects.png" alt="Student Projects" />
+        </div>
+        <div class="detail-content" data-aos="fade-left">
+          <h2>Student Projects</h2>
+          <p>
+            Our students are not just learners — they are innovators. From their first semester, students are
+            encouraged to propose, design, and execute AI projects that solve genuine healthcare problems under
+            the guidance of expert faculty and industry mentors.
+          </p>
+          <p>
+            Projects span radiology AI, mental health monitoring, epidemic forecasting, wearable health sensors,
+            and hospital management systems — many go on to be published or commercialised.
+          </p>
+          <ul class="detail-highlights">
+            <li>AI-powered retinal disease screening tool</li>
+            <li>Smart triage system for emergency departments</li>
+            <li>Epidemic forecasting using social media signals</li>
+            <li>Wearable vitals monitoring with anomaly detection</li>
+            <li>NLP chatbot for patient symptom triage</li>
+            <li>Federated learning for privacy-preserving healthcare AI</li>
+          </ul>
+          <a href="programs.html" class="btn-learn-more">Explore Programmes →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Guest Speakers -->
+    <section class="activity-detail" id="guest-speakers">
+      <div class="detail-inner reverse">
+        <div class="detail-img-wrap" data-aos="fade-left">
+          <img src="/assets/images/mahe2.webp" alt="Guest Speakers" style="object-position: center top;" />
+        </div>
+        <div class="detail-content" data-aos="fade-right">
+          <h2>Guest Speakers</h2>
+          <p>
+            We regularly invite distinguished researchers, clinicians, and technology leaders to share their
+            knowledge with our community. These sessions provide students and faculty with direct exposure to
+            the cutting edge of AI in healthcare globally.
+          </p>
+          <p>
+            Our speaker series covers AI ethics, precision medicine, large language models in clinical settings,
+            global health data challenges, and transformative case studies from leading healthcare systems worldwide.
+          </p>
+          <ul class="detail-highlights">
+            <li>Keynotes from global AI &amp; health experts</li>
+            <li>Interactive Q&amp;A and panel discussions</li>
+            <li>Workshops and hands-on demo sessions</li>
+            <li>Networking opportunities with visiting researchers</li>
+            <li>Recorded sessions available to the student community</li>
+          </ul>
+          <a href="contact-us.html" class="btn-learn-more">Stay Updated →</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="last-footer">© 2026 Manipal Academy of Higher Education</div>
+  </div>
+
+  <!-- Activity Content Scripts - Loaded late to avoid conflicts -->
+  <link href="/assets/css/style.css" rel="stylesheet" />
+  <link href="/assets/css/index.css" rel="stylesheet" />
+  <link href="/assets/css/responsive.css" rel="stylesheet" />
+  <link href="/assets/css/footer_styles.css" rel="stylesheet" />
+
+  <script src="/assets/js/jquery-3.7.1.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/owl.carousel.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, once: false });
+
+    // Logout function
+    function logout() {
+      localStorage.removeItem("isAdmin");
+      localStorage.removeItem("adminEmail");
+      window.location.href = "Admin.html";
+    }
+
+    // Check if admin
+    if (localStorage.getItem("isAdmin") !== "true") {
+      window.location.href = "Admin.html";
+    }
+
+    $(document).ready(function () {
+      const email = localStorage.getItem("adminEmail");
+      if (email) {
+        console.log("Logged in as:", email);
+        document.getElementById('displayEmail').innerText = email;
+      }
+
+      $('.logout-link').on('click', function (e) {
+        e.preventDefault();
+        logout();
+      });
+
+      // Function to highlight and scroll to a section
+      function highlightAndScroll(targetId) {
+        if (targetId.startsWith('#') && targetId.length > 1) {
+          var $target = $(targetId);
+          if ($target.length) {
+            $('.activity-detail').removeClass('highlight-active');
+            $target.addClass('highlight-active');
+            $('html, body').animate({
+              scrollTop: $target.offset().top - 80
+            }, 600);
+            setTimeout(function () {
+              $target.removeClass('highlight-active');
+            }, 2600);
+          }
+        }
+      }
+
+      // Handle "Learn More" clicks and other internal links
+      $('a[href^="#"]').on('click', function (e) {
+        var targetId = $(this).attr('href');
+        if (targetId.startsWith('#') && targetId !== '#') {
+          e.preventDefault();
+          highlightAndScroll(targetId);
+        }
+      });
+
+      // Handle loading with hash
+      var currentHash = window.location.hash;
+      if (currentHash && currentHash !== '#overview') {
+        setTimeout(function () {
+          highlightAndScroll(currentHash);
+        }, 500);
+      }
+    });
+  </script>
+</body>
+
+</html>

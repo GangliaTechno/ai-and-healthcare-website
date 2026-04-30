@@ -3,792 +3,1832 @@
 <meta content="text/html;charset=utf-8" http-equiv="content-type" />
 
 <head>
-  <meta charset="utf-8" />
-  <meta content="ie=edge" http-equiv="x-ua-compatible" />
-  <meta content="width=device-width, initial-scale=1,user-scalable=0" name="viewport" />
-  <meta content="index,follow" name="robots" />
-  <title>Activities – Dept of AI in Healthcare</title>
-  <meta
-    content="Explore our Clinical Research, Industry Collaborations, Student Projects and Guest Speaker activities at the Department of AI in Healthcare, KMC Manipal."
-    name="description" />
-  <link href="/assets/images/fav-transparent.png" rel="icon" type="image/ico" />
-  <link href="https://fonts.googleapis.com" rel="preconnect" />
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap"
-    rel="stylesheet" />
-  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="/assets/css/owl.carousel.min.css" rel="stylesheet" />
-  <link href="/assets/css/owl.theme.default.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-  <link href="/assets/css/style.css" rel="stylesheet" />
-  <link href="/assets/css/index.css" rel="stylesheet" />
-  <link href="/assets/css/responsive.css" rel="stylesheet" />
-  <link href="/assets/css/footer_styles.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta content="ie=edge" http-equiv="x-ua-compatible" />
+    <meta content="width=device-width, initial-scale=1,user-scalable=0" name="viewport" />
+    <meta content="index,follow" name="robots" />
+    <title>Activities – Dept. of AI in Healthcare</title>
+    <meta
+        content="Explore our Clinical Research, Industry Collaborations, Student Projects and Guest Speaker activities at the Department of AI in Healthcare, KMC Manipal."
+        name="description" />
+    <link href="/assets/images/fav-transparent.png" rel="icon" type="image/ico" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="/assets/css/owl.theme.default.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous">
+    <link href="/assets/css/style.css" rel="stylesheet" />
 
-  <style>
-    /* ── Overview Stack ── */
-    .activities-overview {
-      background: #f5f5f5;
-      padding: 80px 0;
-    }
+    <style>
+        :root {
+            --primary: #D14905;
+            --primary-light: #fef2f2;
+            --secondary: #2c3e50;
+            --bg-body: #ffffff;
+            --bg-sidebar: #f5f5f5;
+            --text-dark: #222;
+            --text-muted: #666;
+            --sidebar-width: 280px;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --border: #eeeeee;
+        }
 
-    .overview-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      margin-top: 50px;
-    }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
 
-    .overview-card {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      background: #fff;
-      border-radius: 20px;
-      padding: 34px 38px;
-      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.07);
-      border: 1px solid rgba(0, 0, 0, 0.04);
-      transition: all 0.3s ease;
-    }
+        /* Force Font Awesome for icons */
+        .fas,
+        .fa-solid,
+        .fa {
+            font-family: "Font Awesome 6 Free" !important;
+            font-weight: 900 !important;
+            display: inline-block !important;
+            font-style: normal !important;
+            font-variant: normal !important;
+            text-rendering: auto !important;
+            -webkit-font-smoothing: antialiased !important;
+        }
 
-    .overview-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(209, 73, 5, 0.15);
-      border-color: rgba(209, 73, 5, 0.2);
-    }
+        /* Sidebar styles - EXACT MATCH to admin-dashboard.html */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            z-index: 1000;
+        }
 
-    .ov-icon {
-      flex-shrink: 0;
-      width: 76px;
-      height: 76px;
-      background: rgba(209, 73, 5, 0.08);
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      color: #D14905;
-    }
+        .sidebar-header {
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
 
-    .ov-body {
-      flex: 1;
-    }
+        .sidebar-header img {
+            max-width: 100%;
+            height: auto;
+            max-height: 50px;
+            object-fit: contain;
+        }
 
-    .ov-body h3 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin: 0 0 10px;
-    }
+        .sidebar-header h2 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
 
-    .ov-body p {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 17px;
-      color: #333;
-      margin: 0;
-      line-height: 1.65;
-    }
+        .sidebar-nav {
+            flex-grow: 1;
+        }
 
-    .ov-stat {
-      flex-shrink: 0;
-      text-align: center;
-      padding: 0 24px;
-      border-left: 1px solid #f0f0f0;
-    }
+        .sidebar .nav-item {
+            padding: 14px 25px;
+            display: flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
 
-    .ov-stat .s-num {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 40px;
-      font-weight: 800;
-      color: #D14905;
-      line-height: 1;
-    }
+        .sidebar .nav-item:hover {
+            color: var(--primary);
+            background-color: rgba(209, 73, 5, 0.05);
+        }
 
-    .ov-stat .s-lbl {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: #aaa;
-      margin-top: 4px;
-    }
+        .sidebar .nav-item.active {
+            color: var(--primary);
+            background-color: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            font-weight: 700;
+        }
 
-    .btn-learn-more {
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #D14905;
-      color: #fff !important;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 12px 22px;
-      border-radius: 12px;
-      text-decoration: none !important;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(209, 73, 5, 0.3);
-      white-space: nowrap;
-    }
+        .nav-item i {
+            margin-right: 15px;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
 
-    .btn-learn-more:hover {
-      background: #bd3c14;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(209, 73, 5, 0.45);
-    }
+        /* Main Content styles */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 0;
+        }
 
-    /* ── Detail Sections ── */
-    .activity-detail {
-      padding: 90px 0;
-      scroll-margin-top: 80px;
-      transition: background-color 0.4s ease;
-    }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0;
+            border-bottom: 1px solid var(--border);
+            padding: 15px 40px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+        }
 
-    @keyframes highlight-section {
-      0% {
-        background-color: rgba(209, 73, 5, 0.1);
-        box-shadow: 0 0 30px rgba(209, 73, 5, 0.1);
-      }
+        .welcome h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
 
-      50% {
-        background-color: rgba(209, 73, 5, 0.05);
-      }
+        .welcome p {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 0;
+        }
 
-      100% {
-        background-color: transparent;
-      }
-    }
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-    .highlight-active {
-      animation: highlight-section 2.5s ease-out;
-    }
+        .admin-email {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
 
-    .activity-detail:nth-child(even) {
-      background: #fff;
-    }
+        .view-site-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(209, 73, 5, 0.3);
+        }
 
-    .activity-detail:nth-child(odd) {
-      background: #f5f5f5;
-    }
+        .view-site-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(209, 73, 5, 0.4);
+            color: var(--white);
+        }
 
-    .detail-inner {
-      display: flex;
-      align-items: center;
-      gap: 60px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
+        .logout-btn-container {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+        }
 
-    .detail-inner.reverse {
-      flex-direction: row-reverse;
-    }
+        .logout-link {
+            width: 100%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            color: #d63031;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
 
-    .detail-img-wrap {
-      flex: 0 0 46%;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-    }
+        .logout-link:hover {
+            background-color: #fff5f5;
+        }
 
-    .detail-img-wrap img {
-      width: 100%;
-      height: 360px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 80px;
+            }
 
-    .detail-img-wrap:hover img {
-      transform: scale(1.04);
-    }
+            .sidebar-header img {
+                max-width: 40px;
+            }
 
-    .detail-content {
-      flex: 1;
-    }
+            .sidebar-header h2,
+            .nav-item span {
+                display: none;
+            }
 
-    .detail-tag {
-      display: inline-block;
-      background: rgba(209, 73, 5, 0.1);
-      color: #D14905;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 50px;
-      margin-bottom: 14px;
-    }
+            .main-content {
+                margin-left: 80px;
+                width: calc(100% - 80px);
+            }
 
-    .sec-divider {
-      width: 52px;
-      height: 4px;
-      background: #D14905;
-      border-radius: 2px;
-      margin-bottom: 18px;
-    }
+            .nav-item {
+                justify-content: center;
+                padding: 20px 0;
+            }
 
-    .detail-content h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 36px;
-      font-weight: 800;
-      color: #1a1a1a;
-      margin: 0 0 16px;
-      line-height: 1.2;
-    }
+            .nav-item i {
+                margin-right: 0;
+            }
+        }
 
-    .detail-content p {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 17px;
-      color: #333;
-      line-height: 1.75;
-      margin-bottom: 14px;
-    }
+        /* ── Overview Stack ── */
+        .activities-overview {
+            background: #f5f5f5;
+            padding: 80px 0;
+        }
 
-    .detail-highlights {
-      list-style: none;
-      padding: 0;
-      margin: 18px 0 26px;
-    }
+        .overview-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 50px;
+        }
 
-    .detail-highlights li {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
-      color: #222;
-      padding: 8px 0;
-      border-bottom: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .overview-card {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 34px 38px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.07);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
 
-    .detail-highlights li:last-child {
-      border-bottom: none;
-    }
+        .overview-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(209, 73, 5, 0.15);
+            border-color: rgba(209, 73, 5, 0.2);
+        }
 
-    .detail-highlights li::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #D14905;
-      flex-shrink: 0;
-    }
+        .ov-icon {
+            flex-shrink: 0;
+            width: 76px;
+            height: 76px;
+            background: rgba(209, 73, 5, 0.08);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #D14905;
+        }
 
-    /* ── Responsive ── */
-    @media (max-width: 991px) {
-      .activity-hero h1 {
-        font-size: 36px;
-      }
+        .ov-body {
+            flex: 1;
+        }
 
-      .activity-hero p {
-        font-size: 16px;
-      }
+        .ov-body h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 10px;
+        }
 
-      .overview-card {
-        flex-wrap: wrap;
-        gap: 18px;
-        padding: 24px;
-      }
+        .ov-body p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 17px;
+            color: #333;
+            margin: 0;
+            line-height: 1.65;
+        }
 
-      .ov-stat {
-        border-left: none;
-        padding: 0 10px;
-      }
+        .ov-stat {
+            flex-shrink: 0;
+            text-align: center;
+            padding: 0 24px;
+            border-left: 1px solid #f0f0f0;
+        }
 
-      .detail-inner,
-      .detail-inner.reverse {
-        flex-direction: column;
-        gap: 30px;
-        padding: 0 20px;
-      }
+        .ov-stat .s-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            font-weight: 800;
+            color: #D14905;
+            line-height: 1;
+        }
 
-      .detail-img-wrap {
-        flex: none;
-        width: 100%;
-      }
+        .ov-stat .s-lbl {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #aaa;
+            margin-top: 4px;
+        }
 
-      .detail-content h2 {
-        font-size: 26px;
-      }
-    }
+        .btn-learn-more {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #D14905;
+            color: #fff !important;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 12px 22px;
+            border-radius: 12px;
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(209, 73, 5, 0.3);
+            white-space: nowrap;
+        }
 
-    @media (max-width: 575px) {
-      .activity-hero {
-        padding: 100px 20px 60px;
-      }
+        .btn-learn-more:hover {
+            background: #bd3c14;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(209, 73, 5, 0.45);
+        }
 
-      .activity-hero h1 {
-        font-size: 28px;
-      }
+        /* ── Detail Sections ── */
+        .activity-detail {
+            padding: 90px 0;
+            scroll-margin-top: 80px;
+            transition: background-color 0.4s ease;
+        }
 
-      .ov-stat {
-        display: none;
-      }
-    }
-  </style>
+        @keyframes highlight-section {
+            0% {
+                background-color: rgba(209, 73, 5, 0.1);
+                box-shadow: 0 0 30px rgba(209, 73, 5, 0.1);
+            }
+
+            50% {
+                background-color: rgba(209, 73, 5, 0.05);
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+
+        .highlight-active {
+            animation: highlight-section 2.5s ease-out;
+        }
+
+        .activity-detail:nth-child(even) {
+            background: #fff;
+        }
+
+        .activity-detail:nth-child(odd) {
+            background: #f5f5f5;
+        }
+
+        /* Research & Impact Specific */
+        .completed-projects-section {
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .completed-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .impact-project-card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+
+        .impact-project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(209, 73, 5, 0.1);
+            border-color: rgba(209, 73, 5, 0.2);
+        }
+
+        .impact-project-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .impact-project-card p {
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .impact-project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #718096;
+            font-weight: 600;
+        }
+
+        .impact-project-meta .domain {
+            color: #D14905;
+            background: rgba(209, 73, 5, 0.08);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .detail-inner {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .detail-inner.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .detail-img-wrap {
+            flex: 0 0 46%;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .detail-img-wrap img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .detail-img-wrap:hover img {
+            transform: scale(1.04);
+        }
+
+        .detail-content {
+            flex: 1;
+        }
+
+        .detail-tag {
+            display: inline-block;
+            background: rgba(209, 73, 5, 0.1);
+            color: #D14905;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 50px;
+            margin-bottom: 14px;
+        }
+
+        .sec-divider {
+            width: 52px;
+            height: 4px;
+            background: #D14905;
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        .detail-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin: 0 0 16px;
+            line-height: 1.2;
+        }
+
+        .detail-content p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 17px;
+            color: #333;
+            line-height: 1.75;
+            margin-bottom: 14px;
+        }
+
+        .detail-highlights {
+            list-style: none;
+            padding: 0;
+            margin: 18px 0 26px;
+        }
+
+        .detail-highlights li {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #222;
+            padding: 8px 0;
+            border-bottom: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-highlights li:last-child {
+            border-bottom: none;
+        }
+
+        .detail-highlights li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #D14905;
+            flex-shrink: 0;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 991px) {
+            .activity-hero h1 {
+                font-size: 36px;
+            }
+
+            .activity-hero p {
+                font-size: 16px;
+            }
+
+            .overview-card {
+                flex-wrap: wrap;
+                gap: 18px;
+                padding: 24px;
+            }
+
+            .ov-stat {
+                border-left: none;
+                padding: 0 10px;
+            }
+
+            .detail-inner,
+            .detail-inner.reverse {
+                flex-direction: column;
+                gap: 30px;
+                padding: 0 20px;
+            }
+
+            .detail-img-wrap {
+                flex: none;
+                width: 100%;
+            }
+
+            .detail-content h2 {
+                font-size: 26px;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .activity-hero {
+                padding: 100px 20px 60px;
+            }
+
+            .activity-hero h1 {
+                font-size: 28px;
+            }
+
+            .ov-stat {
+                display: none;
+            }
+        }
+
+        /* ── Modern Stats Widget Design ── */
+        .stats-section {
+            padding: 50px 40px;
+            background: #ffffff;
+        }
+
+        .stats-widget {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            display: flex;
+            border: 1px solid #edf2f7;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+
+        .stat-box {
+            flex: 1;
+            padding: 35px 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+            border-right: 1px solid #edf2f7;
+            position: relative;
+        }
+
+        .stat-box:last-child {
+            border-right: none;
+        }
+
+        .stat-box:hover {
+            background: #fdfaf9;
+        }
+
+        .stat-box::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #D14905;
+            transition: width 0.3s ease;
+        }
+
+        .stat-box:hover::after {
+            width: 100%;
+        }
+
+        .stat-icon-circle {
+            width: 64px;
+            height: 64px;
+            background: #fff5f0;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover .stat-icon-circle {
+            background: #D14905;
+            transform: rotate(-5deg);
+        }
+
+        .stat-icon-circle i {
+            font-size: 26px;
+            color: #D14905;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover .stat-icon-circle i {
+            color: #ffffff;
+        }
+
+        .stat-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-info .s-count {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1a202c;
+            line-height: 1;
+        }
+
+        .stat-info .s-text {
+            font-size: 11px;
+            font-weight: 700;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 1100px) {
+            .stats-widget {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-box:nth-child(2) {
+                border-right: none;
+            }
+
+            .stat-box:nth-child(1),
+            .stat-box:nth-child(2) {
+                border-bottom: 1px solid #edf2f7;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .stats-widget {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-box {
+                border-right: none !important;
+                padding: 25px 20px;
+            }
+
+            .stat-box:not(:last-child) {
+                border-bottom: 1px solid #edf2f7;
+            }
+
+            .stats-section {
+                padding: 30px 20px;
+            }
+        }
+
+        /* ── Management Toolbar ── */
+        .mgmt-toolbar {
+            max-width: 1200px;
+            margin: 24px auto 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn-mgmt {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: white;
+            text-decoration: none !important;
+        }
+
+        .btn-add-card {
+            background: #10b981;
+            /* Emerald 500 */
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-add-card:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .btn-edit-page {
+            background: #3b82f6;
+            /* Blue 500 */
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn-edit-page:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-mgmt i {
+            font-size: 16px;
+        }
+
+        @media (max-width: 640px) {
+            .mgmt-toolbar {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .mgmt-toolbar {
+                justify-content: center;
+            }
+        }
+
+        /* ── Add Card Form Styling ── */
+        .add-card-form {
+            max-width: 1200px;
+            margin: 24px auto;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #edf2f7;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            display: none;
+            animation: slideDownFade 0.4s ease forwards;
+        }
+
+        @keyframes slideDownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            border-color: #D14905;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(209, 73, 5, 0.1);
+        }
+
+        .icon-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .icon-opt {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #718096;
+            transition: all 0.2s;
+        }
+
+        .icon-opt:hover {
+            border-color: #D14905;
+            color: #D14905;
+        }
+
+        .icon-opt.selected {
+            background: #D14905;
+            border-color: #D14905;
+            color: #ffffff;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #edf2f7;
+        }
+
+        .btn-save {
+            background: #D14905;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-save:hover {
+            background: #b53f04;
+            transform: translateY(-1px);
+        }
+
+        .btn-cancel {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background: #e2e8f0;
+        }
+
+        /* --- Public View Adjustments --- */
+        body.public-view {
+            display: block !important;
+        }
+
+        .public-view .sidebar,
+        .public-view #adminHeader,
+        .public-view .mgmt-toolbar {
+            display: none !important;
+        }
+
+        .public-view .main-content {
+            margin-left: 0 !important;
+            width: 100% !important;
+            padding-top: 0 !important;
+            /* Reduced space */
+        }
+
+        .public-view #publicHeader {
+            display: block !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* Prevent sidebar styles from leaking into main navbar */
+        .public-view .navbar-nav .nav-link {
+            background: transparent !important;
+            margin-top: 20px !important;
+        }
+
+        .public-view .navbar-nav .nav-link:hover {
+            background: transparent !important;
+            text-decoration: underline !important;
+            text-underline-offset: 8px;
+        }
+
+        #publicHeader {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-  <!-- Announcement Bar -->
-  <div class="announcebar-wp" id="mahe-announcement-bar">
-    <div class="announce-bar-main">
-      <h5 class="announce-txt">Announcement</h5>
-      <div class="text-wp js-announce-carousel owl-carousel owl-theme">
-        <div class="item">
-          <a href="https://MAHE.ishinfo.com/SYMMAHEY25/Register/Index.aspx" target="_blank">Applications for B.Sc. and
-            B.B.A. Artificial Intelligence are now open! Click here to Apply.</a>
-        </div>
-        <div class="item">
-          <a href="https://MAHE.ishinfo.com/SYMMAHEY25/Register/Index.aspx" target="_blank">Applications for B.Sc. and
-            B.B.A. Artificial Intelligence are now open! Click here to Apply.</a>
-        </div>
-      </div>
-      <div class="announce-close-icon">
-        <a href="#" class="js-announce-close"
-          onclick="document.getElementById('mahe-announcement-bar').style.display='none'; return false;">X</a>
-      </div>
-    </div>
-  </div>
 
-  <!-- Header -->
-  <header class="sticky">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12 top-flex">
-          <div class="top-left d-flex align-items-center">
-            <a href="index.html" class="navbar-brand-wrapper">
-              <img alt="MAHE" src="/assets/images/logo.webp" />
+    <!-- MAHE Top Yellow Announcement Bar -->
+    <div id="publicHeader">
+        <div class="announcebar-wp" id="mahe-announcement-bar">
+            <div class="announce-bar-main">
+                <h5 class="announce-txt">Announcement</h5>
+                <div class="text-wp js-announce-carousel owl-carousel owl-theme">
+                    <div class="item">
+                        <a href="https://MAHE.ishinfo.com/SYMMAHEY25/Register/Index.aspx" target="_blank">Applications
+                            for
+                            B.Sc. and
+                            B.B.A. Artificial Intelligence are now open! Click here to Apply.</a>
+                    </div>
+                    <div class="item">
+                        <a href="https://MAHE.ishinfo.com/SYMMAHEY25/Register/Index.aspx" target="_blank">Applications
+                            for
+                            B.Sc. and
+                            B.B.A. Artificial Intelligence are now open! Click here to Apply.</a>
+                    </div>
+                </div>
+                <div class="announce-close-icon">
+                    <a href="#" class="js-announce-close"
+                        onclick="document.getElementById('mahe-announcement-bar').style.display='none'; return false;">X</a>
+                </div>
+            </div>
+        </div>
+        <header class="sticky">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 top-flex">
+                        <div class="top-left d-flex align-items-center">
+                            <a href="index.html" class="navbar-brand-wrapper">
+                                <img alt="MAHE" src="/assets/images/logo.webp" />
+                            </a>
+                            <div class="institute-title-lockup">
+                                <span class="dept-name">Dept. of AI in Healthcare</span>
+                                <span class="college-name">Kasturba Medical College, Manipal</span>
+                            </div>
+                        </div>
+                        <div class="top-right">
+
+                            <nav class="navbar navbar-expand-lg">
+                                <button aria-controls="navbarNavDropdown" aria-expanded="false"
+                                    aria-label="Toggle navigation" class="navbar-toggler"
+                                    data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse" type="button">
+                                    <i aria-hidden="true" class="fa fa-bars"></i>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="index.html">Home</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a aria-expanded="false" class="nav-link dropdown-toggle"
+                                                data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#"
+                                                role="button">About Us</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                        href="activity.html?view=public">Activity</a></li>
+                                                <li><a class="dropdown-item"
+                                                        href="https://www.manipal.edu/kmc-manipal/department-faculty.html"
+                                                        target="_blank">Faculty</a></li>
+                                                <li><a class="dropdown-item"
+                                                        href="research-and-impact.html">Research&Impact</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="programs.html">Courses</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a aria-expanded="false" class="nav-link dropdown-toggle"
+                                                data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#"
+                                                role="button">Collaborate</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="for-research-and-innovation.html">For
+                                                        Research &
+                                                        Innovation</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="for-educators.html">For Educators</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="contact-us.html">Contact Us</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div class="sidebar" id="adminSidebar">
+        <div class="sidebar-header">
+            <img alt="MAHE" src="/assets/images/logo.webp" />
+            <h2>Admin Panel</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
             </a>
-            <div class="institute-title-lockup">
-              <span class="dept-name">Dept of AI in Healthcare</span>
-              <span class="college-name">Kasturba Medical College, Manipal</span>
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Courses</span>
+            </a>
+            <a href="activity.html" class="nav-item active">
+                <i class="fas fa-tasks"></i>
+                <span>Activities</span>
+            </a>
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Research & Impact</span>
+            </a>
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-flask"></i>
+                <span>For research & innovation</span>
+            </a>
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>For educators</span>
+            </a>
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-user-clock"></i>
+                <span>Member Requests</span>
+                <span class="badge"
+                    style="background-color: var(--primary); color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; margin-left: auto;">1</span>
+            </a>
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-history"></i>
+                <span>Audit Logs</span>
+            </a>
+        </nav>
+        <div class="logout-btn-container">
+            <a href="#" class="logout-link">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sign Out</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <header class="dashboard-header" id="adminHeader">
+            <div class="welcome">
+                <h1>Activities Overview</h1>
+                <p>Manage clinical research and student projects</p>
             </div>
+            <div class="admin-info">
+                <span class="admin-email" id="displayEmail">admin@manipal.edu</span>
+                <a href="index.html" class="view-site-btn" style="padding: 8px 20px;">View Site</a>
+            </div>
+        </header>
+
+        <!-- ── Modern Stats Widget ── -->
+        <section class="stats-section">
+            <div class="stats-widget" data-aos="fade-up">
+                <!-- 1. Clinical Research -->
+                <a href="#clinical-research" class="stat-box">
+                    <div class="stat-icon-circle">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="s-count">17+</span>
+                        <span class="s-text">Clinical Research</span>
+                    </div>
+                </a>
+                <!-- 2. Industry Collabs -->
+                <a href="#industry-collabs" class="stat-box">
+                    <div class="stat-icon-circle">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="s-count">5+</span>
+                        <span class="s-text">Industry Collabs</span>
+                    </div>
+                </a>
+                <!-- 3. Student Projects -->
+                <a href="#student-projects" class="stat-box">
+                    <div class="stat-icon-circle">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="s-count">3+</span>
+                        <span class="s-text">Student Projects</span>
+                    </div>
+                </a>
+                <!-- 4. Guest Speakers -->
+                <a href="#guest-speakers" class="stat-box">
+                    <div class="stat-icon-circle">
+                        <i class="fas fa-microphone-lines"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="s-count">1</span>
+                        <span class="s-text">Guest Speakers</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Management Toolbar -->
+            <div class="mgmt-toolbar" data-aos="fade-up" data-aos-delay="200">
+                <a href="javascript:void(0)" class="btn-mgmt btn-add-card" onclick="toggleAddForm()">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Add Card</span>
+                </a>
+                <a href="javascript:void(0)" class="btn-mgmt btn-edit-page">
+                    <i class="fas fa-edit"></i>
+                    <span>Edit Button</span>
+                </a>
+            </div>
+
+            <!-- Add Card Form (Added as per request) -->
+            <div id="addCardForm" class="add-card-form">
+                <h3 style="margin-top:0; margin-bottom:24px; color:#1a202c; font-size:20px; font-weight:800;">Create New
+                    Activity Card</h3>
+                <div class="form-group">
+                    <label>Heading</label>
+                    <input type="text" id="cardHeading" class="form-control" placeholder="e.g. Clinical Research">
+                </div>
+                <div class="form-group">
+                    <label>Content</label>
+                    <textarea id="cardContent" class="form-control" rows="3"
+                        placeholder="Describe the activity..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Activity Image</label>
+                    <input type="file" id="cardImageFile" class="form-control" accept="image/*"
+                        onchange="previewImage(this, 'addCardPreview')">
+                    <div id="addCardPreview" style="margin-top:10px; display:none;">
+                        <img src=""
+                            style="width:100%; max-height:200px; object-fit:cover; border-radius:12px; border:1px solid #edf2f7;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <label style="margin-bottom:0;">Select Icon</label>
+                        <a href="https://fontawesome.com/v6/search?q=healthcare&o=r&m=free" target="_blank"
+                            style="font-size:11px; color:#e85626; text-decoration:none; font-weight:600; display:flex; align-items:center; gap:4px;">
+                            <i class="fas fa-external-link-alt"></i> Browse more icons
+                        </a>
+                    </div>
+                    <div class="icon-selector" id="iconSelector">
+                        <div class="icon-opt selected" onclick="selectIcon(this, 'fa-stethoscope')"><i
+                                class="fas fa-stethoscope"></i></div>
+                        <div class="icon-opt" onclick="selectIcon(this, 'fa-handshake')"><i
+                                class="fas fa-handshake"></i></div>
+                        <div class="icon-opt" onclick="selectIcon(this, 'fa-graduation-cap')"><i
+                                class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="icon-opt" onclick="selectIcon(this, 'fa-microphone-lines')"><i
+                                class="fas fa-microphone-lines"></i></div>
+                        <div class="icon-opt" onclick="selectIcon(this, 'fa-flask')"><i class="fas fa-flask"></i></div>
+                        <div class="icon-opt" onclick="selectIcon(this, 'fa-heartbeat')"><i
+                                class="fas fa-heartbeat"></i></div>
+                        <div class="icon-opt" onclick="selectIcon(this, 'fa-brain')"><i class="fas fa-brain"></i></div>
+                        <div class="icon-opt" onclick="selectIcon(this, 'fa-hospital')"><i class="fas fa-hospital"></i>
+                        </div>
+                    </div>
+                    <input type="hidden" id="selectedIcon" value="fa-stethoscope">
+                </div>
+                <div class="form-actions">
+                    <button class="btn-save" onclick="saveNewCard()">Save Activity</button>
+                    <button class="btn-cancel" onclick="toggleAddForm()">Cancel</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Edit Activity Modal -->
+        <div id="editActivityModal" class="modal-overlay">
+            <div class="modal-content-wrapper">
+                <div class="modal-header">
+                    <h3>Edit Activity Details</h3>
+                    <button class="close-modal" onclick="closeEditModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editActivityId">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="editTitle" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Overview Content</label>
+                        <textarea id="editOverviewContent" class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Stat Number (e.g. 17+)</label>
+                                <input type="text" id="editStatNumber" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Stat Label (e.g. Projects)</label>
+                                <input type="text" id="editStatLabel" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Detail Description (One paragraph per line)</label>
+                        <textarea id="editDetailDescription" class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Activity Image</label>
+                        <input type="file" id="editImageFile" class="form-control" accept="image/*"
+                            onchange="previewImage(this, 'editImagePreview')">
+                        <div id="editImagePreview" style="margin-top:10px;">
+                            <img id="editImagePreviewImg" src=""
+                                style="width:100%; max-height:200px; object-fit:cover; border-radius:12px; border:1px solid #edf2f7;">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Highlights (One per line)</label>
+                        <textarea id="editHighlights" class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Button Text</label>
+                                <input type="text" id="editButtonText" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Button Link</label>
+                                <input type="text" id="editButtonLink" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-save" onclick="saveActivityEdit()">Save Changes</button>
+                    <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Styles -->
+        <style>
+            .public-view .stats-section {
+                display: none !important;
+            }
+
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(4px);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                z-index: 10001;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .modal-overlay.show {
+                display: flex;
+                opacity: 1;
+            }
+
+            .modal-content-wrapper {
+                background: white;
+                width: 90%;
+                max-width: 700px;
+                max-height: 90vh;
+                border-radius: 20px;
+                overflow-y: auto;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+                animation: modalSlideUp 0.4s ease;
+            }
+
+            @keyframes modalSlideUp {
+                from {
+                    transform: translateY(30px);
+                    opacity: 0;
+                }
+
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            .modal-header {
+                padding: 24px 30px;
+                border-bottom: 1px solid #eee;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: sticky;
+                top: 0;
+                background: white;
+                z-index: 1;
+            }
+
+            .modal-header h3 {
+                margin: 0;
+                font-size: 20px;
+                font-weight: 800;
+                color: #1a202c;
+            }
+
+            .close-modal {
+                background: none;
+                border: none;
+                font-size: 28px;
+                cursor: pointer;
+                color: #a0aec0;
+            }
+
+            .modal-body {
+                padding: 30px;
+            }
+
+            .modal-footer {
+                padding: 20px 30px;
+                border-top: 1px solid #eee;
+                display: flex;
+                justify-content: flex-end;
+                gap: 12px;
+            }
+
+            .btn-save {
+                background: #D14905;
+                color: white;
+                border: none;
+                padding: 10px 24px;
+                border-radius: 8px;
+                font-weight: 700;
+                cursor: pointer;
+            }
+
+            .btn-cancel {
+                background: #edf2f7;
+                color: #4a5568;
+                border: none;
+                padding: 10px 24px;
+                border-radius: 8px;
+                font-weight: 700;
+                cursor: pointer;
+            }
+
+            /* Edit Mode Styles */
+            .edit-indicator {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: #3b82f6;
+                color: white;
+                padding: 4px 10px;
+                border-radius: 4px;
+                font-size: 11px;
+                font-weight: 700;
+                display: none;
+                z-index: 10;
+                cursor: pointer;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .edit-mode-active .edit-indicator {
+                display: block;
+            }
+
+            .overview-card,
+            .activity-detail {
+                position: relative;
+            }
+
+            .btn-edit-page.active {
+                background: #1d4ed8;
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+        </style>
+
+        <!-- ── Overview Cards ── -->
+        <section class="activities-overview" id="overview">
+            <div class="container">
+                <p class="act-eyebrow text-center" data-aos="fade-up">What We Do</p>
+                <h2 class="titel48 w700 text-center" data-aos="fade-up" data-aos-delay="80" style="color:#1a1a1a;">
+                    Explore Our Activities
+                </h2>
+                <div class="overview-stack" id="overviewStack">
+                    <!-- Dynamic Content Loads Here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ DETAIL SECTIONS ═══════════════ -->
+        <div id="detailSections">
+            <!-- Dynamic Content Loads Here -->
+        </div>
+
+
+    </div>
+
+    <!-- Activity Content Scripts - Loaded late to avoid conflicts -->
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="/assets/css/index.css" rel="stylesheet" />
+    <link href="/assets/css/responsive.css" rel="stylesheet" />
+    <link href="/assets/css/footer_styles.css" rel="stylesheet" />
+
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/owl.carousel.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 700, once: false });
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem("isAdmin");
+            localStorage.removeItem("adminEmail");
+            window.location.href = "Admin.html";
+        }
+
+        // Determine mode based on URL or localStorage
+        const params = new URLSearchParams(window.location.search);
+        const viewParam = params.get('view');
+
+        let isPublicMode = true; // Default to public
+
+        if (viewParam === 'admin') {
+            isPublicMode = false;
+        } else if (viewParam === 'public') {
+            isPublicMode = true;
+        } else {
+            // Fallback to localStorage if no param
+            isPublicMode = localStorage.getItem("isAdmin") !== "true";
+        }
+
+        if (isPublicMode) {
+            document.body.classList.add('public-view');
+        } else {
+            document.body.classList.remove('public-view');
+        }
+
+        let activities = [];
+        let isEditMode = false;
+
+        $(document).ready(function () {
+            const email = localStorage.getItem("adminEmail");
+            if (email) {
+                document.getElementById('displayEmail').innerText = email;
+            }
+
+            $('.logout-link').on('click', function (e) {
+                e.preventDefault();
+                logout();
+            });
+
+            // Fetch and render activities
+            fetchActivities();
+
+            // Edit Button Toolbar Toggle
+            $('.btn-edit-page').on('click', function () {
+                toggleEditMode();
+            });
+
+            // Handle loading with hash
+            var currentHash = window.location.hash;
+            if (currentHash && currentHash !== '#overview') {
+                setTimeout(function () {
+                    highlightAndScroll(currentHash);
+                }, 800);
+            }
+        });
+
+        // Function to highlight and scroll to a section
+        function highlightAndScroll(targetId) {
+            if (targetId.startsWith('#') && targetId.length > 1) {
+                var $target = $(targetId);
+                if ($target.length) {
+                    $('.activity-detail').removeClass('highlight-active');
+                    $target.addClass('highlight-active');
+                    $('html, body').animate({
+                        scrollTop: $target.offset().top - 80
+                    }, 600);
+                    setTimeout(function () {
+                        $target.removeClass('highlight-active');
+                    }, 2600);
+                }
+            }
+        }
+
+        // Global click handler for hash links (needed for dynamic content)
+        $(document).on('click', 'a[href^="#"]', function (e) {
+            var targetId = $(this).attr('href');
+            if (targetId.startsWith('#') && targetId !== '#') {
+                e.preventDefault();
+                highlightAndScroll(targetId);
+            }
+        });
+
+        let researchEntries = [];
+
+        function fetchActivities() {
+            // Fetch activities
+            fetch('/api/activities')
+                .then(res => res.json())
+                .then(data => {
+                    activities = data;
+                    // Also fetch research entries for the Research & Impact section
+                    return fetch('/api/research');
+                })
+                .then(res => res.json())
+                .then(data => {
+                    researchEntries = data;
+                    renderActivities();
+                })
+                .catch(err => console.error("Error fetching data:", err));
+        }
+
+        function renderActivities() {
+            const stack = document.getElementById('overviewStack');
+            const details = document.getElementById('detailSections');
+
+            stack.innerHTML = '';
+            details.innerHTML = '';
+
+            activities.forEach((act, index) => {
+                const delay = 100 + (index * 40);
+                const isReverse = index % 2 !== 0;
+
+                // Render Overview Card
+                const overviewHtml = `
+          <div class="overview-card ${isEditMode ? 'edit-mode-active' : ''}" data-aos="fade-up" data-aos-delay="${delay}">
+            <div class="edit-indicator" onclick="openEditModal('${act._id}')">
+              <i class="fas fa-edit"></i> Edit
+            </div>
+            <div class="ov-icon">
+              ${act.icon}
+            </div>
+            <div class="ov-body">
+              <h3>${act.title}</h3>
+              <p>${act.overviewContent}</p>
+            </div>
+            <div class="ov-stat">
+              <div class="s-num">${act.statNumber}</div>
+              <div class="s-lbl">${act.statLabel}</div>
+            </div>
+            <a href="#${act.slug}" class="btn-learn-more">Learn More →</a>
           </div>
-          <div class="top-right">
-            <nav class="navbar navbar-expand-lg">
-              <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler" data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse" type="button">
-                <i aria-hidden="true" class="fa fa-bars"></i>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-auto-close="outside"
-                      data-bs-toggle="dropdown" href="#" role="button">About Us</a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item active" href="activity.html">Activity</a></li>
-                      <li><a class="dropdown-item" href="https://www.manipal.edu/kmc-manipal/department-faculty.html"
-                          target="_blank">Faculty</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside"
-                      data-bs-toggle="dropdown" href="#" role="button">Opportunities &amp; Resources</a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="programs.html">Academic</a></li>
-                      <li class="dropend">
-                        <a aria-expanded="false" class="dropdown-item dropdown-toggle" data-bs-auto-close="true"
-                          data-bs-toggle="dropdown" href="#" role="button">Research</a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Teaching</a></li>
-                          <li><a class="dropdown-item" href="#">Upcoming</a></li>
-                          <li><a class="dropdown-item" href="#">Ongoing</a></li>
-                        </ul>
-                      </li>
-                      <li><a class="dropdown-item" href="#">Innovation</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="contact-us.html">Contact Us</a>
-                  </li>
+        `;
+                stack.insertAdjacentHTML('beforeend', overviewHtml);
+
+                const detailHtml = `
+          <section class="activity-detail ${isEditMode ? 'edit-mode-active' : ''}" id="${act.slug}">
+            <div class="edit-indicator" onclick="openEditModal('${act._id}')">
+              <i class="fas fa-edit"></i> Edit Details
+            </div>
+            <div class="detail-inner ${isReverse ? 'reverse' : ''}">
+              <div class="detail-img-wrap" data-aos="${isReverse ? 'fade-left' : 'fade-right'}">
+                <img src="${act.image}" alt="${act.title}" />
+              </div>
+              <div class="detail-content" id="detail-content-${act.slug}" data-aos="${isReverse ? 'fade-right' : 'fade-left'}">
+                <h2>${act.title}</h2>
+                ${act.detailDescription.map(p => `<p>${p}</p>`).join('')}
+                <ul class="detail-highlights">
+                  ${act.highlights.map(h => `<li>${h}</li>`).join('')}
                 </ul>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- ── Hero Banner ── -->
-  <div class="inner-banner topSection" style="margin-top: 0;">
-    <div class="inner-banner-pic">
-      <img class="for-dec" src="/assets/images/gallery1.png"
-        style="max-height: 70vh; width: 100%; object-fit: cover; object-position: center 25%;" />
-      <img class="for-mob" src="/assets/images/gallery1.png"
-        style="max-height: 70vh; width: 100%; object-fit: cover; object-position: center 25%;" />
-    </div>
-    <div class="inner-banner-text" style="padding-top: 70px !important;">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12 d-flex flex-column align-items-start justify-content-start">
-            <h2>
-              Empowering the Next Generation of<br> Healthcare-AI Leaders
-
-            </h2><br>
-
-            <p>
-              Moving beyond traditional medical education. We provide a 360-degree integration of clinical expertise,
-              data science, and engineering to translate AI research into real-world patient care.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Overview Cards ── -->
-  <section class="activities-overview" id="overview">
-    <div class="container">
-      <p class="act-eyebrow text-center" data-aos="fade-up">What We Do</p>
-      <h2 class="titel48 w700 text-center" data-aos="fade-up" data-aos-delay="80" style="color:#1a1a1a;">
-        Explore Our Activities
-      </h2>
-      <div class="overview-stack">
-
-        <!-- 1. Clinical Research -->
-        <div class="overview-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="ov-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
-              <path d="M8 15v1a6 6 0 0 0 6 6h2a6 6 0 0 0 6-6v-4"/>
-              <circle cx="20" cy="10" r="2"/>
-            </svg>
-          </div>
-          <div class="ov-body">
-            <h3>Clinical Research</h3>
-            <p>Our department conducts pioneering clinical research integrating AI with patient data to improve
-              diagnostics, treatment planning, and patient outcomes across multiple healthcare domains.</p>
-          </div>
-          <div class="ov-stat">
-            <div class="s-num">17+</div>
-            <div class="s-lbl">Projects</div>
-          </div>
-          <a href="#clinical-research" class="btn-learn-more">Learn More →</a>
-        </div>
-
-        <!-- 2. Industry Collabs -->
-        <div class="overview-card" data-aos="fade-up" data-aos-delay="140">
-          <div class="ov-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m11 17 2 2a1 1 0 1 0 3-3"/>
-              <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/>
-              <path d="m21 3 1 11h-2"/>
-              <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/>
-              <path d="M3 4h8"/>
-            </svg>
-          </div>
-          <div class="ov-body">
-            <h3>Industry Collaborations</h3>
-            <p>We partner with leading healthcare companies and technology firms to bridge the gap between academic
-              research and real-world medical AI solutions, offering students industry exposure.</p>
-          </div>
-          <div class="ov-stat">
-            <div class="s-num">5+</div>
-            <div class="s-lbl">Partners</div>
-          </div>
-          <a href="#industry-collabs" class="btn-learn-more">Learn More →</a>
-        </div>
-
-        <!-- 3. Student Projects -->
-        <div class="overview-card" data-aos="fade-up" data-aos-delay="180">
-          <div class="ov-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-              <path d="M6 12v5c0 2.21 2.686 4 6 4s6-1.79 6-4v-5"/>
-            </svg>
-          </div>
-          <div class="ov-body">
-            <h3>Student Projects</h3>
-            <p>Students work on hands-on AI projects addressing real healthcare challenges — from medical imaging tools
-              to predictive models for epidemic surveillance and hospital management.</p>
-          </div>
-          <div class="ov-stat">
-            <div class="s-num">3+</div>
-            <div class="s-lbl">Projects</div>
-          </div>
-          <a href="#student-projects" class="btn-learn-more">Learn More →</a>
-        </div>
-
-        <!-- 4. Guest Speakers -->
-        <div class="overview-card" data-aos="fade-up" data-aos-delay="220">
-          <div class="ov-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D14905" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="9" y="2" width="6" height="11" rx="3"/>
-              <path d="M5 10a7 7 0 0 0 14 0"/>
-              <line x1="12" y1="19" x2="12" y2="22"/>
-              <line x1="8" y1="22" x2="16" y2="22"/>
-            </svg>
-          </div>
-          <div class="ov-body">
-            <h3>Guest Speakers</h3>
-            <p>We regularly host distinguished experts from academia, industry, and hospitals who share their insights
-              on the latest breakthroughs in AI, healthcare, and medical technology.</p>
-          </div>
-          <div class="ov-stat">
-            <div class="s-num">1</div>
-            <div class="s-lbl">Event</div>
-          </div>
-          <a href="#guest-speakers" class="btn-learn-more">Learn More →</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════ DETAIL SECTIONS ═══════════════ -->
-
-  <!-- 1. Clinical Research -->
-  <section class="activity-detail" id="clinical-research">
-    <div class="detail-inner">
-      <div class="detail-img-wrap" data-aos="fade-right">
-        <img src="/assets/images/home/img2.png" alt="Clinical Research at KMC Manipal" />
-      </div>
-      <div class="detail-content" data-aos="fade-left">
-        <h2>Clinical Research</h2>
-        <p>
-          At the Department of AI in Healthcare, clinical research forms the backbone of our scientific mission.
-          Our interdisciplinary teams work at the intersection of medicine, data science, and engineering to design
-          studies that directly improve patient care.
-        </p>
-        <p>
-          Collaborating with KMC hospitals and Manipal's vast clinical network, we have access to rich de-identified
-          patient datasets that fuel research in diagnostics, disease prediction, medical imaging analysis, and
-          personalised medicine.
-        </p>
-        <ul class="detail-highlights">
-          <li>AI-driven early detection of chronic diseases</li>
-          <li>Medical imaging analysis using deep learning</li>
-          <li>Predictive modelling for ICU patient outcomes</li>
-          <li>NLP-based clinical documentation systems</li>
-          <li>Federated learning for privacy-preserving healthcare AI</li>
-        </ul>
-        <a href="contact-us.html" class="btn-learn-more">Get Involved →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. Industry Collaborations -->
-  <section class="activity-detail" id="industry-collabs">
-    <div class="detail-inner reverse">
-      <div class="detail-img-wrap" data-aos="fade-left">
-        <img src="/assets/images/activities/industry-collabs.png" alt="Industry Collaborations" />
-      </div>
-      <div class="detail-content" data-aos="fade-right">
-        <h2>Industry Collaborations</h2>
-        <p>
-          We believe the best AI solutions for healthcare emerge when academia and industry work side by side.
-          Our department actively cultivates relationships with healthcare technology companies, hospitals, and
-          startups to co-develop solutions that scale.
-        </p>
-        <p>
-          These partnerships provide our students and faculty with access to real-world datasets, cutting-edge
-          infrastructure, and mentorship from industry leaders — ensuring that our graduates are industry-ready
-          from day one.
-        </p>
-        <ul class="detail-highlights">
-          <li>Joint R&amp;D projects with health-tech firms</li>
-          <li>Industry-sponsored student capstone projects</li>
-          <li>Internship and placement pipelines</li>
-          <li>Co-authored publications and IP development</li>
-          <li>Workshops and technology transfer sessions</li>
-        </ul>
-        <a href="contact-us.html" class="btn-learn-more">Partner With Us →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. Student Projects -->
-  <section class="activity-detail" id="student-projects">
-    <div class="detail-inner">
-      <div class="detail-img-wrap" data-aos="fade-right">
-        <img src="/assets/images/activities/student-projects.png" alt="Student Projects" />
-      </div>
-      <div class="detail-content" data-aos="fade-left">
-        <h2>Student Projects</h2>
-        <p>
-          Our students are not just learners — they are innovators. From their first semester, students are
-          encouraged to propose, design, and execute AI projects that solve genuine healthcare problems under
-          the guidance of expert faculty and industry mentors.
-        </p>
-        <p>
-          Projects span radiology AI, mental health monitoring, epidemic forecasting, wearable health sensors,
-          and hospital management systems — many go on to be published or commercialised.
-        </p>
-        <ul class="detail-highlights">
-          <li>AI-powered retinal disease screening tool</li>
-          <li>Smart triage system for emergency departments</li>
-          <li>Epidemic forecasting using social media signals</li>
-          <li>Wearable vitals monitoring with anomaly detection</li>
-          <li>NLP chatbot for patient symptom triage</li>
-        </ul>
-        <a href="programs.html" class="btn-learn-more">Explore Programmes →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Guest Speakers -->
-  <section class="activity-detail" id="guest-speakers">
-    <div class="detail-inner reverse">
-      <div class="detail-img-wrap" data-aos="fade-left">
-        <img src="/assets/images/mahe2.webp" alt="Guest Speakers" style="object-position: center top;" />
-      </div>
-      <div class="detail-content" data-aos="fade-right">
-        <h2>Guest Speakers</h2>
-        <p>
-          We regularly invite distinguished researchers, clinicians, and technology leaders to share their
-          knowledge with our community. These sessions provide students and faculty with direct exposure to
-          the cutting edge of AI in healthcare globally.
-        </p>
-        <p>
-          Our speaker series covers AI ethics, precision medicine, large language models in clinical settings,
-          global health data challenges, and transformative case studies from leading healthcare systems worldwide.
-        </p>
-        <ul class="detail-highlights">
-          <li>Keynotes from global AI &amp; health experts</li>
-          <li>Interactive Q&amp;A and panel discussions</li>
-          <li>Workshops and hands-on demo sessions</li>
-          <li>Networking opportunities with visiting researchers</li>
-          <li>Recorded sessions available to the student community</li>
-        </ul>
-        <a href="contact-us.html" class="btn-learn-more">Stay Updated →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="ft-logo">
-            <img src="/assets/images/logo.webp" alt="MAHE" style="max-width: 220px; height: auto;" />
-          </div>
-          <hr style="margin: 15px 0; border-color: #ddd;">
-          <div style="font-family: 'Montserrat', sans-serif;">
-            <span class="dept-name">Dept of AI in Healthcare</span>
-            <span class="college-name">Kasturba Medical College, Manipal</span>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-          <h4 class="footer-title">Quick Links</h4>
-          <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="programs.html">Opportunities &amp; Resources</a></li>
-            <li><a href="contact-us.html">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-          <h4 class="footer-title">Address</h4>
-          <p class="footer-address">
-            Room No: 18219<br>Ground floor<br>
-            KMC Administrative block<br>
-            Kasturba Medical College,<br>
-            Madhav Nagar, Manipal – 576104
-          </p>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-          <h4 class="footer-title">Contact</h4>
-          <div class="footer-contact">
-            <p>
-              <i class="fa fa-envelope" style="color:#E85626; margin-right:8px;"></i>
-              <a href="mailto:aihealthcare.kmc@manipal.edu">aihealthcare.kmc@manipal.edu</a>
-            </p>
-          </div>
-          <div class="footer-social">
-            <a href="https://www.linkedin.com/school/Manipal-artificial-intelligence-institute-MAHE" target="_blank"><i
-                class="fa fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/Manipal_MAHE/" target="_blank"><i class="fa fa-instagram"></i></a>
-            <a href="https://www.youtube.com/@ManipalMAHEPune" target="_blank"><i class="fa fa-youtube-play"></i></a>
-            <a href="https://x.com/MAHE_Manipal" target="_blank"><i class="fa fa-twitter"></i></a>
-            <a href="https://www.facebook.com/MAHE.pune/" target="_blank"><i class="fa fa-facebook"></i></a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="newsletter-signup">
-              <div class="newsletter-content">
-                <h4 class="newsletter-title">Newsletter Signup</h4>
-                <form class="newsletter-form" id="subscribeForm">
-                  <input type="email" id="emailInput" placeholder="Email id" required>
-                  <button type="submit">SUBSCRIBE</button>
-                </form>
+                <a href="${act.buttonLink}" class="btn-learn-more">${act.buttonText}</a>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-  </footer>
-  <div class="last-footer">© 2026 Manipal Academy of Higher Education</div>
+          </section>
+        `;
+                details.insertAdjacentHTML('beforeend', detailHtml);
 
-  <!-- Scripts -->
-  <script src="/assets/js/jquery-3.7.1.min.js"></script>
-  <script src="/assets/js/bootstrap.min.js"></script>
-  <script src="/assets/js/owl.carousel.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 700, once: false });
 
-    $(document).ready(function () {
-      // Function to highlight and scroll to a section
-      function highlightAndScroll(targetId) {
-        if (targetId.startsWith('#') && targetId.length > 1) {
-          var $target = $(targetId);
-          if ($target.length) {
-            // Remove highlight from any other section first
-            $('.activity-detail').removeClass('highlight-active');
+            });
 
-            // Trigger highlight
-            $target.addClass('highlight-active');
-
-            // Smooth scroll
-            $('html, body').animate({
-              scrollTop: $target.offset().top - 80
-            }, 600);
-
-            // Optional: remove class after animation finishes
-            setTimeout(function () {
-              $target.removeClass('highlight-active');
-            }, 2600);
-          }
+            // Re-init AOS
+            if (window.AOS) AOS.refresh();
         }
-      }
 
-      // Handle "Learn More" clicks and other internal links
-      $('a[href^="#"]').on('click', function (e) {
-        var targetId = $(this).attr('href');
-        if (targetId.startsWith('#') && targetId !== '#') {
-          e.preventDefault();
-          highlightAndScroll(targetId);
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            $('.btn-edit-page').toggleClass('active');
+            renderActivities();
+
+            if (isEditMode) {
+                alert("Edit Mode Enabled. Click the 'Edit' labels on cards to modify content.");
+            }
         }
-      });
 
-      // Handle loading with hash (legacy support)
-      var currentHash = window.location.hash;
-      if (currentHash && currentHash !== '#overview') {
-        setTimeout(function () {
-          highlightAndScroll(currentHash);
-        }, 500);
-      }
-    });
+        function openEditModal(id) {
+            const act = activities.find(a => a._id === id);
+            if (!act) return;
 
-    // Announcement carousel
-    if (typeof $ !== 'undefined' && $('.js-announce-carousel').length) {
-      $('.js-announce-carousel').owlCarousel({
-        loop: true, margin: 0, nav: false, dots: false,
-        autoplay: true, autoplayTimeout: 3000, items: 1
-      });
-    }
-  </script>
+            document.getElementById('editActivityId').value = act._id;
+            document.getElementById('editTitle').value = act.title;
+            document.getElementById('editOverviewContent').value = act.overviewContent;
+            document.getElementById('editStatNumber').value = act.statNumber;
+            document.getElementById('editStatLabel').value = act.statLabel;
+            document.getElementById('editDetailDescription').value = act.detailDescription.join('\n');
+            document.getElementById('editHighlights').value = act.highlights.join('\n');
+            document.getElementById('editButtonText').value = act.buttonText;
+            document.getElementById('editButtonLink').value = act.buttonLink;
+
+            // Load current image into preview
+            const preview = document.getElementById('editImagePreview');
+            const img = document.getElementById('editImagePreviewImg');
+            if (act.image) {
+                img.src = act.image;
+                preview.style.display = 'block';
+            } else {
+                img.src = '';
+                preview.style.display = 'none';
+            }
+
+            document.getElementById('editActivityModal').classList.add('show');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editActivityModal').classList.remove('show');
+        }
+
+
+
+        function toggleAddForm() {
+            const form = document.getElementById('addCardForm');
+            if (form.style.display === 'none' || form.style.display === '') {
+                form.style.display = 'block';
+                form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                form.style.display = 'none';
+            }
+        }
+
+        function selectIcon(el, iconClass) {
+            document.querySelectorAll('.icon-opt').forEach(opt => opt.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('selectedIcon').value = `<i class="fas ${iconClass}"></i>`;
+        }
+
+        function previewImage(input, previewId) {
+            const preview = document.getElementById(previewId);
+            const img = preview.querySelector('img');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    img.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function saveNewCard() {
+            const title = document.getElementById('cardHeading').value;
+            const overviewContent = document.getElementById('cardContent').value;
+            const icon = document.getElementById('selectedIcon').value;
+            const imageFile = document.getElementById('cardImageFile').files[0];
+
+            if (!title || !overviewContent) {
+                alert("Please fill in both heading and content.");
+                return;
+            }
+
+            const sendRequest = (imageData) => {
+                fetch('/api/activities', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title, overviewContent, icon,
+                        image: imageData,
+                        adminEmail: localStorage.getItem("adminEmail")
+                    })
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            alert("New activity card added!");
+                            toggleAddForm();
+                            fetchActivities();
+
+                            // Clear form
+                            document.getElementById('cardHeading').value = '';
+                            document.getElementById('cardContent').value = '';
+                            document.getElementById('cardImageFile').value = '';
+                            document.getElementById('addCardPreview').style.display = 'none';
+                        } else {
+                            alert("Failed to add activity.");
+                        }
+                    })
+                    .catch(err => console.error("Error adding activity:", err));
+            };
+
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = (e) => sendRequest(e.target.result);
+                reader.readAsDataURL(imageFile);
+            } else {
+                sendRequest(null);
+            }
+        }
+
+        function saveActivityEdit() {
+            const id = document.getElementById('editActivityId').value;
+            const imageFile = document.getElementById('editImageFile').files[0];
+
+            const data = {
+                title: document.getElementById('editTitle').value,
+                overviewContent: document.getElementById('editOverviewContent').value,
+                statNumber: document.getElementById('editStatNumber').value,
+                statLabel: document.getElementById('editStatLabel').value,
+                detailDescription: document.getElementById('editDetailDescription').value.split('\n').filter(s => s.trim()),
+                highlights: document.getElementById('editHighlights').value.split('\n').filter(s => s.trim()),
+                buttonText: document.getElementById('editButtonText').value,
+                buttonLink: document.getElementById('editButtonLink').value,
+                adminEmail: localStorage.getItem("adminEmail")
+            };
+
+            const sendUpdate = (imageData) => {
+                if (imageData) data.image = imageData;
+
+                fetch(`/api/activities/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            alert("Activity updated successfully!");
+                            closeEditModal();
+                            fetchActivities();
+                        } else {
+                            alert("Failed to update activity.");
+                        }
+                    })
+                    .catch(err => console.error("Error saving activity:", err));
+            };
+
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = (e) => sendUpdate(e.target.result);
+                reader.readAsDataURL(imageFile);
+            } else {
+                sendUpdate(null);
+            }
+        }
+
+        fetchActivities();
+    </script>
 </body>
 
 </html>

@@ -1354,7 +1354,7 @@ footer ul li a:hover {
 
 footer {
   padding: 50px 0;
-  background: url(../images/footer-bg.png) 0 100%/100% auto no-repeat #fff;
+  background: #f9f9f9 url(../images/footer-bg.png) 0 100%/100% auto no-repeat;
   border-radius: 60px 60px 0 0;
   box-shadow: 0 8px 84.6px 0 #00000026;
   margin-top: 30px;
